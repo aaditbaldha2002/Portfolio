@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import styled, { css, keyframes, ThemeProvider } from 'styled-components';
 import { theme } from './lib/theme/theme';
 import { SkillCard } from './lib/components/SkillCard';
-import SkillBg from '../static/Skill_bg.svg';
+import SkillBg from '../static/Skill_Bg.svg';
 export const AppContext = React.createContext<{ welcomeBtnClicked: boolean }>({
   welcomeBtnClicked: false,
 });
@@ -23,9 +23,7 @@ const App: React.FC = (): ReactNode => {
 
 const AppWrapper = styled.div`
   display: flex;
-  background: url(${SkillBg});
   width: 100%;
-  height: auto;
   align-items: center;
   justify-content: center;
   background-repeat: no-repeat;
@@ -35,9 +33,15 @@ const AppWrapper = styled.div`
 `;
 
 const SkillCardsWrapper = styled.div`
-  padding: 20px 0px;
+  padding: 2em 2em;
+  background: url(${SkillBg});
   display: flex;
   width: 100%;
   justify-content: space-around;
+  flex-wrap: wrap;
+  row-gap: 2em;
+  column-gap: 2em;
+  height: fit-content;
+  background-repeat: repeat-y;
 `;
 export default App;
