@@ -23,21 +23,20 @@ const App: React.FC = (): ReactNode => {
 
 const AppWrapper = styled.div`
   display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
+  width: 100vw;
+  height: 100vh;
   background-repeat: no-repeat;
-  background-size: stretch;
   /* overflow-y: clip; */
   /* overflow-x: clip; */
 `;
 
 const SkillCardsWrapper = styled.div`
-  padding: 2em 2em;
+  padding: 1em 1em;
   background: url(${SkillBg});
   display: flex;
-  width: 100%;
+  width: 100vw;
   justify-content: space-around;
+  align-items: center;
   flex-wrap: wrap;
   row-gap: 2em;
   column-gap: 2em;

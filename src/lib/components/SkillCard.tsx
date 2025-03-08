@@ -19,27 +19,25 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
 
   return (
     <SkillCardWrapper id="SkillCardWrapper-id">
-      <OuterBg id="OuterBg-id">
-        <ContentWrapper id="Conent-Wrapperid">
-          <TitleBoxWrapper>
-            <TitleWrapper>{props.type}</TitleWrapper>
-          </TitleBoxWrapper>
-          <BtnGridWrapper>
-            {props.type == 'LANGUAGES' &&
-              languages.map((language, index) => (
-                <BtnWrapper key={index}>{language}</BtnWrapper>
-              ))}
-            {props.type == 'DATABASES' &&
-              databases.map((db, index) => (
-                <BtnWrapper key={index}>{db}</BtnWrapper>
-              ))}
-            {props.type == 'TECHNOLOGY' &&
-              technologies.map((technology, index) => (
-                <BtnWrapper key={index}>{technology}</BtnWrapper>
-              ))}
-          </BtnGridWrapper>
-        </ContentWrapper>
-      </OuterBg>
+      <ContentWrapper id="Conent-Wrapperid">
+        <TitleBoxWrapper>
+          <TitleWrapper>{props.type}</TitleWrapper>
+        </TitleBoxWrapper>
+        <BtnGridWrapper>
+          {props.type == 'LANGUAGES' &&
+            languages.map((language, index) => (
+              <BtnWrapper key={index}>{language}</BtnWrapper>
+            ))}
+          {props.type == 'DATABASES' &&
+            databases.map((db, index) => (
+              <BtnWrapper key={index}>{db}</BtnWrapper>
+            ))}
+          {props.type == 'TECHNOLOGY' &&
+            technologies.map((technology, index) => (
+              <BtnWrapper key={index}>{technology}</BtnWrapper>
+            ))}
+        </BtnGridWrapper>
+      </ContentWrapper>
     </SkillCardWrapper>
   );
 };
@@ -55,69 +53,58 @@ const fadeIn = keyframes`
 `;
 
 const SkillCardWrapper = styled.div`
-  display: inline-block;
   position: relative;
-  perspective: 1000px;
   animation: ${fadeIn} 1s ease-in-out;
-`;
-
-const OuterBg = styled.div`
-  width: 320px;
-  height: 400px;
-  border-radius: 5px;
   background-color: ${(props) => props.theme.black_75_translucent};
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: fit-content;
+  padding: 1em;
+  border: 2px solid ${(props) => props.theme.white};
+  color: ${(props) => props.theme.white};
+  height: 370px;
+  width: 340px;
 `;
 
 const ContentWrapper = styled.div`
-  border: 2px solid ${(props) => props.theme.white};
+  display: grid;
+  grid-template-rows: 1fr 3fr;
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  color: ${(props) => props.theme.white};
 `;
 
 const TitleBoxWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
-  padding: 20px;
 `;
 
 const TitleWrapper = styled.div`
   border: 2px solid ${(props) => props.theme.white_25_translucent};
   color: ${(props) => props.theme.white};
   text-shadow:
-    0px 0px 20px ${(props) => props.theme.light_blue},
-    0px 0px 20px ${(props) => props.theme.light_blue},
-    0px 0px 10px ${(props) => props.theme.light_blue};
-  padding: 10px 30px;
-  font-size: 30px;
+    0px 0px 2em ${(props) => props.theme.light_blue},
+    0px 0px 1em ${(props) => props.theme.light_blue};
+  padding: 1em 2em;
+  font-size: 1.75em;
+  width: 100%;
+  text-align: center;
 `;
 
 const BtnGridWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 50% 50%;
   gap: 10px;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  column-gap: 5px;
 `;
 
 const BtnWrapper = styled.div`
   border: 2px solid ${(props) => props.theme.white_25_translucent};
-  padding: 10px 20px;
+  padding: 10px 0px;
   font-size: 20px;
   text-shadow:
     0px 0px 20px ${(props) => props.theme.light_blue},
     0px 0px 20px ${(props) => props.theme.light_blue};
+  text-align: center;
 
   &:hover {
     background-color: ${(props) => props.theme.white};
