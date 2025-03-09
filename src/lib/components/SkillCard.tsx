@@ -21,15 +21,22 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
     'SASS',
   ];
 
+  const [showContent, setShowContent] = React.useState(false);
+
+  const handleShowContent = React.useCallback(() => {
+    setShowContent(true);
+  }, []);
+
   return (
     <SkillCardWrapper
       id="SkillCardWrapper-id"
       cardIndex={props.cardIndex}
       showCard={props.showCard}
+      onAnimationEnd={handleShowContent}
     >
       <UpperBorder />
       <ContentWrapper id="Conent-Wrapperid">
-        <ContentGridWrapper>
+        <ContentGridWrapper showContent={showContent}>
           <TitleBoxWrapper>
             <TitleWrapper>{props.type}</TitleWrapper>
           </TitleBoxWrapper>
@@ -88,18 +95,26 @@ const ContentWrapper = styled.div`
 `;
 
 const fadeIn = keyframes`
-  from{
-    opacity: 0;
-  }to{
+  0%{
+    opacity:0;
+  }
+  50%{
+    opacity:0;
+  }100%{
     opacity:1;
   }
 `;
-const ContentGridWrapper = styled.div`
+const ContentGridWrapper = styled.div<{ showContent: boolean }>`
   padding: 2em;
   display: grid;
   grid-template-rows: 1fr 3fr;
   width: 90%;
-  animation: ${fadeIn} 0.35s ease-in;
+  ${(props) =>
+    props.showContent &&
+    css`
+      animation: ${fadeIn} 0.3s ease-out forwards;
+    `};
+  opacity: ${(props) => (props.showContent ? 1 : 0)};
 `;
 
 const TitleBoxWrapper = styled.div`
