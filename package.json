@@ -57,6 +57,7 @@
     "webpack-dev-server": "^5.1.0"
   },
   "dependencies": {
+    "@fontsource/kanit": "^5.2.5",
     "@fontsource/orbitron": "^5.1.1",
     "@fontsource/space-grotesk": "^5.1.1",
     "lodash": "^4.17.21",
