@@ -73,7 +73,7 @@ const ContentWrapper = styled.div`
   justify-content: center;
   width: 100%;
   background: ${(props) =>
-    `linear-gradient(to right, transparent 0%,${props.theme.black_75_translucent} 5%,  ${props.theme.black_75_translucent} 95%, transparent 100%)`};
+    `linear-gradient(to right, transparent 0%,${props.theme.black_75_translucent} 10%,  ${props.theme.black_75_translucent} 90%, transparent 100%)`};
 `;
 
 const fadeIn = keyframes`

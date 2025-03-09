@@ -25,14 +25,12 @@ const AppWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   background-repeat: no-repeat;
-  /* overflow-y: clip; */
-  /* overflow-x: clip; */
 `;
 
 const SkillCardsWrapper = styled.div`
   padding: 1em 1em;
   background: ${(props) =>
-    `radial-gradient(${props.theme.darkest_blue},${props.theme.black})`};
+    `radial-gradient(${props.theme.darker_blue},${props.theme.black})`};
   display: flex;
   width: 100vw;
   justify-content: space-around;
