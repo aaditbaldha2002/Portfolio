@@ -55,10 +55,11 @@ const fadeIn = keyframes`
 const SkillCardWrapper = styled.div`
   position: relative;
   animation: ${fadeIn} 1s ease-in-out;
-  background-color: ${(props) => props.theme.black_75_translucent};
   height: fit-content;
-  padding: 1em;
-  border: 2px solid ${(props) => props.theme.white};
+  border-top: 2em solid ${(props) => props.theme.darker_blue_50_translucent};
+  border-left: 2em solid transparent;
+  border-right: 2em solid transparent;
+  border-bottom: 2em solid ${(props) => props.theme.darker_blue_50_translucent};
   color: ${(props) => props.theme.white};
   height: 370px;
   width: 340px;
@@ -68,6 +69,8 @@ const ContentWrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr 3fr;
   width: 100%;
+  background: ${(props) =>
+    `linear-gradient(to right, transparent 0%,${props.theme.black_75_translucent} 10%,  ${props.theme.black_75_translucent} 90%, transparent 100%)`};
 `;
 
 const TitleBoxWrapper = styled.div`
