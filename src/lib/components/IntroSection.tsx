@@ -10,7 +10,6 @@ interface IntroSectionProps {
 export const IntroSection: React.FC<IntroSectionProps> = (props) => {
   const name = props.name;
   const theme = useTheme();
-  const [nameAnimationEnded, setNameAnimationEnded] = React.useState(false);
 
   const [gateOpened, setGetOpened] = React.useState(false);
 
