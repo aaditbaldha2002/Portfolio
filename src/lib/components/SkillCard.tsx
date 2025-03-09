@@ -127,8 +127,8 @@ const TitleWrapper = styled.div`
   border: 2px solid ${(props) => props.theme.white_25_translucent};
   color: ${(props) => props.theme.white};
   text-shadow:
-    0px 0px 2em ${(props) => props.theme.light_blue},
-    0px 0px 1em ${(props) => props.theme.light_blue};
+    0px 0px 1em ${(props) => props.theme.blue},
+    0px 0px 0.5em ${(props) => props.theme.light_blue};
   padding: 1em 2em;
   font-size: 1.75em;
   width: 100%;
@@ -149,7 +149,7 @@ const BtnWrapper = styled.div`
   padding: 10px 0px;
   font-size: 20px;
   text-shadow:
-    0px 0px 20px ${(props) => props.theme.light_blue},
+    0px 0px 20px ${(props) => props.theme.blue},
     0px 0px 20px ${(props) => props.theme.light_blue};
   text-align: center;
 
