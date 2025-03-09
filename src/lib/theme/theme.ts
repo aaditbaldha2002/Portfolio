@@ -10,6 +10,7 @@ export const theme = {
   dark_blue: '#021fa0',
   blue: '#1b45d7',
   gate_blue: '#406690',
+  dark_gate_blue: '#324F6F',
   light_blue: '#23e9fc',
 
   white_25_translucent: 'rgba(255,255,255,0.25)',
@@ -19,4 +20,8 @@ export const theme = {
   black_25_translucent: 'rgba(24,24,23,0.25)',
   black_50_translucent: 'rgba(24,24,23,0.5)',
   black_75_translucent: 'rgba(24,24,23,0.75)',
+
+  gate_blue_25_translucent: 'rgba(64, 102, 144, 0.25)',
+  gate_blue_50_translucent: 'rgba(64, 102, 144, 0.5)',
+  gate_blue_75_translucent: 'rgba(64, 102, 144, 0.75)',
 };

@@ -107,6 +107,7 @@ const goLeft = keyframes`
 
 const LeftGate = styled.div`
   display: flex;
+  justify-content: left;
   background: ${(props) => `linear-gradient(
     -135deg,
     ${props.theme.gate_blue},
@@ -177,13 +178,13 @@ const DpImage = styled.div`
   @keyframes auraPulse {
     from {
       transform: scale(1);
-      box-shadow: 0 0 40px 5px ${(props) => props.theme.purple};
-      border: ${(props) => `5px solid ${props.theme.purple}`};
+      box-shadow: 0 0 40px 5px ${(props) => props.theme.darker_blue};
+      border: ${(props) => `5px solid ${props.theme.darker_blue}`};
     }
     to {
       transform: scale(1.05);
-      box-shadow: 0 0 60px 10px ${(props) => props.theme.purple};
-      border: ${(props) => `5px solid ${props.theme.purple}`};
+      box-shadow: 0 0 60px 10px ${(props) => props.theme.blue};
+      border: ${(props) => `5px solid ${props.theme.blue}`};
     }
   }
 `;
