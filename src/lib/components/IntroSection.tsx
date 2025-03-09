@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { css, keyframes, useTheme } from 'styled-components';
 import { TextTyper } from './TextTyper';
-import introBg from '../../../static/dp_bg.png';
 import DpImg from '../../../static/dp.jpeg';
 interface IntroSectionProps {
   name: string;
@@ -60,17 +59,26 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
   );
 };
 
+const changeBg = keyframes`
+  from {
+    background-position: 100% 0%;
+  }
+  to {
+    background-position: 50% 0%;
+  }
+`;
+
 const Wrapper = styled.div`
   width: 100%;
-  /* background: url(${introBg}); */
   background: ${(props) =>
     `linear-gradient(to left,${props.theme.darkest_blue},${props.theme.black})`};
-  background-size: cover;
-  background-position: center;
+  animation: ${changeBg} 1.25s ease-in forwards;
+  background-size: 200%;
+  background-position: 100% 0;
   display: flex;
   flex-direction: row;
   gap: 1em;
-  overflow-y: clip;
+  overflow: hidden;
   @media (max-width: 640px) {
     flex-direction: column;
     align-items: center;
@@ -95,6 +103,8 @@ const GateWrapper = styled.div`
   top: 0px;
   left: 0px;
   height: 311px;
+  width: 100%;
+  overflow-x: hidden;
 `;
 
 const goLeft = keyframes`
@@ -198,10 +208,6 @@ const InfoWrapper = styled.div`
 
 const NameWrapper = styled.div<{ gateOpened: boolean }>`
   position: relative;
-  /* text-shadow:
-    0px 0px 20px ${(props) => props.theme.light_blue},
-    0px 0px 20px ${(props) => props.theme.light_blue},
-    0px 0px 10px ${(props) => props.theme.light_blue}; */
   @media (max-width: 640px) {
     text-align: center;
   }
@@ -226,8 +232,8 @@ const NameWrapper = styled.div<{ gateOpened: boolean }>`
     }
     100% {
       text-shadow:
-        0px 0px 20px ${(props) => props.theme.light_blue},
-        0px 0px 10px ${(props) => props.theme.light_blue};
+        0px 0px 1em ${(props) => props.theme.blue},
+        0px 0px 0.5em ${(props) => props.theme.light_blue};
     }
   }
 `;
@@ -258,8 +264,8 @@ const SummaryWrapper = styled.div<{ gateOpened: boolean }>`
     }
     100% {
       text-shadow:
-        0px 0px 20px ${(props) => props.theme.light_blue},
-        0px 0px 10px ${(props) => props.theme.light_blue};
+        0px 0px 1em ${(props) => props.theme.blue},
+        0px 0px 0.5em ${(props) => props.theme.light_blue};
     }
   }
 `;
