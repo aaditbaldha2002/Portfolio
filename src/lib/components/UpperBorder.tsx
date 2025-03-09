@@ -15,6 +15,8 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: -10px;
 `;
 
 const BorderImg = styled.img`

@@ -95,7 +95,7 @@ const fadeIn = keyframes`
   }
 `;
 const ContentGridWrapper = styled.div`
-  padding: 1em;
+  padding: 2em;
   display: grid;
   grid-template-rows: 1fr 3fr;
   width: 90%;
