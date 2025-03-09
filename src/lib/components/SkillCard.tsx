@@ -1,10 +1,12 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import React from 'react';
 import { UpperBorder } from './UpperBorder';
 import { LowerBorder } from './LowerBorder';
 
 interface SkillCardProps {
   type: 'LANGUAGES' | 'DATABASES' | 'TECHNOLOGY';
+  cardIndex: number;
+  showCard: number;
 }
 
 export const SkillCard: React.FC<SkillCardProps> = (props) => {
@@ -20,7 +22,11 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
   ];
 
   return (
-    <SkillCardWrapper id="SkillCardWrapper-id">
+    <SkillCardWrapper
+      id="SkillCardWrapper-id"
+      cardIndex={props.cardIndex}
+      showCard={props.showCard}
+    >
       <UpperBorder />
       <ContentWrapper id="Conent-Wrapperid">
         <ContentGridWrapper>
@@ -57,11 +63,16 @@ const popUp = keyframes`
   }
 `;
 
-const SkillCardWrapper = styled.div`
+const SkillCardWrapper = styled.div<{ cardIndex: number; showCard: number }>`
   display: flex;
   flex-direction: column;
   position: relative;
-  animation: ${popUp} 0.35s ease-in;
+  ${(props) =>
+    props.cardIndex <= props.showCard &&
+    css`
+      animation: ${popUp} 0.35s ease-in;
+    `}
+  opacity: ${(props) => (props.cardIndex <= props.showCard ? 1 : 0)};
   height: fit-content;
   color: ${(props) => props.theme.white};
 `;

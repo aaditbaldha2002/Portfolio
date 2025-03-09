@@ -7,13 +7,37 @@ export const AppContext = React.createContext<{ welcomeBtnClicked: boolean }>({
 });
 
 const App: React.FC = (): ReactNode => {
+  const [cardIndexShowed, setCardIndexShowed] = React.useState(0);
+
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCardIndexShowed((prevIndex) => prevIndex + 1);
+    }, 250);
+
+    if (cardIndexShowed > 2) {
+      clearInterval(intervalId);
+    }
+  });
+
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper>
         <SkillCardsWrapper>
-          <SkillCard type={'LANGUAGES'} />
-          <SkillCard type={'DATABASES'} />
-          <SkillCard type={'TECHNOLOGY'} />
+          <SkillCard
+            type={'LANGUAGES'}
+            cardIndex={0}
+            showCard={cardIndexShowed}
+          />
+          <SkillCard
+            type={'DATABASES'}
+            cardIndex={1}
+            showCard={cardIndexShowed}
+          />
+          <SkillCard
+            type={'TECHNOLOGY'}
+            cardIndex={2}
+            showCard={cardIndexShowed}
+          />
         </SkillCardsWrapper>
       </AppWrapper>
     </ThemeProvider>
