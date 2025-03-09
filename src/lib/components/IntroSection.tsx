@@ -182,8 +182,8 @@ const DpImage = styled.div`
     }
     to {
       transform: scale(1.05);
-      box-shadow: 0 0 60px 10px ${(props) => props.theme.gate_blue};
-      border: ${(props) => `5px solid ${props.theme.gate_blue}`};
+      box-shadow: 0 0 60px 10px ${(props) => props.theme.purple};
+      border: ${(props) => `5px solid ${props.theme.purple}`};
     }
   }
 `;
@@ -207,7 +207,7 @@ const NameWrapper = styled.div<{ gateOpened: boolean }>`
   ${(props) =>
     props.gateOpened &&
     css`
-      animation: textGlitch 1s linear forwards;
+      animation: textGlitch 1.5s linear forwards;
     `}
 
   @keyframes textGlitch {
@@ -225,7 +225,6 @@ const NameWrapper = styled.div<{ gateOpened: boolean }>`
     }
     100% {
       text-shadow:
-        0px 0px 20px ${(props) => props.theme.light_blue},
         0px 0px 20px ${(props) => props.theme.light_blue},
         0px 0px 10px ${(props) => props.theme.light_blue};
     }
@@ -240,7 +239,7 @@ const SummaryWrapper = styled.div<{ gateOpened: boolean }>`
   ${(props) =>
     props.gateOpened &&
     css`
-      animation: textGlitch 1s linear forwards;
+      animation: textGlitch 1.5s linear forwards;
     `}
 
   @keyframes textGlitch {
@@ -258,7 +257,6 @@ const SummaryWrapper = styled.div<{ gateOpened: boolean }>`
     }
     100% {
       text-shadow:
-        0px 0px 20px ${(props) => props.theme.light_blue},
         0px 0px 20px ${(props) => props.theme.light_blue},
         0px 0px 10px ${(props) => props.theme.light_blue};
     }
