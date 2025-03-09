@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import React from 'react';
+import { UpperBorder } from './UpperBorder';
+import { LowerBorder } from './LowerBorder';
 
 interface SkillCardProps {
   type: 'LANGUAGES' | 'DATABASES' | 'TECHNOLOGY';
@@ -19,58 +21,74 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
 
   return (
     <SkillCardWrapper id="SkillCardWrapper-id">
+      <UpperBorder />
       <ContentWrapper id="Conent-Wrapperid">
-        <TitleBoxWrapper>
-          <TitleWrapper>{props.type}</TitleWrapper>
-        </TitleBoxWrapper>
-        <BtnGridWrapper>
-          {props.type == 'LANGUAGES' &&
-            languages.map((language, index) => (
-              <BtnWrapper key={index}>{language}</BtnWrapper>
-            ))}
-          {props.type == 'DATABASES' &&
-            databases.map((db, index) => (
-              <BtnWrapper key={index}>{db}</BtnWrapper>
-            ))}
-          {props.type == 'TECHNOLOGY' &&
-            technologies.map((technology, index) => (
-              <BtnWrapper key={index}>{technology}</BtnWrapper>
-            ))}
-        </BtnGridWrapper>
+        <ContentGridWrapper>
+          <TitleBoxWrapper>
+            <TitleWrapper>{props.type}</TitleWrapper>
+          </TitleBoxWrapper>
+          <BtnGridWrapper>
+            {props.type == 'LANGUAGES' &&
+              languages.map((language, index) => (
+                <BtnWrapper key={index}>{language}</BtnWrapper>
+              ))}
+            {props.type == 'DATABASES' &&
+              databases.map((db, index) => (
+                <BtnWrapper key={index}>{db}</BtnWrapper>
+              ))}
+            {props.type == 'TECHNOLOGY' &&
+              technologies.map((technology, index) => (
+                <BtnWrapper key={index}>{technology}</BtnWrapper>
+              ))}
+          </BtnGridWrapper>
+        </ContentGridWrapper>
       </ContentWrapper>
+      <LowerBorder />
     </SkillCardWrapper>
   );
 };
 
-const fadeIn = keyframes`
-  from{
-    opacity: 0;
-    transform: translateY(40px);
-  }to{
-    opacity: 1;
-    transform: translateY(0);
+const popUp = keyframes`
+  0%{
+    transform: scaleY(5%);
+  }
+  100%{
+    transform: scaleY(100%);
   }
 `;
 
 const SkillCardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   position: relative;
-  animation: ${fadeIn} 1s ease-in-out;
+  animation: ${popUp} 0.35s ease-in;
   height: fit-content;
-  border-top: 2em solid ${(props) => props.theme.darker_blue_50_translucent};
-  border-left: 2em solid transparent;
-  border-right: 2em solid transparent;
-  border-bottom: 2em solid ${(props) => props.theme.darker_blue_50_translucent};
   color: ${(props) => props.theme.white};
-  height: 370px;
-  width: 340px;
 `;
 
 const ContentWrapper = styled.div`
-  display: grid;
-  grid-template-rows: 1fr 3fr;
+  box-sizing: border-box;
+  padding: 0em 1em;
+  display: flex;
+  justify-content: center;
   width: 100%;
   background: ${(props) =>
-    `linear-gradient(to right, transparent 0%,${props.theme.black_75_translucent} 10%,  ${props.theme.black_75_translucent} 90%, transparent 100%)`};
+    `linear-gradient(to right, transparent 0%,${props.theme.black_75_translucent} 5%,  ${props.theme.black_75_translucent} 95%, transparent 100%)`};
+`;
+
+const fadeIn = keyframes`
+  from{
+    opacity: 0;
+  }to{
+    opacity:1;
+  }
+`;
+const ContentGridWrapper = styled.div`
+  padding: 1em;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  width: 90%;
+  animation: ${fadeIn} 0.35s ease-in;
 `;
 
 const TitleBoxWrapper = styled.div`

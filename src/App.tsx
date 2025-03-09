@@ -1,8 +1,7 @@
 import React, { ReactNode } from 'react';
-import styled, { css, keyframes, ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import { theme } from './lib/theme/theme';
 import { SkillCard } from './lib/components/SkillCard';
-import SkillBg from '../static/Skill_Bg.svg';
 export const AppContext = React.createContext<{ welcomeBtnClicked: boolean }>({
   welcomeBtnClicked: false,
 });
@@ -32,7 +31,8 @@ const AppWrapper = styled.div`
 
 const SkillCardsWrapper = styled.div`
   padding: 1em 1em;
-  background: url(${SkillBg});
+  background: ${(props) =>
+    `radial-gradient(${props.theme.darkest_blue},${props.theme.black})`};
   display: flex;
   width: 100vw;
   justify-content: space-around;

@@ -36,6 +36,17 @@ export default {
           },
         },
       },
+      {
+        test: /\.(mp3|wav|ogg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'assets/[name].[hash].[ext]',
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
