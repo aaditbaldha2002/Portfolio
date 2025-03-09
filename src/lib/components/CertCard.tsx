@@ -91,24 +91,22 @@ const CertImg = styled.img`
 const DateWrapper = styled.div`
   display: flex;
   color: ${(props) => props.theme.white};
-  font-size: 20px;
-  margin: 20px 0px;
+  font-size: 2em;
+  margin: 0.5em 0em;
   text-shadow:
-    0px 0px 20px ${(props) => props.theme.light_blue},
-    0px 0px 20px ${(props) => props.theme.light_blue},
-    0px 0px 10px ${(props) => props.theme.light_blue};
+    0px 0px 1em ${(props) => props.theme.blue},
+    0px 0px 0.5em ${(props) => props.theme.light_blue};
 `;
 
 const VerifyBtnWrapper = styled.button`
   background: transparent;
-  border: 2px solid ${(props) => props.theme.white};
+  border: 1px solid ${(props) => props.theme.white};
   color: ${(props) => props.theme.white};
-  padding: 10px 30px;
-  font-size: 20px;
+  padding: 0.5em 1em;
+  font-size: 1.5em;
   text-shadow:
-    0px 0px 20px ${(props) => props.theme.light_blue},
-    0px 0px 20px ${(props) => props.theme.light_blue},
-    0px 0px 10px ${(props) => props.theme.light_blue};
+    0px 0px 2em ${(props) => props.theme.blue},
+    0px 0px 1em ${(props) => props.theme.light_blue};
   &:hover {
     background: ${(props) => props.theme.white};
     color: ${(props) => props.theme.black};
