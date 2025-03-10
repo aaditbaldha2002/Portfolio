@@ -62,11 +62,16 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
 };
 
 const popUp = keyframes`
-  0%{
-    transform: scaleY(5%);
+  0% {
+    transform: scaleY(0.1);
+    opacity: 0;
   }
-  100%{
-    transform: scaleY(100%);
+  60% {
+    transform: scaleY(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
   }
 `;
 
@@ -82,6 +87,25 @@ const SkillCardWrapper = styled.div<{ cardIndex: number; showCard: number }>`
   opacity: ${(props) => (props.cardIndex <= props.showCard ? 1 : 0)};
   height: fit-content;
   color: ${(props) => props.theme.white};
+  transform: perspective(1000px);
+  &:hover {
+    transform: perspective(1000px)
+      ${(props) => (props.cardIndex !== 1 ? `scale(1.1)` : `scale(1.05)`)}
+      ${(props) =>
+        props.cardIndex === 0
+          ? `rotateY(25deg)`
+          : props.cardIndex === 2
+            ? `rotateY(-25deg)`
+            : `rotateY(0deg)`}
+      ${(props) => (props.cardIndex !== 1 ? `rotateX(15deg)` : `rotateX(0deg)`)};
+    z-index: 9999;
+    transition: transform 0.3s ease-out;
+  }
+
+  &:not(:hover) {
+    transform: perspective(1000px) scale(1) rotateY(0deg);
+    transition: transform 0.4s ease-in;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -97,11 +121,14 @@ const ContentWrapper = styled.div`
 const fadeIn = keyframes`
   0%{
     opacity:0;
+    transform: scale(0.97);
   }
   50%{
     opacity:0;
+    transform: scale(0.97);
   }100%{
     opacity:1;
+    transform: scale(1);
   }
 `;
 const ContentGridWrapper = styled.div<{ showContent: boolean }>`
@@ -133,6 +160,7 @@ const TitleWrapper = styled.div`
   font-size: 1.75em;
   width: 100%;
   text-align: center;
+  user-select: none;
 `;
 
 const BtnGridWrapper = styled.div`
@@ -152,11 +180,19 @@ const BtnWrapper = styled.div`
     0px 0px 20px ${(props) => props.theme.blue},
     0px 0px 20px ${(props) => props.theme.light_blue};
   text-align: center;
+  user-select: none;
 
   &:hover {
     background-color: ${(props) => props.theme.white};
     cursor: pointer;
     color: ${(props) => props.theme.black};
     text-shadow: none;
+    transform: translateZ(10px);
+  }
+
+  &:active {
+    transform: translateY(5px);
+    box-shadow: 2px 2px ${(props) => props.theme.white_50_translucent};
+    transition: transform 0.2s ease-out;
   }
 `;
