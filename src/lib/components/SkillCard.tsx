@@ -87,7 +87,6 @@ const SkillCardWrapper = styled.div<{ cardIndex: number; showCard: number }>`
   opacity: ${(props) => (props.cardIndex <= props.showCard ? 1 : 0)};
   height: fit-content;
   color: ${(props) => props.theme.white};
-  transform: perspective(1000px);
   &:hover {
     transform: perspective(1000px)
       ${(props) => (props.cardIndex !== 1 ? `scale(1.1)` : `scale(1.05)`)}
@@ -103,8 +102,8 @@ const SkillCardWrapper = styled.div<{ cardIndex: number; showCard: number }>`
   }
 
   &:not(:hover) {
-    transform: perspective(1000px) scale(1) rotateY(0deg);
-    transition: transform 0.4s ease-in;
+    transform: perspective(1000px) scale(1) rotateY(0deg) rotateX(0deg);
+    transition: transform 0.35s ease-in;
   }
 `;
 
@@ -187,7 +186,6 @@ const BtnWrapper = styled.div`
     cursor: pointer;
     color: ${(props) => props.theme.black};
     text-shadow: none;
-    transform: translateZ(10px);
   }
 
   &:active {

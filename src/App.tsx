@@ -7,7 +7,7 @@ export const AppContext = React.createContext<{ welcomeBtnClicked: boolean }>({
 });
 
 const App: React.FC = (): ReactNode => {
-  const [cardIndexShowed, setCardIndexShowed] = React.useState(0);
+  const [cardIndexShowed, setCardIndexShowed] = React.useState(-1);
 
   React.useEffect(() => {
     const intervalId = setInterval(() => {
@@ -17,7 +17,7 @@ const App: React.FC = (): ReactNode => {
     setTimeout(() => {
       clearInterval(intervalId);
       setCardIndexShowed(2);
-    }, 1000);
+    }, 1250);
   }, []);
 
   return (
