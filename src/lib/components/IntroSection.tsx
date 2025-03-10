@@ -19,10 +19,10 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
     setTimeout(() => {});
   }, [gateOpened]);
   return (
-    <Wrapper>
-      <GateWrapper id="gatewrapper-id">
-        <LeftGate />
-        <RightGate />
+    <Wrapper data-testid="wrapper-test-id">
+      <GateWrapper data-testid="gatewrapper-test-id" id="gatewrapper-id">
+        <LeftGate data-testid="leftgate-test-id" />
+        <RightGate data-testid="rightgate-test-id" />
       </GateWrapper>
       <ContentWrapper gateOpened={gateOpened}>
         <DpWrapper data-testid="Dp-wrapper-test-id">
@@ -98,7 +98,7 @@ const GateWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: 0.25s ${fadeIn} linear forwards;
+  animation: ${fadeIn} 0.25s linear forwards;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -125,7 +125,7 @@ const LeftGate = styled.div`
   )`};
   width: 50vw;
   align-self: stretch;
-  animation: 1s ${goLeft} ease-in forwards;
+  animation: ${goLeft} 1s ease-in forwards;
   box-shadow: -10px 0 30px ${(props) => props.theme.purple};
 `;
 

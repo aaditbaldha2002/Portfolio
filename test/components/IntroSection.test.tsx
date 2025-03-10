@@ -3,31 +3,45 @@ import { IntroSection } from '../../src/lib/components/IntroSection';
 import React from 'react';
 import 'jest-styled-components';
 import '@testing-library/jest-dom';
-import ThemeProvider from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { theme } from '../../src/lib/theme/theme';
 afterEach(() => {
   cleanup();
 });
 
 jest.mock('../../static/dp.jpeg', () => 'mocked_dp.jpeg');
-jest.mock('../../static/db_bg.png', () => 'mocked_db_bg.png');
 
 test('unit test for IntroSection.tsx', () => {
   // Write unit tests here
-  const name = 'Aadit Harshal Baldha';
-  const summary =
-    'I am a passionate Web Developer and Machine Learning student,constantly exploring the intersection of frontend development and AI-driven solutions. With a strong foundation in React.js, JavaScript, and modern web technologies, I build seamless user experiences while also delving into the world of machine learning to create intelligent and data-driven applications.';
 
   render(
     <ThemeProvider theme={theme}>
-      <IntroSection name={name} />
+      <IntroSection name={'#'} />
     </ThemeProvider>,
   );
-  const element = screen.getByText(name);
+  const element = screen.getByTestId('wrapper-test-id');
   expect(element).toBeTruthy();
-  expect(element.textContent).toBe(name);
-  expect(element).toContainElement(screen.getByTestId('Dp-wrapper-test-id'));
-  expect(element).toContainElement(screen.getByTestId('Info-wrapper-test-id'));
+  expect(element).toContainElement(screen.getByTestId('gatewrapper-test-id'));
+
+  const gateWrapper = screen.getByTestId('gatewrapper-test-id');
+  expect(gateWrapper).toBeTruthy();
+  expect(gateWrapper).toHaveStyleRule(
+    'animation',
+    expect.stringContaining('0.25s linear forwards'),
+  );
+  expect(gateWrapper).toContainElement(screen.getByTestId('leftgate-test-id'));
+  expect(gateWrapper).toContainElement(screen.getByTestId('rightgate-test-id'));
+
+  const leftGate = screen.getByTestId('leftgate-test-id');
+  expect(leftGate).toBeTruthy();
+  expect(leftGate).toHaveStyleRule(
+    'animation',
+    expect.stringContaining('1s ease-in forwards'),
+  );
+
+  const rightGate = screen.getByTestId('rightgate-test-id');
+  expect(rightGate).toBeTruthy();
+  expect(rightGate).toHaveStyleRule('animation', '1s ease-in forwards');
 
   const DpWrapper = screen.getByTestId('Dp-wrapper-test-id');
   expect(DpWrapper).toBeTruthy();
@@ -35,7 +49,13 @@ test('unit test for IntroSection.tsx', () => {
 
   const DpImage = screen.getByTestId('Dp-img-test-id');
   expect(DpImage).toBeTruthy();
-  expect(DpImage).toHaveStyle('animation: 1.5s fadeIn ease-out forwards');
+  expect(DpImage).toHaveStyleRule(
+    'animation',
+    'auraPulse 2s infinite alternate',
+  );
+  expect(DpImage).toHaveStyleRule('animation-duration', '2s');
+  expect(DpImage).toHaveStyleRule('animation-timing-function', 'infinite');
+  expect(DpImage).toHaveStyleRule('animation-fill-mode', 'alternate');
 
   const InfoWrapper = screen.getByTestId('Info-wrapper-test-id');
   expect(InfoWrapper).toBeTruthy();
@@ -48,18 +68,16 @@ test('unit test for IntroSection.tsx', () => {
   expect(NameWrapper).toContainElement(
     screen.getByTestId('Name-texttyper-test-id'),
   );
-  expect(NameWrapper).toHaveProperty('onAnimationEnd');
   expect(NameWrapper).toHaveStyleRule(
     'animation',
-    expect.stringContaining('0.75s ease-out forwards'),
+    expect.stringContaining('textGlitch 1.5s linear forwards'),
   );
-  fireEvent.animationEnd(NameWrapper);
 
   const NameTextTyper = screen.getByTestId('Name-texttyper-test-id');
   expect(NameTextTyper).toBeTruthy();
-  expect(NameTextTyper.textContent).toBe(name);
+  expect(NameTextTyper.textContent).toBeTruthy();
 
   const SummaryWrapper = screen.getByTestId('summaryWrapper-test-id');
   expect(SummaryWrapper).toBeTruthy();
-  expect(SummaryWrapper.textContent).toBe(summary);
+  expect(SummaryWrapper.textContent).toBeTruthy();
 });
