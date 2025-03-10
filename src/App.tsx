@@ -17,7 +17,7 @@ const App: React.FC = (): ReactNode => {
     setTimeout(() => {
       clearInterval(intervalId);
       setCardIndexShowed(2);
-    }, 1250);
+    }, 1500);
   }, []);
 
   return (
@@ -53,9 +53,9 @@ const AppWrapper = styled.div`
 `;
 
 const SkillCardsWrapper = styled.div`
-  padding: 2em 1em;
+  padding: 3em 1em;
   background: ${(props) =>
-    `radial-gradient(${props.theme.darkest_blue},${props.theme.black})`};
+    `radial-gradient(${props.theme.darker_blue},${props.theme.black})`};
   display: flex;
   width: 100vw;
   justify-content: space-around;

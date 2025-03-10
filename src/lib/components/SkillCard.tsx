@@ -38,20 +38,26 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
       <ContentWrapper id="Conent-Wrapperid">
         <ContentGridWrapper showContent={showContent}>
           <TitleBoxWrapper>
-            <TitleWrapper>{props.type}</TitleWrapper>
+            <TitleWrapper id="TitleWrapper-id">{props.type}</TitleWrapper>
           </TitleBoxWrapper>
-          <BtnGridWrapper>
+          <BtnGridWrapper id="BtnGridWrapper-id">
             {props.type == 'LANGUAGES' &&
               languages.map((language, index) => (
-                <BtnWrapper key={index}>{language}</BtnWrapper>
+                <BtnWrapper key={index} className="BtnWrapper-class">
+                  {language}
+                </BtnWrapper>
               ))}
             {props.type == 'DATABASES' &&
               databases.map((db, index) => (
-                <BtnWrapper key={index}>{db}</BtnWrapper>
+                <BtnWrapper key={index} className="BtnWrapper-class">
+                  {db}
+                </BtnWrapper>
               ))}
             {props.type == 'TECHNOLOGY' &&
               technologies.map((technology, index) => (
-                <BtnWrapper key={index}>{technology}</BtnWrapper>
+                <BtnWrapper key={index} className="BtnWrapper-class">
+                  {technology}
+                </BtnWrapper>
               ))}
           </BtnGridWrapper>
         </ContentGridWrapper>
@@ -99,6 +105,27 @@ const SkillCardWrapper = styled.div<{ cardIndex: number; showCard: number }>`
       ${(props) => (props.cardIndex !== 1 ? `rotateX(15deg)` : `rotateX(0deg)`)};
     z-index: 9999;
     transition: transform 0.3s ease-out;
+
+    #TitleWrapper-id,
+    #BtnGridWrapper-id .BtnWrapper-class {
+      text-shadow:
+        ${(props) =>
+            props.cardIndex === 0
+              ? '-5px'
+              : props.cardIndex === 2
+                ? '5px'
+                : '0px'}
+          ${(props) => (props.cardIndex !== 1 ? '3px' : '0px')}
+          ${(props) => props.theme.white_25_translucent},
+        0px 0px 2em ${(props) => props.theme.blue},
+        0px 0px 1em ${(props) => props.theme.light_blue};
+    }
+
+    #BtnGridWrapper-id .BtnWrapper-class {
+      &:hover {
+        text-shadow: none;
+      }
+    }
   }
 
   &:not(:hover) {
@@ -153,13 +180,14 @@ const TitleWrapper = styled.div`
   border: 2px solid ${(props) => props.theme.white_25_translucent};
   color: ${(props) => props.theme.white};
   text-shadow:
-    0px 0px 1em ${(props) => props.theme.blue},
-    0px 0px 0.5em ${(props) => props.theme.light_blue};
+    0px 0px 2em ${(props) => props.theme.blue},
+    0px 0px 1em ${(props) => props.theme.light_blue};
   padding: 1em 2em;
   font-size: 1.75em;
   width: 100%;
   text-align: center;
   user-select: none;
+  transition: text-shadow 0.3s ease-out;
 `;
 
 const BtnGridWrapper = styled.div`
@@ -180,7 +208,7 @@ const BtnWrapper = styled.div`
     0px 0px 20px ${(props) => props.theme.light_blue};
   text-align: center;
   user-select: none;
-
+  transition: text-shadow 0.3s ease-out;
   &:hover {
     background-color: ${(props) => props.theme.white};
     cursor: pointer;
