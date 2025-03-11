@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { theme } from './lib/theme/theme';
 import { SkillCard } from './lib/components/SkillCard';
+import { SkillNotfication } from './lib/components/SkillNotification';
 export const AppContext = React.createContext<{ welcomeBtnClicked: boolean }>({
   welcomeBtnClicked: false,
 });
@@ -40,6 +41,7 @@ const App: React.FC = (): ReactNode => {
             showCard={cardIndexShowed}
           />
         </SkillCardsWrapper>
+        <SkillNotfication skillName="Github" />
       </AppWrapper>
     </ThemeProvider>
   );
@@ -50,6 +52,7 @@ const AppWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   background-repeat: no-repeat;
+  position: relative;
 `;
 
 const SkillCardsWrapper = styled.div`

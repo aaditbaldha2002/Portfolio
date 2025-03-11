@@ -2,6 +2,7 @@ import styled, { css, keyframes } from 'styled-components';
 import React from 'react';
 import { UpperBorder } from './UpperBorder';
 import { LowerBorder } from './LowerBorder';
+import { SkillNotfication } from './SkillNotification';
 
 interface SkillCardProps {
   type: 'LANGUAGES' | 'DATABASES' | 'TECHNOLOGY';
@@ -22,9 +23,15 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
   ];
 
   const [showContent, setShowContent] = React.useState(false);
+  const [showPopUpNotification, setShowPopUpNotification] =
+    React.useState(false);
 
   const handleShowContent = React.useCallback(() => {
     setShowContent(true);
+  }, []);
+
+  const handlePopUpNotification = React.useCallback(() => {
+    setShowPopUpNotification(true);
   }, []);
 
   return (
@@ -43,7 +50,11 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
           <BtnGridWrapper id="BtnGridWrapper-id">
             {props.type == 'LANGUAGES' &&
               languages.map((language, index) => (
-                <BtnWrapper key={index} className="BtnWrapper-class">
+                <BtnWrapper
+                  key={index}
+                  className="BtnWrapper-class"
+                  onClick={handlePopUpNotification}
+                >
                   {language}
                 </BtnWrapper>
               ))}
@@ -67,7 +78,7 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
   );
 };
 
-const popUp = keyframes`
+export const popUp = keyframes`
   0% {
     transform: scaleY(0.1);
     opacity: 0;
