@@ -51,10 +51,11 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  top: 50%;
-  left: 50%;
+  top: 25%;
+  left: 25%;
   transform: translate(-50%, -50%);
   z-index: 9999;
+  animation: ${popUp} 0.35s ease-out forwards;
 `;
 
 const ContentWrapper = styled.div`
