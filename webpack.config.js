@@ -27,6 +27,15 @@ export default {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/i, // Match image file extensions
+        type: 'asset/resource',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024, // Inline images smaller than 8KB
+          },
+        },
+      },
     ],
   },
   plugins: [
