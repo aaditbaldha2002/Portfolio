@@ -74,7 +74,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  top: 25%;
+  top: 10%;
   left: 25%;
   transform: translate(-50%, -50%);
   z-index: 9999;
