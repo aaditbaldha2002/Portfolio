@@ -1,80 +1,103 @@
 import styled, { css, keyframes } from 'styled-components';
-import React from 'react';
+import React, { Dispatch } from 'react';
 import { UpperBorder } from './UpperBorder';
 import { LowerBorder } from './LowerBorder';
-import { SkillNotfication } from './SkillNotification';
+import { ActionType } from '../reducer/reducer';
+import PopupMP3 from '../../../static/sounds/popup_sound.mp3';
 
 interface SkillCardProps {
   type: 'LANGUAGES' | 'DATABASES' | 'TECHNOLOGY';
   cardIndex: number;
   showCard: number;
+  dispatch: Dispatch<ActionType>;
 }
 
 export const SkillCard: React.FC<SkillCardProps> = (props) => {
-  const languages = ['Java', 'Python', 'JavaScript', 'Typescript'];
-  const databases = ['MySQL', 'PostgreSQL', 'MongoDB', 'Oracle'];
-  const technologies = [
-    'Git',
-    'Github',
-    'React',
-    'ExpressJS',
-    'Stylus',
-    'SASS',
-  ];
+  const languages: string[] = React.useMemo(
+    () => ['Java', 'Python', 'JavaScript', 'Typescript'],
+    [],
+  );
+  const databases: string[] = React.useMemo(
+    () => ['MySQL', 'PostgreSQL', 'MongoDB', 'Oracle'],
+    [],
+  );
+  const technologies: string[] = React.useMemo(
+    () => ['Git', 'Github', 'React'],
+    [],
+  );
 
   const [showContent, setShowContent] = React.useState(false);
-  const [showPopUpNotification, setShowPopUpNotification] =
-    React.useState(false);
+  const audioRef = React.useRef<HTMLAudioElement>(new Audio(PopupMP3));
 
   const handleShowContent = React.useCallback(() => {
     setShowContent(true);
   }, []);
 
-  const handlePopUpNotification = React.useCallback(() => {
-    setShowPopUpNotification(true);
-  }, []);
+  const handleSkillPopup = React.useCallback(
+    (dispatch: Dispatch<ActionType>, payload_data: string) => {
+      if (audioRef.current) {
+        audioRef.current.currentTime = 0;
+        audioRef.current.play();
+        dispatch({
+          type: 'SHOW_SKILL_POPUP',
+          payload: payload_data,
+        });
+      }
+    },
+    [],
+  );
 
   return (
-    <SkillCardWrapper
-      id="SkillCardWrapper-id"
-      cardIndex={props.cardIndex}
-      showCard={props.showCard}
-      onAnimationEnd={handleShowContent}
-    >
-      <UpperBorder />
-      <ContentWrapper id="Conent-Wrapperid">
-        <ContentGridWrapper showContent={showContent}>
-          <TitleBoxWrapper>
-            <TitleWrapper id="TitleWrapper-id">{props.type}</TitleWrapper>
-          </TitleBoxWrapper>
-          <BtnGridWrapper id="BtnGridWrapper-id">
-            {props.type == 'LANGUAGES' &&
-              languages.map((language, index) => (
-                <BtnWrapper
-                  key={index}
-                  className="BtnWrapper-class"
-                  onClick={handlePopUpNotification}
-                >
-                  {language}
-                </BtnWrapper>
-              ))}
-            {props.type == 'DATABASES' &&
-              databases.map((db, index) => (
-                <BtnWrapper key={index} className="BtnWrapper-class">
-                  {db}
-                </BtnWrapper>
-              ))}
-            {props.type == 'TECHNOLOGY' &&
-              technologies.map((technology, index) => (
-                <BtnWrapper key={index} className="BtnWrapper-class">
-                  {technology}
-                </BtnWrapper>
-              ))}
-          </BtnGridWrapper>
-        </ContentGridWrapper>
-      </ContentWrapper>
-      <LowerBorder />
-    </SkillCardWrapper>
+    <>
+      <SkillCardWrapper
+        id="SkillCardWrapper-id"
+        cardIndex={props.cardIndex}
+        showCard={props.showCard}
+        onAnimationEnd={handleShowContent}
+      >
+        <UpperBorder />
+        <ContentWrapper id="Conent-Wrapperid">
+          <ContentGridWrapper showContent={showContent}>
+            <TitleBoxWrapper>
+              <TitleWrapper id="TitleWrapper-id">{props.type}</TitleWrapper>
+            </TitleBoxWrapper>
+            <BtnGridWrapper id="BtnGridWrapper-id">
+              {props.type == 'LANGUAGES' &&
+                languages.map((language, index) => (
+                  <BtnWrapper
+                    key={index}
+                    className="BtnWrapper-class"
+                    onClick={() => handleSkillPopup(props.dispatch, language)}
+                  >
+                    {language}
+                  </BtnWrapper>
+                ))}
+              {props.type == 'DATABASES' &&
+                databases.map((db, index) => (
+                  <BtnWrapper
+                    key={index}
+                    className="BtnWrapper-class"
+                    onClick={() => handleSkillPopup(props.dispatch, db)}
+                  >
+                    {db}
+                  </BtnWrapper>
+                ))}
+              {props.type == 'TECHNOLOGY' &&
+                technologies.map((technology, index) => (
+                  <BtnWrapper
+                    key={index}
+                    className="BtnWrapper-class"
+                    onClick={() => handleSkillPopup(props.dispatch, technology)}
+                  >
+                    {technology}
+                  </BtnWrapper>
+                ))}
+            </BtnGridWrapper>
+          </ContentGridWrapper>
+        </ContentWrapper>
+        <LowerBorder />
+      </SkillCardWrapper>
+    </>
   );
 };
 

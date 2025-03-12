@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import styled from 'styled-components';
 import { UpperBorder } from './UpperBorder';
 import { LowerBorder } from './LowerBorder';
 import { popUp } from './SkillCard';
 import GithubSVG from '../../../static/icons/github.svg';
+import { ActionType } from '../reducer/reducer';
 interface SkillNotificationProps {
-  skillName: string;
+  notificationData: NotificationData;
+  dispatch: Dispatch<ActionType>;
 }
 
-export const SkillNotfication: React.FC<SkillNotificationProps> = (props) => {
+export type NotificationData = {
+  skillName: string;
+  proficiency_level: string;
+  category: string;
+  attributes: string[];
+};
+
+export const SkillNotification: React.FC<SkillNotificationProps> = (props) => {
+  const { skillName, proficiency_level, category, attributes } =
+    props.notificationData;
+
   return (
     <Wrapper>
       <UpperBorder />
@@ -18,25 +30,36 @@ export const SkillNotfication: React.FC<SkillNotificationProps> = (props) => {
             <IconImg src={GithubSVG} />
           </IconWrapper>
           <SkillDescriptionWrapper>
-            <TitleWrapper>SKILL: {props.skillName}</TitleWrapper>
+            <TitleWrapper>SKILL: {skillName}</TitleWrapper>
             <SkillLevelWrapper>
               <ProficiencyWrapper>
                 <ProficiencyTitleWrapper>
                   Proficiency Level:
                 </ProficiencyTitleWrapper>
-                <ProficiencyLevelValue>Moderate</ProficiencyLevelValue>
+                <ProficiencyLevelValue>
+                  {proficiency_level}
+                </ProficiencyLevelValue>
               </ProficiencyWrapper>
               <CategoryWrapper>
                 <CategoryTitleWrapper>Category:</CategoryTitleWrapper>
-                <CategoryValue>Collaboration</CategoryValue>
+                <CategoryValue>{category}</CategoryValue>
               </CategoryWrapper>
             </SkillLevelWrapper>
           </SkillDescriptionWrapper>
         </DescriptionWrapper>
         <AbilitiesWrapper>
-          <AbilityWrapper>- HelloWorld</AbilityWrapper>
+          {attributes.map((value, index) => {
+            return <AbilityWrapper key={index}>- {value}</AbilityWrapper>;
+          })}
         </AbilitiesWrapper>
         <OriginWrapper>Created by Microsoft</OriginWrapper>
+        <CloseBtn
+          onClick={() =>
+            props.dispatch({ type: 'CLOSE_SKILL_POPUP', payload: '' })
+          }
+        >
+          Close
+        </CloseBtn>
       </ContentWrapper>
       <LowerBorder />
     </Wrapper>
@@ -200,4 +223,30 @@ const OriginWrapper = styled.div`
   color: ${(props) => props.theme.white};
   padding: 1.25em 4em;
   box-sizing: border-box;
+`;
+
+const CloseBtn = styled.button`
+  display: flex;
+  text-align: center;
+  width: fit-content;
+  padding: 0.5em 2em;
+  text-shadow:
+    0em 0em 2em ${(props) => props.theme.blue},
+    0em 0em 1em ${(props) => props.theme.light_blue};
+  font-size: 1.25em;
+  border: 2px solid ${(props) => props.theme.white_50_translucent};
+  background: transparent;
+  color: inherit;
+  &:hover {
+    background: ${(props) => props.theme.white};
+    cursor: pointer;
+    color: ${(props) => props.theme.black};
+    text-shadow: none;
+  }
+
+  &:active {
+    transform: translateY(5px);
+    box-shadow: 2px 2px ${(props) => props.theme.white_50_translucent};
+    transition: transform 0.2s ease-out;
+  }
 `;
