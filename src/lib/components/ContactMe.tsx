@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import GithubSVG from '../../../static/icons/github.svg';
 import LinkedinSVG from '../../../static/icons/linkedin.svg';
 import EmailSVG from '../../../static/icons/mail.svg';
@@ -19,12 +19,21 @@ type contactMethod = {
 };
 
 export const ContactMe: React.FC<ContactMeProps> = (props) => {
-  const contact_methods: contactMethod[] = [
-    { name: 'Github', svg: GithubSVG },
-    { name: 'Linkedin', svg: LinkedinSVG },
-    { name: 'Email', svg: EmailSVG },
-    { name: 'Resume', svg: ResumeSVG },
-  ];
+  const contact_methods: contactMethod[] = React.useMemo(
+    () => [
+      { name: 'Github', svg: GithubSVG },
+      { name: 'Linkedin', svg: LinkedinSVG },
+      { name: 'Email', svg: EmailSVG },
+      { name: 'Resume', svg: ResumeSVG },
+    ],
+    [],
+  );
+
+  const [showImage, setShowImage] = React.useState(false);
+
+  const handleShowImage = () => {
+    setShowImage(true);
+  };
 
   return (
     <Wrapper>
@@ -36,16 +45,22 @@ export const ContactMe: React.FC<ContactMeProps> = (props) => {
               <>
                 <MethodElementWrapper>
                   {index === 0 && (
-                    <ImgWrapper className="ImgWrapper-class">
+                    <ImgWrapper
+                      className="ImgWrapper-class"
+                      showImage={showImage}
+                    >
                       <Igris src={IgrisPNG} id="Igris-id" />
                     </ImgWrapper>
                   )}
                   {index === 1 && (
-                    <ImgWrapper className="ImgWrapper-class">
+                    <ImgWrapper
+                      className="ImgWrapper-class"
+                      showImage={showImage}
+                    >
                       <Monarch src={MonarchPNG} id="Monarch-id" />
                     </ImgWrapper>
                   )}
-                  <MethodWrapper key={index}>
+                  <MethodWrapper key={index} onMouseEnter={handleShowImage}>
                     <IconWrapper className="IconWrapper-class">
                       <IconImg src={value.svg} />
                     </IconWrapper>
@@ -164,13 +179,27 @@ const NameWrapper = styled.div`
 
 const IconImg = styled.img``;
 
-const ImgWrapper = styled.div`
+const goUp = keyframes`
+  from{
+    top:100%;
+  }to{
+    top:-200%;
+  }
+`;
+
+const ImgWrapper = styled.div<{ showImage: boolean }>`
   display: flex;
   position: absolute;
   top: 100%;
   transform: translate(-50%);
   left: 50%;
   z-index: -1;
+
+  ${(props) =>
+    props.showImage &&
+    css`
+      animation: ${goUp} 0.5s ease-out forwards;
+    `}
 `;
 
 const Igris = styled.img`

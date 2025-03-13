@@ -27,6 +27,7 @@ const AppWrapper = styled.div`
   justify-content: center;
   /* overflow-y: clip; */
   /* overflow-x: clip; */
+  font-family: 'Arial', sans-serif;
 `;
 
 const fadeOut = keyframes`
