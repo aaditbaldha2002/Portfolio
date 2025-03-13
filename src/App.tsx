@@ -166,6 +166,7 @@ const AppWrapper = styled.div`
   height: 100vh;
   background-repeat: no-repeat;
   position: relative;
+  font-family: 'Arial', sans-serif;
 `;
 
 const SkillCardsWrapper = styled.div`

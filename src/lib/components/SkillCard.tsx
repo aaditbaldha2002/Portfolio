@@ -214,10 +214,11 @@ const TitleWrapper = styled.div`
   border: 2px solid ${(props) => props.theme.white_25_translucent};
   color: ${(props) => props.theme.white};
   text-shadow:
-    0px 0px 2em ${(props) => props.theme.blue},
-    0px 0px 1em ${(props) => props.theme.light_blue};
+    0px 0px 0.5em ${(props) => props.theme.light_blue},
+    0px 0px 1em ${(props) => props.theme.blue};
   padding: 1em 2em;
   font-size: 1.75em;
+  letter-spacing: 1px;
   width: 100%;
   text-align: center;
   user-select: none;
