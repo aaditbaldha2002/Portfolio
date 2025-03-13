@@ -3,6 +3,7 @@ import styled, { css, keyframes, useTheme } from 'styled-components';
 import { TextTyper } from './TextTyper';
 import DpImg from '../../../static/dp.jpeg';
 import MonarchPNG from '../../../static/pictures/Monarch.png';
+import ParallexImg from './ParallexImg';
 interface IntroSectionProps {
   name: string;
 }
@@ -44,6 +45,8 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
               letterSpacing="5px"
             />
           </NameWrapper>
+          <ParallexImg src={MonarchPNG} alt="Sung Jin woo" />
+
           <SummaryWrapper
             gateOpened={gateOpened}
             data-testid="summaryWrapper-test-id"
@@ -56,9 +59,6 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
             create intelligent and data-driven applications.
           </SummaryWrapper>
         </InfoWrapper>
-        <ImgWrapper>
-          <MonarchImg src={MonarchPNG} />
-        </ImgWrapper>
       </ContentWrapper>
     </Wrapper>
   );
@@ -274,16 +274,4 @@ const SummaryWrapper = styled.div<{ gateOpened: boolean }>`
         0px 0px 0.35em ${(props) => props.theme.light_blue};
     }
   }
-`;
-
-const ImgWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: 0;
-  transform: translateX(50%);
-`;
-const MonarchImg = styled.img`
-  display: flex;
 `;

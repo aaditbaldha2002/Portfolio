@@ -3,26 +3,20 @@ import styled, { ThemeProvider } from 'styled-components';
 import { theme } from './lib/theme/theme';
 import { IntroSection } from './lib/components/IntroSection';
 
-export const AppContext = React.createContext<{ welcomeBtnClicked: boolean }>({
-  welcomeBtnClicked: false,
-});
-
 const App: React.FC = (): ReactNode => {
-  const [welcomeBtnClicked, setWelcomeBtnClicked] = React.useState(false);
-
   return (
     <ThemeProvider theme={theme}>
-      <AppContext.Provider value={{ welcomeBtnClicked }}>
-        <AppWrapper>
-          <IntroSection name="AADIT HARSHAL BALDHA" />
-        </AppWrapper>
-      </AppContext.Provider>
+      <AppWrapper>
+        <IntroSection name="AADIT HARSHAL BALDHA" />
+      </AppWrapper>
+      <TempSpace />
     </ThemeProvider>
   );
 };
 
 const AppWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: auto;
   align-items: center;
@@ -30,6 +24,11 @@ const AppWrapper = styled.div`
   font-family: 'Arial', sans-serif;
   overflow-x: hidden;
   /* overflow-x: clip; */
+`;
+
+const TempSpace = styled.div`
+  height: 100vh;
+  width: 100vw;
 `;
 
 export default App;
