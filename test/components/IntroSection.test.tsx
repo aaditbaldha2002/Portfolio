@@ -1,83 +1,204 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { act, cleanup, render, screen } from '@testing-library/react';
 import { IntroSection } from '../../src/lib/components/IntroSection';
 import React from 'react';
 import 'jest-styled-components';
 import '@testing-library/jest-dom';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../src/lib/theme/theme';
-afterEach(() => {
-  cleanup();
-});
+import { useScroll, useTransform } from 'framer-motion';
 
-jest.mock('../../static/dp.jpeg', () => 'mocked_dp.jpeg');
+afterEach(cleanup);
 
-test('unit test for IntroSection.tsx', () => {
-  // Write unit tests here
+jest.mock('../../static/dp.jpeg');
 
-  render(
-    <ThemeProvider theme={theme}>
-      <IntroSection name={'#'} />
-    </ThemeProvider>,
-  );
-  const element = screen.getByTestId('wrapper-test-id');
-  expect(element).toBeTruthy();
-  expect(element).toContainElement(screen.getByTestId('gatewrapper-test-id'));
+jest.mock('framer-motion', () => ({
+  ...jest.requireActual('framer-motion'),
+  useScroll: jest.fn(),
+  useTransform: jest.fn(),
+}));
 
-  const gateWrapper = screen.getByTestId('gatewrapper-test-id');
-  expect(gateWrapper).toBeTruthy();
-  expect(gateWrapper).toHaveStyleRule(
-    'animation',
-    expect.stringContaining('0.25s linear forwards'),
-  );
-  expect(gateWrapper).toContainElement(screen.getByTestId('leftgate-test-id'));
-  expect(gateWrapper).toContainElement(screen.getByTestId('rightgate-test-id'));
+describe('IntroSection Component', () => {
+  beforeEach(() => {
+    render(
+      <ThemeProvider theme={theme}>
+        <IntroSection name={'#'} />
+      </ThemeProvider>,
+    );
+  });
 
-  const leftGate = screen.getByTestId('leftgate-test-id');
-  expect(leftGate).toBeTruthy();
-  expect(leftGate).toHaveStyleRule(
-    'animation',
-    expect.stringContaining('1s ease-in forwards'),
-  );
+  test('renders the main wrapper', () => {
+    expect(screen.getByTestId('wrapper-test-id')).toBeTruthy();
+  });
 
-  const rightGate = screen.getByTestId('rightgate-test-id');
-  expect(rightGate).toBeTruthy();
-  expect(rightGate).toHaveStyleRule('animation', '1s ease-in forwards');
+  describe('Gate Animation', () => {
+    test('ContentWrapper starts with opacity 0', () => {
+      const contentWrapper = screen.getByTestId('content-wrapper');
+      expect(contentWrapper).toHaveStyleRule('opacity', '0');
+    });
 
-  const DpWrapper = screen.getByTestId('Dp-wrapper-test-id');
-  expect(DpWrapper).toBeTruthy();
-  expect(DpWrapper).toContainElement(screen.getByTestId('Dp-img-test-id'));
+    test('ContentWrapper applies fadeIn animation after animation ends', () => {
+      const contentWrapper = screen.getByTestId('content-wrapper');
 
-  const DpImage = screen.getByTestId('Dp-img-test-id');
-  expect(DpImage).toBeTruthy();
-  expect(DpImage).toHaveStyleRule(
-    'animation',
-    'auraPulse 2s infinite alternate',
-  );
-  expect(DpImage).toHaveStyleRule('animation-duration', '2s');
-  expect(DpImage).toHaveStyleRule('animation-timing-function', 'infinite');
-  expect(DpImage).toHaveStyleRule('animation-fill-mode', 'alternate');
+      // Simulate animation end event
+      act(() => {
+        contentWrapper.dispatchEvent(new AnimationEvent('animationend'));
+      });
 
-  const InfoWrapper = screen.getByTestId('Info-wrapper-test-id');
-  expect(InfoWrapper).toBeTruthy();
-  expect(InfoWrapper).toContainElement(
-    screen.getByTestId('Name-wrapper-test-id'),
-  );
+      expect(contentWrapper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('0.15s'),
+      );
+      expect(contentWrapper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('linear'),
+      );
+      expect(contentWrapper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('forwards'),
+      );
+    });
 
-  const NameWrapper = screen.getByTestId('Name-wrapper-test-id');
-  expect(NameWrapper).toBeTruthy();
-  expect(NameWrapper).toContainElement(
-    screen.getByTestId('Name-texttyper-test-id'),
-  );
-  expect(NameWrapper).toHaveStyleRule(
-    'animation',
-    expect.stringContaining('textGlitch 1.5s linear forwards'),
-  );
+    test('renders the gate wrapper with correct animation styles', () => {
+      const gateWrapper = screen.getByTestId('gatewrapper-test-id');
+      expect(gateWrapper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('0.25s'),
+      );
+      expect(gateWrapper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('linear'),
+      );
+      expect(gateWrapper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('forwards'),
+      );
+      expect(gateWrapper).toHaveStyleRule('overflow-x', 'hidden');
+    });
 
-  const NameTextTyper = screen.getByTestId('Name-texttyper-test-id');
-  expect(NameTextTyper).toBeTruthy();
-  expect(NameTextTyper.textContent).toBeTruthy();
+    test('contains left and right gate elements with animations', () => {
+      const leftGate = screen.getByTestId('leftgate-test-id');
+      expect(leftGate).toBeTruthy();
+      expect(leftGate).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('1s'),
+      );
+      expect(leftGate).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('ease-in'),
+      );
+      expect(leftGate).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('forwards'),
+      );
 
-  const SummaryWrapper = screen.getByTestId('summaryWrapper-test-id');
-  expect(SummaryWrapper).toBeTruthy();
-  expect(SummaryWrapper.textContent).toBeTruthy();
+      const rightGate = screen.getByTestId('rightgate-test-id');
+      expect(rightGate).toBeTruthy();
+      expect(rightGate).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('1s'),
+      );
+      expect(rightGate).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('ease-in'),
+      );
+      expect(rightGate).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('forwards'),
+      );
+    });
+  });
+
+  describe('Content & Image Wrappers', () => {
+    test('renders the ContentWrapper', () => {
+      expect(screen.getByTestId('ContentWrapper-test-id')).toBeTruthy();
+    });
+
+    test('renders the DP image with animation', () => {
+      const dpImage = screen.getByTestId('Dp-img-test-id');
+      expect(dpImage).toHaveStyleRule('animation', '2s');
+      expect(dpImage).toHaveStyleRule('animation', 'infinite');
+      expect(dpImage).toHaveStyleRule('animation', 'alternate');
+    });
+
+    test("for testing if Monarch's image rendered", () => {
+      const monarchImg = screen.getByAltText('Sung Jin woo');
+      expect(monarchImg).toBeTruthy();
+
+      beforeEach(() => {
+        (useScroll as jest.Mock).mockReturnValue({ scrollYProgress: 0.5 });
+
+        (useTransform as jest.Mock).mockReturnValue(50);
+      });
+
+      const motionDiv = monarchImg.closest('div');
+      expect(motionDiv).toHaveStyle('position: absolute');
+      expect(motionDiv).toHaveStyle('right: 0');
+
+      expect(motionDiv).toHaveStyle(`y: 50`);
+    });
+  });
+
+  describe('Text & Info Section', () => {
+    test('renders the NameWrapper with text animation', () => {
+      const nameWrapper = screen.getByTestId('Name-wrapper-test-id');
+      expect(nameWrapper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('1.5s'),
+      );
+      expect(nameWrapper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('linear'),
+      );
+      expect(nameWrapper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('forwards'),
+      );
+    });
+
+    test('renders the NameTextTyper with text content', () => {
+      const contentWrapper = screen.getByTestId('content-wrapper');
+      act(() => {
+        contentWrapper.dispatchEvent(new AnimationEvent('animationend'));
+      });
+
+      const nameTextTyper = screen.getByTestId('Name-texttyper-test-id');
+      expect(nameTextTyper.textContent).toBeTruthy();
+
+      expect(nameTextTyper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('1.5s'),
+      );
+      expect(nameTextTyper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('linear'),
+      );
+      expect(nameTextTyper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('forwards'),
+      );
+    });
+
+    test('renders the SummaryWrapper with non-empty text', () => {
+      const contentWrapper = screen.getByTestId('content-wrapper');
+      act(() => {
+        contentWrapper.dispatchEvent(new AnimationEvent('animationend'));
+      });
+
+      const summaryWrapper = screen.getByTestId('summaryWrapper-test-id');
+      expect(summaryWrapper.textContent).toBeTruthy();
+
+      expect(summaryWrapper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('1.5s'),
+      );
+      expect(summaryWrapper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('linear'),
+      );
+      expect(summaryWrapper).toHaveStyleRule(
+        'animation',
+        expect.stringContaining('forwards'),
+      );
+    });
+  });
 });

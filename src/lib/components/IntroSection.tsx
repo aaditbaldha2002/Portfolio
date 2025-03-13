@@ -28,7 +28,10 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
           <RightGate data-testid="rightgate-test-id" />
         </GateWrapper>
       )}
-      <ContentWrapper gateOpened={gateOpened}>
+      <ContentWrapper
+        gateOpened={gateOpened}
+        data-testid="ContentWrapper-test-id"
+      >
         <DpWrapper data-testid="Dp-wrapper-test-id">
           <DpImage data-testid="Dp-img-test-id" />
         </DpWrapper>
