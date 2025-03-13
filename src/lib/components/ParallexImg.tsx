@@ -12,7 +12,7 @@ const ParallexImg: React.FC<ParallexImgProps> = (props) => {
 
   React.useEffect(() => {
     const handleScroll = () => {
-      y.set(window.scrollY * 0.5); // Adjust multiplier for smooth effect
+      y.set(window.scrollY * 0.2); // Adjust multiplier for smooth effect
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
