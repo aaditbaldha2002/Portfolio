@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { theme } from './lib/theme/theme';
 import { IntroSection } from './lib/components/IntroSection';
+
 export const AppContext = React.createContext<{ welcomeBtnClicked: boolean }>({
   welcomeBtnClicked: false,
 });
@@ -13,7 +14,7 @@ const App: React.FC = (): ReactNode => {
     <ThemeProvider theme={theme}>
       <AppContext.Provider value={{ welcomeBtnClicked }}>
         <AppWrapper>
-          <IntroSection name="Aadit Harshal Baldha" />
+          <IntroSection name="AADIT HARSHAL BALDHA" />
         </AppWrapper>
       </AppContext.Provider>
     </ThemeProvider>
@@ -26,7 +27,7 @@ const AppWrapper = styled.div`
   height: auto;
   align-items: center;
   justify-content: center;
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Arial', sans-serif;
   overflow-x: hidden;
   /* overflow-x: clip; */
 `;

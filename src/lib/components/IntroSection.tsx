@@ -40,6 +40,7 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
               color={theme.white}
               margin="30px"
               data-testid="Name-texttyper-test-id"
+              letterSpacing="5px"
             />
           </NameWrapper>
           <SummaryWrapper
@@ -232,8 +233,8 @@ const NameWrapper = styled.div<{ gateOpened: boolean }>`
     }
     100% {
       text-shadow:
-        0px 0px 1em ${(props) => props.theme.blue},
-        0px 0px 0.5em ${(props) => props.theme.light_blue};
+        0px 0px 2em ${(props) => props.theme.blue},
+        0px 0px 1em ${(props) => props.theme.light_blue};
     }
   }
 `;
@@ -264,8 +265,8 @@ const SummaryWrapper = styled.div<{ gateOpened: boolean }>`
     }
     100% {
       text-shadow:
-        0px 0px 1em ${(props) => props.theme.blue},
-        0px 0px 0.5em ${(props) => props.theme.light_blue};
+        0px 0px 0.75em ${(props) => props.theme.blue},
+        0px 0px 0.35em ${(props) => props.theme.light_blue};
     }
   }
 `;
