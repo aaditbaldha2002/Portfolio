@@ -23,12 +23,11 @@ const AppWrapper = styled.div`
   justify-content: center;
   font-family: 'Arial', sans-serif;
   overflow-x: hidden;
-  /* overflow-x: clip; */
 `;
 
 const TempSpace = styled.div`
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 `;
 
 export default App;

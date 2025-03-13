@@ -22,14 +22,17 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
   }, [gateOpened]);
   return (
     <Wrapper data-testid="wrapper-test-id">
-      <GateWrapper data-testid="gatewrapper-test-id" id="gatewrapper-id">
-        <LeftGate data-testid="leftgate-test-id" />
-        <RightGate data-testid="rightgate-test-id" />
-      </GateWrapper>
+      {!gateOpened && (
+        <GateWrapper data-testid="gatewrapper-test-id" id="gatewrapper-id">
+          <LeftGate data-testid="leftgate-test-id" />
+          <RightGate data-testid="rightgate-test-id" />
+        </GateWrapper>
+      )}
       <ContentWrapper gateOpened={gateOpened}>
         <DpWrapper data-testid="Dp-wrapper-test-id">
           <DpImage data-testid="Dp-img-test-id" />
         </DpWrapper>
+        <ParallexImg src={MonarchPNG} alt="Sung Jin woo" />
         <InfoWrapper data-testid="Info-wrapper-test-id">
           <NameWrapper
             data-testid="Name-wrapper-test-id"
@@ -45,7 +48,6 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
               letterSpacing="5px"
             />
           </NameWrapper>
-          <ParallexImg src={MonarchPNG} alt="Sung Jin woo" />
 
           <SummaryWrapper
             gateOpened={gateOpened}
@@ -156,6 +158,7 @@ const RightGate = styled.div`
 `;
 
 const ContentWrapper = styled.div<{ gateOpened: boolean }>`
+  width: 100%;
   display: flex;
   position: relative;
   padding: 2em;

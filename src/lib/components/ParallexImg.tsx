@@ -1,4 +1,4 @@
-import { motion, useMotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import React, { memo } from 'react';
 import styled from 'styled-components';
 
@@ -8,24 +8,17 @@ interface ParallexImgProps {
 }
 
 const ParallexImg: React.FC<ParallexImgProps> = (props) => {
-  const y = useMotionValue(0);
-
-  React.useEffect(() => {
-    const handleScroll = () => {
-      y.set(window.scrollY * 0.2); // Adjust multiplier for smooth effect
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [y]);
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
   return (
     <motion.div
       style={{
         position: 'absolute',
         right: 0,
-        transform: 'translateX(50%)',
-        y,
+        x: '50%',
+        y: y,
       }}
+      transition={{ type: 'spring', stiffness: 0, damping: 0 }}
     >
       <Img src={props.src} alt={props.alt} />
     </motion.div>
