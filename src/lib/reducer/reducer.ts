@@ -18,7 +18,7 @@ export const reducer = (state: AppState, action: ActionType): AppState => {
       return {
         ...state,
         showSkillPopup: false,
-        skillPopupName: '',
+        skillPopupName: action.payload,
       };
 
     case 'SHOW_EMAIL_POPUP':

@@ -3,13 +3,14 @@ import React, { Dispatch } from 'react';
 import { UpperBorder } from './UpperBorder';
 import { LowerBorder } from './LowerBorder';
 import { ActionType } from '../reducer/reducer';
-import PopupMP3 from '../../../static/sounds/popup_sound.mp3';
 
 interface SkillCardProps {
   type: 'LANGUAGES' | 'DATABASES' | 'TECHNOLOGY';
   cardIndex: number;
   showCard: number;
-  dispatch: Dispatch<ActionType>;
+  // dispatch: Dispatch<ActionType>;
+  currentSkillPopup: string;
+  handleBtnClick: () => (props: string) => void;
 }
 
 export const SkillCard: React.FC<SkillCardProps> = (props) => {
@@ -27,25 +28,10 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
   );
 
   const [showContent, setShowContent] = React.useState(false);
-  const audioRef = React.useRef<HTMLAudioElement>(new Audio(PopupMP3));
 
   const handleShowContent = React.useCallback(() => {
     setShowContent(true);
   }, []);
-
-  const handleSkillPopup = React.useCallback(
-    (dispatch: Dispatch<ActionType>, payload_data: string) => {
-      if (audioRef.current) {
-        audioRef.current.currentTime = 0;
-        audioRef.current.play();
-        dispatch({
-          type: 'SHOW_SKILL_POPUP',
-          payload: payload_data,
-        });
-      }
-    },
-    [],
-  );
 
   return (
     <>
@@ -67,7 +53,7 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
                   <BtnWrapper
                     key={index}
                     className="BtnWrapper-class"
-                    onClick={() => handleSkillPopup(props.dispatch, language)}
+                    onClick={() => props.handleBtnClick()(language)}
                   >
                     {language}
                   </BtnWrapper>
@@ -77,7 +63,7 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
                   <BtnWrapper
                     key={index}
                     className="BtnWrapper-class"
-                    onClick={() => handleSkillPopup(props.dispatch, db)}
+                    onClick={() => props.handleBtnClick()(db)}
                   >
                     {db}
                   </BtnWrapper>
@@ -87,7 +73,7 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
                   <BtnWrapper
                     key={index}
                     className="BtnWrapper-class"
-                    onClick={() => handleSkillPopup(props.dispatch, technology)}
+                    onClick={() => props.handleBtnClick()(technology)}
                   >
                     {technology}
                   </BtnWrapper>

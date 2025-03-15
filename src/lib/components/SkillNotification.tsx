@@ -1,13 +1,14 @@
 import React, { Dispatch } from 'react';
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { UpperBorder } from './UpperBorder';
 import { LowerBorder } from './LowerBorder';
 import { popUp } from './SkillCard';
 import GithubSVG from '../../../static/icons/github.svg';
-import { ActionType } from '../reducer/reducer';
 interface SkillNotificationProps {
   notificationData: NotificationData;
-  dispatch: Dispatch<ActionType>;
+  handlePopupClose: () => void;
+  showPopup: boolean;
+  skillPopupName: string;
 }
 
 export type NotificationData = {
@@ -15,14 +16,15 @@ export type NotificationData = {
   proficiency_level: string;
   category: string;
   attributes: string[];
+  origins: string;
 };
 
 export const SkillNotification: React.FC<SkillNotificationProps> = (props) => {
-  const { skillName, proficiency_level, category, attributes } =
+  const { skillName, proficiency_level, category, attributes, origins } =
     props.notificationData;
 
   return (
-    <Wrapper>
+    <Wrapper showPopup={props.showPopup}>
       <UpperBorder />
       <ContentWrapper>
         <DescriptionWrapper>
@@ -52,21 +54,29 @@ export const SkillNotification: React.FC<SkillNotificationProps> = (props) => {
             return <AbilityWrapper key={index}>- {value}</AbilityWrapper>;
           })}
         </AbilitiesWrapper>
-        <OriginWrapper>Created by Microsoft</OriginWrapper>
-        <CloseBtn
-          onClick={() =>
-            props.dispatch({ type: 'CLOSE_SKILL_POPUP', payload: '' })
-          }
-        >
-          Close
-        </CloseBtn>
+        <OriginWrapper>{origins}</OriginWrapper>
+        <CloseBtn onClick={() => props.handlePopupClose()}>Close</CloseBtn>
       </ContentWrapper>
       <LowerBorder />
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const popDown = keyframes`
+      0% {
+        transform: scaleY(1);
+      }
+      40% {
+        transform: scaleY(1.05);
+        opacity: 1;
+      }
+    100% {
+    transform: scaleY(0.1);
+    opacity: 0;
+  }
+`;
+
+const Wrapper = styled.div<{ showPopup: boolean }>`
   position: fixed;
   width: 50vw;
   max-height: 80vh;
@@ -74,11 +84,20 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  top: 10%;
-  left: 25%;
+  top: 10vh;
+  left: 25vw;
   transform: translate(-50%, -50%);
   z-index: 9999;
-  animation: ${popUp} 0.35s ease-out forwards;
+  ${(props) =>
+    props.showPopup &&
+    css`
+      animation: ${popUp} 0.35s ease-out forwards;
+    `}
+  ${(props) =>
+    !props.showPopup &&
+    css`
+      animation: ${popDown} 0.35s ease-out forwards;
+    `}
 `;
 
 const ContentWrapper = styled.div`
@@ -233,7 +252,7 @@ const CloseBtn = styled.button`
   text-shadow:
     0em 0em 2em ${(props) => props.theme.blue},
     0em 0em 1em ${(props) => props.theme.light_blue};
-  font-size: 1.25em;
+  font-size: 1.5em;
   border: 2px solid ${(props) => props.theme.white_50_translucent};
   background: transparent;
   color: inherit;
