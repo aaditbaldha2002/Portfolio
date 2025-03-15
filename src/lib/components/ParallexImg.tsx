@@ -9,7 +9,7 @@ interface ParallexImgProps {
 
 const ParallexImg: React.FC<ParallexImgProps> = (props) => {
   const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   return (
     <motion.div
       style={{

@@ -71,7 +71,7 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
 
 const changeBg = keyframes`
   from {
-    background-position: 100% 0%;
+    background-position: 0% 0%;
   }
   to {
     background-position: 50% 0%;
@@ -84,7 +84,7 @@ const Wrapper = styled.div`
     `linear-gradient(to left,${props.theme.darkest_blue},${props.theme.black})`};
   animation: ${changeBg} 1.25s ease-in forwards;
   background-size: 200%;
-  background-position: 100% 0;
+  background-position: 0% 0;
   display: flex;
   flex-direction: row;
   gap: 1em;
