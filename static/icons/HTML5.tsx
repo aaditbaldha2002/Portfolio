@@ -1,9 +1,6 @@
 import React from 'react';
 import { theme } from '../../src/lib/theme/theme';
-interface SvgProps {
-  width: string;
-  height: string;
-}
+import SvgProps from './type';
 
 const HTML5: React.FC<SvgProps> = (props) => {
   const colorTheme = theme;

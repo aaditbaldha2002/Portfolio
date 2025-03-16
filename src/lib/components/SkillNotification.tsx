@@ -1,10 +1,9 @@
-import React, { Dispatch } from 'react';
+import React, { ReactElement } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import { UpperBorder } from './UpperBorder';
 import { LowerBorder } from './LowerBorder';
 import { popUp } from './SkillCard';
-import GithubSVG from '../../../static/icons/github.svg';
-import HTML5 from '../../../static/icons/HTML5';
+import SvgProps from '../../../static/icons/type';
 interface SkillNotificationProps {
   notificationData: NotificationData;
   handlePopupClose: () => void;
@@ -18,7 +17,7 @@ export type NotificationData = {
   category: string;
   attributes: string[];
   origins: string;
-  iconSVG?: string;
+  iconSVG: ReactElement<SvgProps>;
 };
 
 export const SkillNotification: React.FC<SkillNotificationProps> = (props) => {
@@ -36,9 +35,7 @@ export const SkillNotification: React.FC<SkillNotificationProps> = (props) => {
       <UpperBorder />
       <ContentWrapper>
         <DescriptionWrapper>
-          <IconWrapper>
-            <HTML5 width="200px" height="200px" />
-          </IconWrapper>
+          <IconWrapper>{iconSVG}</IconWrapper>
           <SkillDescriptionWrapper>
             <TitleWrapper>SKILL: {skillName}</TitleWrapper>
             <SkillLevelWrapper>

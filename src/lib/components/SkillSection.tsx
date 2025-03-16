@@ -4,7 +4,11 @@ import { SkillCard } from './SkillCard';
 import { SkillNotification } from './SkillNotification';
 import PopupMP3 from '../../../static/sounds/popup_sound.mp3';
 import BarukaDaggerPNG from '../../../static/pictures/blue_dagger.png';
-import HTML5SVG from '../../../static/icons/html5.svg';
+import HTML5 from '../../../static/icons/HTML5';
+import CSS3 from '../../../static/icons/CSS3';
+import JS from '../../../static/icons/JS';
+import TS from '../../../static/icons/TS';
+import ReactIcon from '../../../static/icons/ReactIcon';
 
 export const SkillSection: React.FC = (props) => {
   const notificationDataMap: Record<
@@ -27,7 +31,7 @@ export const SkillSection: React.FC = (props) => {
           'Building adaptable web pages with modern HTML5 elements.',
         ],
         origins: 'Created by Tim Berners-Lee in 1991',
-        iconSVG: HTML5SVG,
+        iconSVG: <HTML5 height="200px" width="200px" />,
       },
       CSS3: {
         skillName: 'CSS3',
@@ -38,6 +42,7 @@ export const SkillSection: React.FC = (props) => {
           'Designing visually appealing UIs with CSS variables, animations, and transitions.',
         ],
         origins: 'Developed by the World Wide Web Consortium (W3C)',
+        iconSVG: <CSS3 height="200px" width="200px" />,
       },
       JavaScript: {
         skillName: 'JavaScript',
@@ -48,6 +53,7 @@ export const SkillSection: React.FC = (props) => {
           'Writing clean and optimized code with arrow functions, destructuring, and modules.',
         ],
         origins: 'Created by Brendan Eich in 1995',
+        iconSVG: <JS height="200px" width="200px" />,
       },
       Typescript: {
         skillName: 'Typescript',
@@ -58,6 +64,7 @@ export const SkillSection: React.FC = (props) => {
           'Leveraging interfaces, generics, and decorators for better development',
         ],
         origins: 'created by Microsoft and first released in 2012',
+        iconSVG: <TS height="200px" width="200px" />,
       },
       React: {
         skillName: 'React',
@@ -69,6 +76,7 @@ export const SkillSection: React.FC = (props) => {
         ],
         origins:
           'created by Jordan Walke, a software engineer at Facebook, in 2011',
+        iconSVG: <ReactIcon height="200px" width="200px" />,
       },
       SASS: {
         skillName: 'SASS',
