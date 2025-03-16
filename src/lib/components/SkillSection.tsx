@@ -9,6 +9,11 @@ import CSS3 from '../../../static/icons/CSS3';
 import JS from '../../../static/icons/JS';
 import TS from '../../../static/icons/TS';
 import ReactIcon from '../../../static/icons/ReactIcon';
+import SASS from '../../../static/icons/SASS';
+import Git from '../../../static/icons/Git';
+import Github from '../../../static/icons/Github';
+import ESLintSVG from '../../../static/icons/ESLintSVG';
+import Prettier from '../../../static/icons/Prettier';
 
 export const SkillSection: React.FC = (props) => {
   const notificationDataMap: Record<
@@ -87,6 +92,7 @@ export const SkillSection: React.FC = (props) => {
           'Enhancing CSS with mathematical operations and custom functions for dynamic designs.',
         ],
         origins: 'created by Hampton Catlin in 2006',
+        iconSVG: <SASS height="200px" width="200px" />,
       },
       Git: {
         skillName: 'Git',
@@ -97,6 +103,7 @@ export const SkillSection: React.FC = (props) => {
           'Collaborating seamlessly through branches and handling merge conflicts effectively.',
         ],
         origins: 'Created by Linus Torvalds in 2005',
+        iconSVG: <Git height="200px" width="200px" />,
       },
       Github: {
         skillName: 'Github',
@@ -108,6 +115,7 @@ export const SkillSection: React.FC = (props) => {
         ],
         origins:
           'Created by Tom Preston-Werner, Chris Wanstrath, PJ Hyett, and Scott Chacon in 2008',
+        iconSVG: <Github height="200px" width="200px" />,
       },
       ESLint: {
         skillName: 'ESLint',
@@ -118,6 +126,7 @@ export const SkillSection: React.FC = (props) => {
           'Catching syntax and logical errors early in the development process.',
         ],
         origins: 'created by Nicholas C. Zakas in 2013',
+        iconSVG: <ESLintSVG height="200px" width="200px" />,
       },
       Prettier: {
         skillName: 'Prettier',
@@ -128,6 +137,7 @@ export const SkillSection: React.FC = (props) => {
           'Reduces formatting debates in teams by enforcing a unified code style',
         ],
         origins: 'Created by James Long in 2017.',
+        iconSVG: <Prettier width="200px" height="200px" />,
       },
       Webpack: {
         skillName: 'Webpack',
