@@ -1,8 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { SkillCard } from './SkillCard';
 import { SkillNotification } from './SkillNotification';
 import PopupMP3 from '../../../static/sounds/popup_sound.mp3';
+import BarukaDaggerPNG from '../../../static/pictures/blue_dagger.png';
 
 export const SkillSection: React.FC = (props) => {
   const notificationDataMap: Record<
@@ -172,7 +173,15 @@ export const SkillSection: React.FC = (props) => {
 
   return (
     <Wrapper>
-      <Title>SKILLS</Title>
+      <TitleWrapper>
+        <FirstDaggerWrapper>
+          <BlueDagger src={BarukaDaggerPNG} />
+        </FirstDaggerWrapper>
+        <Title>SKILLS</Title>
+        <SecondDaggerWrapper>
+          <BlueDagger src={BarukaDaggerPNG} />
+        </SecondDaggerWrapper>
+      </TitleWrapper>
       <SkillCardsWrapper>
         <SkillCard
           type={'LANGUAGES'}
@@ -215,22 +224,71 @@ const Wrapper = styled.div`
   display: flex;
   width: 100vw;
   flex-direction: column;
+  row-gap: 5em;
   justify-content: space-around;
   align-items: center;
-  row-gap: 5em;
   height: fit-content;
   background-repeat: repeat-y;
   color: ${(props) => props.theme.white};
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 2em;
+`;
+
+const goRight = keyframes`
+  from{
+    transform: translateX(5%);
+  }to{
+    transform: translateX(0);
+  }
+`;
+
+const FirstDaggerWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ${goRight} 0.5s ease-out forwards;
+`;
+
+const BlueDagger = styled.img``;
+
+const goLeft = keyframes`
+  from{
+    transform: rotateY(180deg) translateX(5%);
+  }to{
+    transform: rotateY(180deg) translateX(0%);
+  }
+`;
+
+const SecondDaggerWrapper = styled(FirstDaggerWrapper)`
+  animation: ${goLeft} 0.5s ease-out forwards;
+`;
+
+const fadeIn = keyframes`
+  from{
+    opacity: 0;
+    transform: translateY(10px);
+  }to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
 const Title = styled.div`
   display: flex;
   padding: 1em 2em;
-  border: 1px solid ${(props) => props.theme.white};
+  border: 2px solid ${(props) => props.theme.white_50_translucent};
   text-shadow:
     0em 0em 2em ${(props) => props.theme.blue},
     0em 0em 1em ${(props) => props.theme.light_blue};
   font-size: 2em;
+
+  animation: ${fadeIn} 1s ease-out;
 `;
 
 const SkillCardsWrapper = styled.div`
