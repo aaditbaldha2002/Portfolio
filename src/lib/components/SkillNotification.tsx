@@ -4,6 +4,7 @@ import { UpperBorder } from './UpperBorder';
 import { LowerBorder } from './LowerBorder';
 import { popUp } from './SkillCard';
 import GithubSVG from '../../../static/icons/github.svg';
+import HTML5 from '../../../static/icons/HTML5';
 interface SkillNotificationProps {
   notificationData: NotificationData;
   handlePopupClose: () => void;
@@ -17,11 +18,18 @@ export type NotificationData = {
   category: string;
   attributes: string[];
   origins: string;
+  iconSVG?: string;
 };
 
 export const SkillNotification: React.FC<SkillNotificationProps> = (props) => {
-  const { skillName, proficiency_level, category, attributes, origins } =
-    props.notificationData;
+  const {
+    skillName,
+    proficiency_level,
+    category,
+    attributes,
+    origins,
+    iconSVG,
+  } = props.notificationData;
 
   return (
     <Wrapper showPopup={props.showPopup}>
@@ -29,7 +37,7 @@ export const SkillNotification: React.FC<SkillNotificationProps> = (props) => {
       <ContentWrapper>
         <DescriptionWrapper>
           <IconWrapper>
-            <IconImg src={GithubSVG} />
+            <HTML5 width="200px" height="200px" />
           </IconWrapper>
           <SkillDescriptionWrapper>
             <TitleWrapper>SKILL: {skillName}</TitleWrapper>
@@ -129,15 +137,15 @@ const IconWrapper = styled.div`
   box-sizing: border-box;
   width: 200px;
   height: 200px;
+  .path {
+    filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8)); /* Red glow */
+  }
 `;
 
-const IconImg = styled.img`
+const IconImg = styled.svg`
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  box-shadow:
-    0em 0em 2em ${(props) => props.theme.blue},
-    0em 0em 1em ${(props) => props.theme.light_blue};
 `;
 
 const SkillDescriptionWrapper = styled.div`

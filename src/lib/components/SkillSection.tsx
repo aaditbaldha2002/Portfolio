@@ -4,6 +4,7 @@ import { SkillCard } from './SkillCard';
 import { SkillNotification } from './SkillNotification';
 import PopupMP3 from '../../../static/sounds/popup_sound.mp3';
 import BarukaDaggerPNG from '../../../static/pictures/blue_dagger.png';
+import HTML5SVG from '../../../static/icons/html5.svg';
 
 export const SkillSection: React.FC = (props) => {
   const notificationDataMap: Record<
@@ -26,6 +27,7 @@ export const SkillSection: React.FC = (props) => {
           'Building adaptable web pages with modern HTML5 elements.',
         ],
         origins: 'Created by Tim Berners-Lee in 1991',
+        iconSVG: HTML5SVG,
       },
       CSS3: {
         skillName: 'CSS3',
@@ -282,8 +284,10 @@ const TitleWrapper = styled.div`
 const goRight = keyframes`
   from{
     transform: translateX(5%);
+    opacity:0;
   }to{
     transform: translateX(0);
+    opacity:1;
   }
 `;
 
@@ -299,8 +303,10 @@ const BlueDagger = styled.img``;
 const goLeft = keyframes`
   from{
     transform: rotateY(180deg) translateX(5%);
+    opacity:0;
   }to{
     transform: rotateY(180deg) translateX(0%);
+    opacity:1;
   }
 `;
 
