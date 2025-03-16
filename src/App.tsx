@@ -28,6 +28,7 @@ const AppWrapper = styled.div`
   background-repeat: no-repeat;
   position: relative;
   font-family: 'Arial', sans-serif;
+  overflow-x: hidden;
 `;
 
 export default App;

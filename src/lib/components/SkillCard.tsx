@@ -5,7 +5,7 @@ import { LowerBorder } from './LowerBorder';
 import { ActionType } from '../reducer/reducer';
 
 interface SkillCardProps {
-  type: 'LANGUAGES' | 'DATABASES' | 'TECHNOLOGY';
+  type: 'FRONTEND' | 'CODE MANAGEMENT' | 'DEV TOOLS';
   cardIndex: number;
   showCard: number;
   // dispatch: Dispatch<ActionType>;
@@ -14,16 +14,16 @@ interface SkillCardProps {
 }
 
 export const SkillCard: React.FC<SkillCardProps> = (props) => {
-  const languages: string[] = React.useMemo(
-    () => ['Java', 'Python', 'JavaScript', 'Typescript'],
+  const frontend: string[] = React.useMemo(
+    () => ['HTML', 'CSS3', 'JavaScript', 'Typescript', 'React', 'SASS'],
     [],
   );
-  const databases: string[] = React.useMemo(
-    () => ['MySQL', 'PostgreSQL', 'MongoDB', 'Oracle'],
+  const codeManagement: string[] = React.useMemo(
+    () => ['Git', 'Github', 'ESLint', 'Prettier'],
     [],
   );
-  const technologies: string[] = React.useMemo(
-    () => ['Git', 'Github', 'React'],
+  const devTools: string[] = React.useMemo(
+    () => ['Webpack', 'Babel', 'Jest', 'Cypress'],
     [],
   );
 
@@ -48,34 +48,34 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
               <TitleWrapper id="TitleWrapper-id">{props.type}</TitleWrapper>
             </TitleBoxWrapper>
             <BtnGridWrapper id="BtnGridWrapper-id">
-              {props.type == 'LANGUAGES' &&
-                languages.map((language, index) => (
+              {props.type == 'FRONTEND' &&
+                frontend.map((tool, index) => (
                   <BtnWrapper
                     key={index}
                     className="BtnWrapper-class"
-                    onClick={() => props.handleBtnClick()(language)}
+                    onClick={() => props.handleBtnClick()(tool)}
                   >
-                    {language}
+                    {tool}
                   </BtnWrapper>
                 ))}
-              {props.type == 'DATABASES' &&
-                databases.map((db, index) => (
+              {props.type == 'CODE MANAGEMENT' &&
+                codeManagement.map((cm, index) => (
                   <BtnWrapper
                     key={index}
                     className="BtnWrapper-class"
-                    onClick={() => props.handleBtnClick()(db)}
+                    onClick={() => props.handleBtnClick()(cm)}
                   >
-                    {db}
+                    {cm}
                   </BtnWrapper>
                 ))}
-              {props.type == 'TECHNOLOGY' &&
-                technologies.map((technology, index) => (
+              {props.type == 'DEV TOOLS' &&
+                devTools.map((devTool, index) => (
                   <BtnWrapper
                     key={index}
                     className="BtnWrapper-class"
-                    onClick={() => props.handleBtnClick()(technology)}
+                    onClick={() => props.handleBtnClick()(devTool)}
                   >
-                    {technology}
+                    {devTool}
                   </BtnWrapper>
                 ))}
             </BtnGridWrapper>

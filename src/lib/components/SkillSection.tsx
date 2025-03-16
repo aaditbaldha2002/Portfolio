@@ -17,108 +17,147 @@ export const SkillSection: React.FC = (props) => {
     }
   > = React.useMemo(
     () => ({
-      Java: {
-        skillName: 'Java',
-        proficiency_level: 'Low',
-        category: 'programming',
-        attributes: ['Java 1', 'Java 2'],
-        origins:
-          'Created by James Gosling and his team at Sun Microsystems in 1991',
-      },
-      Python: {
-        skillName: 'Python',
+      HTML: {
+        skillName: 'HTML',
         proficiency_level: 'Medium',
-        category: 'programming',
-        attributes: ['Python 1', 'Python 2'],
-        origins: 'Created by Guido van Rossum in the late 1980s',
+        category: 'Markup Language',
+        attributes: [
+          'Writing clean and structured HTML for better SEO and accessibility.',
+          'Building adaptable web pages with modern HTML5 elements.',
+        ],
+        origins: 'Created by Tim Berners-Lee in 1991',
+      },
+      CSS3: {
+        skillName: 'CSS3',
+        proficiency_level: 'Medium',
+        category: 'stylesheet language',
+        attributes: [
+          'Creating adaptive layouts using Flexbox, Grid, and media queries.',
+          'Designing visually appealing UIs with CSS variables, animations, and transitions.',
+        ],
+        origins: 'Developed by the World Wide Web Consortium (W3C)',
       },
       JavaScript: {
         skillName: 'JavaScript',
         proficiency_level: 'High',
         category: 'programming',
-        attributes: ['JavaScript 1', 'JavaScript 2'],
+        attributes: [
+          'Enhancing user experiences with DOM manipulation and event handling.',
+          'Writing clean and optimized code with arrow functions, destructuring, and modules.',
+        ],
         origins: 'Created by Brendan Eich in 1995',
       },
       Typescript: {
         skillName: 'Typescript',
-        proficiency_level: 'High',
-        category: 'programming',
-        attributes: ['Typescript 1', 'Typescript 2'],
-        origins: 'Created by Steven Williams in 2011',
-      },
-      MySQL: {
-        skillName: 'MySQL',
-        proficiency_level: 'High',
-        category: 'database',
-        attributes: ['MySQL 1', 'MySQL 2'],
-        origins:
-          'created by Michael "Monty" Widenius, Allan Larsson, and David Axmark in 1995',
-      },
-      PostgreSQL: {
-        skillName: 'PostgreSQL',
-        proficiency_level: 'High',
-        category: 'database',
-        attributes: ['PostgreSQL 1', 'PostgreSQL 2'],
-        origins: 'created by Michael Stonebraker in 1986',
-      },
-      MongoDB: {
-        skillName: 'MongoDB',
         proficiency_level: 'Medium',
-        category: 'database',
-        attributes: ['MongoDB 1', 'MongoDB 2'],
-        origins:
-          'MongoDB was created by Dwight Merriman, Eliot Horowitz, and Kevin Ryan in 2007',
-      },
-      Oracle: {
-        skillName: 'Oracle',
-        proficiency_level: 'Low',
-        category: 'database',
-        attributes: ['Oracle 1', 'Oracle 2'],
-        origins: 'Created byLarry Ellison, Bob Miner, and Ed Oates in 1977.',
-      },
-      Git: {
-        skillName: 'Git',
-        proficiency_level: 'High',
-        category: 'version control',
-        attributes: ['Git 1', 'Git 2'],
-        origins: 'Created by Linus Torvalds in 2005',
-      },
-      Github: {
-        skillName: 'Github',
-        proficiency_level: 'High',
-        category: 'version control',
-        attributes: ['Github 1', 'Github 2'],
-        origins:
-          'created by Tom Preston-Werner, Chris Wanstrath, PJ Hyett, and Scott Chacon in 2008',
+        category: 'programming',
+        attributes: [
+          'Enhancing code reliability with static typing and type inference.',
+          'Leveraging interfaces, generics, and decorators for better development',
+        ],
+        origins: 'created by Microsoft and first released in 2012',
       },
       React: {
         skillName: 'React',
         proficiency_level: 'High',
         category: 'front-end framework',
-        attributes: ['React 1', 'React 2'],
+        attributes: [
+          ' Building scalable and reusable UIs with functional components and hooks.',
+          'Improving performance with React.memo, lazy loading, and code splitting.',
+        ],
         origins:
           'created by Jordan Walke, a software engineer at Facebook, in 2011',
       },
-      ExpressJS: {
-        skillName: 'ExpressJS',
-        proficiency_level: 'High',
-        category: 'back-end framework',
-        attributes: ['ExpressJS 1', 'ExpressJS 2'],
-        origins: 'created by TJ Holowaychuk in 2010',
-      },
-      Stylus: {
-        skillName: 'Stylus',
-        proficiency_level: 'High',
-        category: 'CSS preprocessor',
-        attributes: ['Stylus 1', 'Stylus 2'],
-        origins: 'created by TJ Holowaychuk in 2010',
-      },
       SASS: {
         skillName: 'SASS',
-        proficiency_level: 'High',
-        category: 'CSS preprocessor',
-        attributes: ['SASS 1', 'SASS 2'],
+        proficiency_level: 'Low',
+        category: 'CSS Preprocessor',
+        attributes: [
+          ' Utilizing variables, mixins, and nesting to write reusable and maintainable styles.',
+          'Enhancing CSS with mathematical operations and custom functions for dynamic designs.',
+        ],
         origins: 'created by Hampton Catlin in 2006',
+      },
+      Git: {
+        skillName: 'Git',
+        proficiency_level: 'Medium',
+        category: 'version control',
+        attributes: [
+          'Efficiently managing project versions and tracking changes with commit history.',
+          'Collaborating seamlessly through branches and handling merge conflicts effectively.',
+        ],
+        origins: 'Created by Linus Torvalds in 2005',
+      },
+      Github: {
+        skillName: 'Github',
+        proficiency_level: 'Medium',
+        category: 'web platform',
+        attributes: [
+          ' Organizing tasks, bugs, and feature requests with issues and project',
+          ' Automating workflows and deployments through GitHub Actions for efficient development pipelines',
+        ],
+        origins:
+          'Created by Tom Preston-Werner, Chris Wanstrath, PJ Hyett, and Scott Chacon in 2008',
+      },
+      ESLint: {
+        skillName: 'ESLint',
+        proficiency_level: 'High',
+        category: 'code linter',
+        attributes: [
+          'Enforcing consistent code style and best practices across projects.',
+          'Catching syntax and logical errors early in the development process.',
+        ],
+        origins: 'created by Nicholas C. Zakas in 2013',
+      },
+      Prettier: {
+        skillName: 'Prettier',
+        proficiency_level: 'Medium',
+        category: 'code formatter',
+        attributes: [
+          'Automatically formats code to maintain a consistent style across the project',
+          'Reduces formatting debates in teams by enforcing a unified code style',
+        ],
+        origins: 'Created by James Long in 2017.',
+      },
+      Webpack: {
+        skillName: 'Webpack',
+        proficiency_level: 'Low',
+        category: 'bundler',
+        attributes: [
+          'Efficiently combining and optimizing JavaScript, CSS, and assets for faster load times.',
+          'Improving performance by breaking large files into smaller, on-demand bundles',
+        ],
+        origins: 'Created by Tobias Koppers in 2012.',
+      },
+      Babel: {
+        skillName: 'Babel',
+        proficiency_level: 'Low',
+        category: 'Transpiler',
+        attributes: [
+          'Converting modern JavaScript code into backward-compatible versions for wider browser support.',
+          'Customizing builds with a rich set of plugins and presets to optimize JavaScript code for different use cases.',
+        ],
+        origins: 'created by the Babel team in 2014',
+      },
+      Jest: {
+        skillName: 'Jest',
+        proficiency_level: 'Low',
+        category: 'testing framework',
+        attributes: [
+          'Automating JavaScript testing with a rich set of assertions, mocks, and spies.',
+          'Ensuring code quality and reliability by providing tools for debugging, code coverage, and more.',
+        ],
+        origins: 'Created by Facebook in 2014',
+      },
+      Cypress: {
+        skillName: 'Cypress',
+        proficiency_level: 'Low',
+        category: 'e2e testing',
+        attributes: [
+          'Automating user interactions to validate entire workflows and ensure application reliability.',
+          'Running tests directly in the browser for faster feedback and accurate results.',
+        ],
+        origins: 'Created by Brian Mann in 2015',
       },
     }),
     [],
@@ -184,21 +223,21 @@ export const SkillSection: React.FC = (props) => {
       </TitleWrapper>
       <SkillCardsWrapper>
         <SkillCard
-          type={'LANGUAGES'}
+          type={'FRONTEND'}
           cardIndex={0}
           showCard={cardIndexShowed}
           currentSkillPopup={skillPopupName}
           handleBtnClick={handleBtnClick}
         />
         <SkillCard
-          type={'DATABASES'}
+          type={'CODE MANAGEMENT'}
           cardIndex={1}
           showCard={cardIndexShowed}
           currentSkillPopup={skillPopupName}
           handleBtnClick={handleBtnClick}
         />
         <SkillCard
-          type={'TECHNOLOGY'}
+          type={'DEV TOOLS'}
           cardIndex={2}
           showCard={cardIndexShowed}
           currentSkillPopup={skillPopupName}
@@ -252,7 +291,7 @@ const FirstDaggerWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: ${goRight} 0.5s ease-out forwards;
+  animation: ${goRight} 1s ease-out forwards;
 `;
 
 const BlueDagger = styled.img``;
@@ -266,7 +305,7 @@ const goLeft = keyframes`
 `;
 
 const SecondDaggerWrapper = styled(FirstDaggerWrapper)`
-  animation: ${goLeft} 0.5s ease-out forwards;
+  animation: ${goLeft} 1s ease-out forwards;
 `;
 
 const fadeIn = keyframes`

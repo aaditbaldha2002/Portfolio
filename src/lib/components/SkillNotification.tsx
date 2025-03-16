@@ -220,7 +220,7 @@ const AbilitiesWrapper = styled.div`
   box-sizing: border-box;
   width: 80%;
   flex-direction: column;
-  padding: 1.25em 4em;
+  padding: 1.25em 2em;
 `;
 
 const AbilityWrapper = styled.div`
@@ -240,7 +240,7 @@ const OriginWrapper = styled.div`
     0em 0em 1em ${(props) => props.theme.light_blue};
   font-size: 1em;
   color: ${(props) => props.theme.white};
-  padding: 1.25em 4em;
+  padding: 1.25em 2em;
   box-sizing: border-box;
 `;
 
