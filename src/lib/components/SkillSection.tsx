@@ -14,6 +14,10 @@ import Git from '../../../static/icons/Git';
 import Github from '../../../static/icons/Github';
 import ESLintSVG from '../../../static/icons/ESLintSVG';
 import Prettier from '../../../static/icons/Prettier';
+import Webpack from '../../../static/icons/Webpack';
+import Babel from '../../../static/icons/Babel';
+import Jest from '../../../static/icons/Jest';
+import Cypress from '../../../static/icons/Cypress';
 
 export const SkillSection: React.FC = (props) => {
   const notificationDataMap: Record<
@@ -148,6 +152,7 @@ export const SkillSection: React.FC = (props) => {
           'Improving performance by breaking large files into smaller, on-demand bundles',
         ],
         origins: 'Created by Tobias Koppers in 2012.',
+        iconSVG: <Webpack height="200px" width="200px" />,
       },
       Babel: {
         skillName: 'Babel',
@@ -158,6 +163,7 @@ export const SkillSection: React.FC = (props) => {
           'Customizing builds with a rich set of plugins and presets to optimize JavaScript code for different use cases.',
         ],
         origins: 'created by the Babel team in 2014',
+        iconSVG: <Babel height="200px" width="200px" />,
       },
       Jest: {
         skillName: 'Jest',
@@ -168,6 +174,7 @@ export const SkillSection: React.FC = (props) => {
           'Ensuring code quality and reliability by providing tools for debugging, code coverage, and more.',
         ],
         origins: 'Created by Facebook in 2014',
+        iconSVG: <Jest height="200px" width="200px" />,
       },
       Cypress: {
         skillName: 'Cypress',
@@ -178,6 +185,7 @@ export const SkillSection: React.FC = (props) => {
           'Running tests directly in the browser for faster feedback and accurate results.',
         ],
         origins: 'Created by Brian Mann in 2015',
+        iconSVG: <Cypress height="200px" width="200px" />,
       },
     }),
     [],
