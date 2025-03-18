@@ -1,8 +1,6 @@
 import React, { ReactNode } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { theme } from './lib/theme/theme';
-import { reducer } from './lib/reducer/reducer';
-import { initState } from './lib/state/initState';
 import { SkillSection } from './lib/components/SkillSection';
 export const AppContext = React.createContext<{ welcomeBtnClicked: boolean }>({
   welcomeBtnClicked: false,
