@@ -1,12 +1,11 @@
 import React from 'react';
-import styled, { css, keyframes } from 'styled-components';
-import GithubSVG from '../../../static/icons/github.svg';
-import LinkedinSVG from '../../../static/icons/linkedin.svg';
-import EmailSVG from '../../../static/icons/mail.svg';
-import ResumeSVG from '../../../static/icons/file-user.svg';
-import IgrisPNG from '../../../static/pictures/Igris_face.png';
-import MonarchPNG from '../../../static/pictures/Mage_face.png';
+import styled from 'styled-components';
 
+import Github from '../../../static/icons/Github';
+import LinkedIn from '../../../static/icons/LinkedIn';
+import Email from '../../../static/icons/Email';
+import Resume from '../../../static/icons/Resume';
+import { useNavigate } from 'react-router-dom';
 interface ContactMeProps {
   LinkedIn: string;
   Github: string;
@@ -15,25 +14,38 @@ interface ContactMeProps {
 
 type contactMethod = {
   name: string;
-  svg: string;
+  svg: React.ReactElement;
+  onClick?: () => void;
 };
 
-export const ContactMe: React.FC<ContactMeProps> = (props) => {
+export const ContactMe: React.FC<ContactMeProps> = () => {
   const contact_methods: contactMethod[] = React.useMemo(
     () => [
-      { name: 'Github', svg: GithubSVG },
-      { name: 'Linkedin', svg: LinkedinSVG },
-      { name: 'Email', svg: EmailSVG },
-      { name: 'Resume', svg: ResumeSVG },
+      {
+        name: 'Github',
+        svg: <Github height="50px" width="50px" />,
+        onClick: () => {
+          window.open('https://github.com/aaditbaldha2002', '_blank');
+        },
+      },
+      {
+        name: 'Linkedin',
+        svg: <LinkedIn height="50px" width="50px" />,
+        onClick: () => {
+          window.open(
+            'https://www.linkedin.com/in/aaditharshalbaldha/',
+            '_blank',
+          );
+        },
+      },
+      {
+        name: 'Email',
+        svg: <Email height="50px" width="50px" />,
+      },
+      { name: 'Resume', svg: <Resume height="50px" width="50px" /> },
     ],
     [],
   );
-
-  const [showImage, setShowImage] = React.useState(false);
-
-  const handleShowImage = () => {
-    setShowImage(true);
-  };
 
   return (
     <Wrapper>
@@ -43,26 +55,10 @@ export const ContactMe: React.FC<ContactMeProps> = (props) => {
           {contact_methods.map((value, index) => {
             return (
               <>
-                <MethodElementWrapper>
-                  {index === 0 && (
-                    <ImgWrapper
-                      className="ImgWrapper-class"
-                      showImage={showImage}
-                    >
-                      <Igris src={IgrisPNG} id="Igris-id" />
-                    </ImgWrapper>
-                  )}
-                  {index === 1 && (
-                    <ImgWrapper
-                      className="ImgWrapper-class"
-                      showImage={showImage}
-                    >
-                      <Monarch src={MonarchPNG} id="Monarch-id" />
-                    </ImgWrapper>
-                  )}
-                  <MethodWrapper key={index} onMouseEnter={handleShowImage}>
+                <MethodElementWrapper onClick={value.onClick}>
+                  <MethodWrapper key={index}>
                     <IconWrapper className="IconWrapper-class">
-                      <IconImg src={value.svg} />
+                      {value.svg}
                     </IconWrapper>
                     <MethodNameWrapper>
                       <NameWrapper className="NameWrapper-class">
@@ -87,6 +83,7 @@ const Wrapper = styled.div`
   display: flex;
   background: ${(props) => props.theme.black};
   z-index: 0;
+  margin-top: 100vh;
 `;
 
 const ContentWrapper = styled.div`
@@ -141,6 +138,10 @@ const MethodWrapper = styled.div`
 
     .IconWrapper-class {
       border: 1px solid ${(props) => props.theme.black};
+      svg,
+      g {
+        fill: ${(props) => props.theme.black};
+      }
     }
   }
   z-index: 2;
@@ -175,37 +176,4 @@ const NameWrapper = styled.div`
   text-shadow:
     0em 0em 2em ${(props) => props.theme.blue},
     0em 0em 1em ${(props) => props.theme.blue};
-`;
-
-const IconImg = styled.img``;
-
-const goUp = keyframes`
-  from{
-    top:100%;
-  }to{
-    top:-200%;
-  }
-`;
-
-const ImgWrapper = styled.div<{ showImage: boolean }>`
-  display: flex;
-  position: absolute;
-  top: 100%;
-  transform: translate(-50%);
-  left: 50%;
-  z-index: -1;
-
-  ${(props) =>
-    props.showImage &&
-    css`
-      animation: ${goUp} 0.5s ease-out forwards;
-    `}
-`;
-
-const Igris = styled.img`
-  max-width: 200px;
-`;
-
-const Monarch = styled.img`
-  max-width: 200px;
 `;
