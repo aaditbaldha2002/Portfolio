@@ -6,6 +6,7 @@ import LinkedIn from '../../../static/icons/LinkedIn';
 import Email from '../../../static/icons/Email';
 import Resume from '../../../static/icons/Resume';
 import { useNavigate } from 'react-router-dom';
+import EmailNotification from './EmailNotification';
 interface ContactMeProps {
   LinkedIn: string;
   Github: string;
@@ -41,11 +42,15 @@ export const ContactMe: React.FC<ContactMeProps> = () => {
       {
         name: 'Email',
         svg: <Email height="50px" width="50px" />,
+        onClick: () => setShowEmailNotification(true),
       },
       { name: 'Resume', svg: <Resume height="50px" width="50px" /> },
     ],
     [],
   );
+
+  const [showEmailNotification, setShowEmailNotification] =
+    React.useState(false);
 
   return (
     <Wrapper>
@@ -73,6 +78,15 @@ export const ContactMe: React.FC<ContactMeProps> = () => {
           })}
         </MethodsWrapper>
       </ContentWrapper>
+      {showEmailNotification && (
+        <EmailNotification
+          to="aaditbaldha2002@gmail.com"
+          handlePopupClose={() => {
+            setShowEmailNotification(false);
+          }}
+          showPopup={showEmailNotification}
+        />
+      )}
     </Wrapper>
   );
 };
