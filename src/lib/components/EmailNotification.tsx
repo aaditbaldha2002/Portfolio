@@ -38,10 +38,10 @@ const EmailNotification: React.FC<EmailNotificationProps> = (props) => {
       };
 
       const response = await emailjs.send(
-        'service_ahmom74',
-        'template_80omy6p',
+        process.env.REACT_APP_EMAILJS_SERVICE_ID!,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID!,
         templateParams,
-        'QWl3gUICKkL9i5145',
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY!,
       );
 
       props.handlePopupClose();
