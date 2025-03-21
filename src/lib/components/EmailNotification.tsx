@@ -3,6 +3,8 @@ import styled, { css, keyframes } from 'styled-components';
 import { UpperBorder } from './UpperBorder';
 import { LowerBorder } from './LowerBorder';
 import PopupMP3 from '../../../static/sounds/popup_sound.mp3';
+import emailjs from 'emailjs-com';
+
 interface EmailNotificationProps {
   to: string;
   handlePopupClose: () => void;
@@ -11,6 +13,44 @@ interface EmailNotificationProps {
 
 const EmailNotification: React.FC<EmailNotificationProps> = (props) => {
   const audio = React.useMemo(() => new Audio(PopupMP3), []);
+  const [emailContent, setEmailContent] = React.useState({
+    from: '',
+    subject: '',
+    message: '',
+  });
+
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      setEmailContent((prev) => ({ ...prev, [name]: value }));
+    },
+    [],
+  );
+
+  const handleSendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const templateParams = {
+        from_name: emailContent.from,
+        to_name: props.to,
+        subject: emailContent.subject,
+        message: emailContent.message,
+      };
+
+      const response = await emailjs.send(
+        'service_ahmom74',
+        'template_80omy6p',
+        templateParams,
+        'QWl3gUICKkL9i5145',
+      );
+
+      props.handlePopupClose();
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Failed to send email. Please try again.');
+    }
+  };
+
   React.useEffect(() => {
     audio.play();
   }, [audio]);
@@ -19,21 +59,44 @@ const EmailNotification: React.FC<EmailNotificationProps> = (props) => {
     <Wrapper showPopup={props.showPopup}>
       <UpperBorder />
       <ContentWrapper>
-        <Content>
-          <Title>Send an Email</Title>
-          <To>To:</To>
-          <ToValue>{props.to}</ToValue>
-          <Subject>Subject:</Subject>
-          <SubjectValue type="text" />
-          <TextArea type="text" />
-          <SendBtn
-            onClick={() => {
-              props.handlePopupClose();
-            }}
-          >
-            Send
-          </SendBtn>
-        </Content>
+        <FormWrapper onSubmit={handleSendEmail}>
+          <Content>
+            <Title>Send an Email</Title>
+            <From>From:</From>
+            <FromValue
+              type="email"
+              value={emailContent.from}
+              name="from"
+              onChange={handleChange}
+              required
+            />
+            <To>To:</To>
+            <ToValue>{props.to}</ToValue>
+            <Subject>Subject:</Subject>
+            <SubjectValue
+              type="text"
+              value={emailContent.subject}
+              name="subject"
+              onChange={handleChange}
+              required
+            />
+            <TextArea
+              type="text"
+              name="message"
+              value={emailContent.message}
+              onChange={handleChange}
+              required
+            />
+            <SendBtn
+              onClick={() => {
+                props.handlePopupClose();
+              }}
+              type="submit"
+            >
+              Send
+            </SendBtn>
+          </Content>
+        </FormWrapper>
       </ContentWrapper>
       <LowerBorder />
     </Wrapper>
@@ -102,11 +165,15 @@ const ContentWrapper = styled.div`
   padding: 5em 0em;
 `;
 
+const FormWrapper = styled.form`
+  display: flex;
+  width: fit-content;
+`;
+
 const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto auto;
-  width: 80%;
   gap: 2em;
 `;
 
@@ -128,7 +195,7 @@ const Title = styled.div`
 const To = styled.div`
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row: 2;
+  grid-row: 3;
   font-size: 2em;
   text-align: center;
   text-shadow:
@@ -136,10 +203,14 @@ const To = styled.div`
     0em 0em 1em ${(props) => props.theme.light_blue};
 `;
 
+const From = styled(To)`
+  grid-row: 2;
+`;
+
 const ToValue = styled.div`
   grid-column-start: 2;
   grid-column-end: 4;
-  grid-row: 2;
+  grid-row: 3;
   font-size: 1.5em;
   text-align: center;
   text-shadow:
@@ -178,7 +249,7 @@ const SendBtn = styled.button`
 const Subject = styled.div`
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row: 3;
+  grid-row: 4;
   font-size: 2em;
   text-align: center;
   text-shadow:
@@ -191,11 +262,15 @@ const SubjectValue = styled.input`
   border-bottom: 1px solid ${(props) => props.theme.white_50_translucent};
   grid-column-start: 2;
   grid-column-end: 4;
-  grid-row: 3;
+  grid-row: 4;
   font-size: 1.5em;
   text-shadow:
     0em 0em 2em ${(props) => props.theme.blue},
     0em 0em 1em ${(props) => props.theme.light_blue};
+`;
+
+const FromValue = styled(SubjectValue)`
+  grid-row: 2;
 `;
 
 const TextArea = styled.input`
@@ -203,7 +278,7 @@ const TextArea = styled.input`
   border-bottom: 1px solid ${(props) => props.theme.white_50_translucent};
   grid-column-start: 1;
   grid-column-end: 4;
-  grid-row: 4;
+  grid-row: 5;
   font-size: 1.5em;
   text-shadow:
     0em 0em 2em ${(props) => props.theme.blue},
