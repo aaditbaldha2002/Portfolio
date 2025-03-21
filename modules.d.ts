@@ -1,3 +1,4 @@
+import { screen } from '@testing-library/react';
 declare module '*.svg' {
   import * as React from 'react';
   const ReactComponent: React.FC<React.SVGProps<SVGSVGElement>>;
@@ -24,4 +25,9 @@ declare module '*.jpg' {
 declare module '*.mp3' {
   const src: string;
   export default src;
+}
+
+declare module '*.pdf' {
+  const scr: string;
+  export default scr;
 }

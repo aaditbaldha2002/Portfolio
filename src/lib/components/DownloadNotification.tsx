@@ -3,42 +3,58 @@ import styled, { css, keyframes } from 'styled-components';
 import { UpperBorder } from './UpperBorder';
 import { LowerBorder } from './LowerBorder';
 import PopupMP3 from '../../../static/sounds/popup_sound.mp3';
+import Confirm from '../../../static/icons/Confirm';
+import resume from '../../assets/AaHB_resume.pdf';
+
 interface EmailNotificationProps {
   to: string;
   handlePopupClose: () => void;
   showPopup: boolean;
 }
 
-const EmailNotification: React.FC<EmailNotificationProps> = (props) => {
+const DownloadNotification: React.FC<EmailNotificationProps> = (props) => {
   const audio = React.useMemo(() => new Audio(PopupMP3), []);
+  const handleDownload = React.useCallback(() => {
+    const url = resume;
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'AaHB_resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
+
   React.useEffect(() => {
     audio.play();
-  }, [audio]);
+    handleDownload();
+  }, [audio, handleDownload]);
 
   return (
     <Wrapper showPopup={props.showPopup}>
       <UpperBorder />
       <ContentWrapper>
         <Content>
-          <Title>Send an Email</Title>
-          <To>To:</To>
-          <ToValue>{props.to}</ToValue>
-          <Subject>Subject:</Subject>
-          <SubjectValue type="text" />
-          <TextArea type="text" />
-          <SendBtn
+          <Title>NOTIFICATION</Title>
+          <Description>Resume Downloaded Successfully</Description>
+          <IconWrapper>
+            <Confirm height="50px" width="50px" />
+          </IconWrapper>
+          <CloseBtn
             onClick={() => {
               props.handlePopupClose();
             }}
           >
-            Send
-          </SendBtn>
+            Close
+          </CloseBtn>
         </Content>
       </ContentWrapper>
       <LowerBorder />
     </Wrapper>
   );
 };
+
+export default DownloadNotification;
+
 const popUp = keyframes`
   0% {
     transform: scaleY(0.1);
@@ -103,9 +119,9 @@ const ContentWrapper = styled.div`
 `;
 
 const Content = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 80%;
   gap: 2em;
 `;
@@ -120,37 +136,24 @@ const Title = styled.div`
     0em 0em 1em ${(props) => props.theme.light_blue};
   font-size: 2em;
   box-sizing: border-box;
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row: 1;
 `;
 
-const To = styled.div`
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row: 2;
-  font-size: 2em;
-  text-align: center;
-  text-shadow:
-    0em 0em 2em ${(props) => props.theme.blue},
-    0em 0em 1em ${(props) => props.theme.light_blue};
+const IconWrapper = styled.div`
+  border: 1px solid ${(props) => props.theme.white_50_translucent};
+  padding: 1em;
 `;
 
-const ToValue = styled.div`
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row: 2;
-  font-size: 1.5em;
-  text-align: center;
-  text-shadow:
-    0em 0em 2em ${(props) => props.theme.blue},
-    0em 0em 1em ${(props) => props.theme.light_blue};
-`;
-
-const SendBtn = styled.button`
+const Description = styled.div`
   display: flex;
-  grid-column-start: 2;
-  grid-column-end: 3;
+  text-align: center;
+  text-shadow:
+    0em 0em 2em ${(props) => props.theme.blue},
+    0em 0em 1em ${(props) => props.theme.light_blue};
+  font-size: 2em;
+`;
+
+const CloseBtn = styled.button`
+  display: flex;
   text-align: center;
   width: fit-content;
   padding: 0.5em 2em;
@@ -174,40 +177,3 @@ const SendBtn = styled.button`
     transition: transform 0.2s ease-out;
   }
 `;
-
-const Subject = styled.div`
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row: 3;
-  font-size: 2em;
-  text-align: center;
-  text-shadow:
-    0em 0em 2em ${(props) => props.theme.blue},
-    0em 0em 1em ${(props) => props.theme.light_blue};
-`;
-
-const SubjectValue = styled.input`
-  all: unset;
-  border-bottom: 1px solid ${(props) => props.theme.white_50_translucent};
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row: 3;
-  font-size: 1.5em;
-  text-shadow:
-    0em 0em 2em ${(props) => props.theme.blue},
-    0em 0em 1em ${(props) => props.theme.light_blue};
-`;
-
-const TextArea = styled.input`
-  all: unset;
-  border-bottom: 1px solid ${(props) => props.theme.white_50_translucent};
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row: 4;
-  font-size: 1.5em;
-  text-shadow:
-    0em 0em 2em ${(props) => props.theme.blue},
-    0em 0em 1em ${(props) => props.theme.light_blue};
-`;
-
-export default EmailNotification;

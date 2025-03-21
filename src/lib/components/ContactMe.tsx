@@ -5,8 +5,8 @@ import Github from '../../../static/icons/Github';
 import LinkedIn from '../../../static/icons/LinkedIn';
 import Email from '../../../static/icons/Email';
 import Resume from '../../../static/icons/Resume';
-import { useNavigate } from 'react-router-dom';
 import EmailNotification from './EmailNotification';
+import DownloadNotification from './DownloadNotification';
 interface ContactMeProps {
   LinkedIn: string;
   Github: string;
@@ -44,12 +44,37 @@ export const ContactMe: React.FC<ContactMeProps> = () => {
         svg: <Email height="50px" width="50px" />,
         onClick: () => setShowEmailNotification(true),
       },
-      { name: 'Resume', svg: <Resume height="50px" width="50px" /> },
+      {
+        name: 'Download \n Resume',
+        svg: <Resume height="50px" width="50px" />,
+        onClick: () => setShowDownloadNotification(true),
+      },
     ],
     [],
   );
 
+  const handleEmailPopup = () => {
+    setShowEmailContent(false);
+    setTimeout(() => {
+      setShowEmailNotification(false);
+      setShowEmailContent(true);
+    }, 400);
+  };
+
+  const handleDownloadPopup = () => {
+    setShowDownloadContent(false);
+    setTimeout(() => {
+      setShowDownloadNotification(false);
+      setShowDownloadContent(true);
+    }, 400);
+  };
+
+  const [showEmailContent, setShowEmailContent] = React.useState(true);
   const [showEmailNotification, setShowEmailNotification] =
+    React.useState(false);
+
+  const [showDownloadContent, setShowDownloadContent] = React.useState(true);
+  const [showDownloadNotification, setShowDownloadNotification] =
     React.useState(false);
 
   return (
@@ -81,10 +106,15 @@ export const ContactMe: React.FC<ContactMeProps> = () => {
       {showEmailNotification && (
         <EmailNotification
           to="aaditbaldha2002@gmail.com"
-          handlePopupClose={() => {
-            setShowEmailNotification(false);
-          }}
-          showPopup={showEmailNotification}
+          handlePopupClose={handleEmailPopup}
+          showPopup={showEmailContent}
+        />
+      )}
+      {showDownloadNotification && (
+        <DownloadNotification
+          to="aaditbaldha2002@gmail.com"
+          handlePopupClose={handleDownloadPopup}
+          showPopup={showDownloadContent}
         />
       )}
     </Wrapper>
@@ -184,10 +214,11 @@ const MethodNameWrapper = styled.div`
 
 const NameWrapper = styled.div`
   display: flex;
-  text-align: center;
+  text-align: left;
   font-size: 2em;
   color: ${(props) => props.theme.white};
   text-shadow:
     0em 0em 2em ${(props) => props.theme.blue},
     0em 0em 1em ${(props) => props.theme.blue};
+  white-space: pre-wrap;
 `;

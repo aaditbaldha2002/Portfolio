@@ -36,6 +36,20 @@ export default {
           },
         },
       },
+      {
+        test: /\.(mp3|wav|ogg)$/,
+        use: ['file-loader'],
+      },
+      {
+        test: /\.pdf$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'assets/',
+          },
+        },
+      },
     ],
   },
   plugins: [
