@@ -7,6 +7,7 @@ import Email from '../../../static/icons/Email';
 import Resume from '../../../static/icons/Resume';
 import EmailNotification from './EmailNotification';
 import DownloadNotification from './DownloadNotification';
+import CMBtn from './CMBtn';
 interface ContactMeProps {
   LinkedIn: string;
   Github: string;
@@ -16,7 +17,7 @@ interface ContactMeProps {
 type contactMethod = {
   name: string;
   svg: React.ReactElement;
-  onClick?: () => void;
+  onClick: () => void;
 };
 
 export const ContactMe: React.FC<ContactMeProps> = () => {
@@ -85,18 +86,11 @@ export const ContactMe: React.FC<ContactMeProps> = () => {
           {contact_methods.map((value, index) => {
             return (
               <>
-                <MethodElementWrapper onClick={value.onClick}>
-                  <MethodWrapper key={index}>
-                    <IconWrapper className="IconWrapper-class">
-                      {value.svg}
-                    </IconWrapper>
-                    <MethodNameWrapper>
-                      <NameWrapper className="NameWrapper-class">
-                        {value.name}
-                      </NameWrapper>
-                    </MethodNameWrapper>
-                  </MethodWrapper>
-                </MethodElementWrapper>
+                <CMBtn
+                  onClick={value.onClick}
+                  name={value.name}
+                  svg={value.svg}
+                />
                 {index < contact_methods.length - 1 && <Divider />}
               </>
             );
@@ -159,66 +153,9 @@ const MethodsWrapper = styled.div`
   position: relative;
 `;
 
-const MethodElementWrapper = styled.div`
-  position: relative;
-`;
-
-const MethodWrapper = styled.div`
-  position: relative;
-  display: flex;
-  border: 1px solid ${(props) => props.theme.white_50_translucent};
-  padding: 2em;
-  gap: 2em;
-  &:hover {
-    background: ${(props) => props.theme.white};
-    color: ${(props) => props.theme.black};
-    cursor: pointer;
-    user-select: none;
-
-    .NameWrapper-class {
-      color: ${(props) => props.theme.black};
-      text-shadow: none;
-    }
-
-    .IconWrapper-class {
-      border: 1px solid ${(props) => props.theme.black};
-      svg,
-      g {
-        fill: ${(props) => props.theme.black};
-      }
-    }
-  }
-  z-index: 2;
-`;
-
 const Divider = styled.div`
   display: flex;
   align-self: stretch;
   width: 2px;
   border-right: 1px solid ${(props) => props.theme.white};
-`;
-
-const IconWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid ${(props) => props.theme.white};
-  padding: 1em;
-  background: transparent;
-`;
-
-const MethodNameWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const NameWrapper = styled.div`
-  display: flex;
-  text-align: left;
-  font-size: 2em;
-  color: ${(props) => props.theme.white};
-  text-shadow:
-    0em 0em 2em ${(props) => props.theme.blue},
-    0em 0em 1em ${(props) => props.theme.blue};
-  white-space: pre-wrap;
 `;

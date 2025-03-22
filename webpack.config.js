@@ -1,9 +1,14 @@
-import path from 'path';
+import path from 'node:path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-
+import webpack from 'webpack';
+import dotenv from 'dotenv';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+// Load environment variables
+dotenv.config();
+
+// Get __dirname equivalent in ESM
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default {
@@ -15,6 +20,9 @@ export default {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg'],
+    fallback: {
+      process: 'process/browser',
+    },
   },
   module: {
     rules: [
@@ -28,7 +36,7 @@ export default {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg)$/i, // Match image file extensions
+        test: /\.(png|jpg|jpeg|gif|svg)$/i,
         type: 'asset/resource',
         parser: {
           dataUrlCondition: {
@@ -38,16 +46,13 @@ export default {
       },
       {
         test: /\.(mp3|wav|ogg)$/,
-        use: ['file-loader'],
+        type: 'asset/resource',
       },
       {
         test: /\.pdf$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'assets/',
-          },
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/[name][ext]',
         },
       },
     ],
@@ -55,6 +60,9 @@ export default {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env),
     }),
   ],
   devServer: {

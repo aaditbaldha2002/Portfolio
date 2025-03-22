@@ -6,6 +6,13 @@ import reactHooks from 'eslint-plugin-react-hooks';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
+  {
+    env: {
+      browser: true,
+      node: true,
+      es2021: true,
+    },
+  },
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,

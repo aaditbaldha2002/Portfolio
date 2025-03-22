@@ -29,6 +29,10 @@ const EmailNotification: React.FC<EmailNotificationProps> = (props) => {
 
   const handleSendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(
+      'process service id:',
+      process.env.REACT_APP_EMAILJS_SERVICE_ID,
+    );
     try {
       const templateParams = {
         from_name: emailContent.from,
