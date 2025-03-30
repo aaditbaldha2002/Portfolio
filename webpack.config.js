@@ -4,19 +4,26 @@ import webpack from 'webpack';
 import dotenv from 'dotenv';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import CompressionPlugin from 'compression-webpack-plugin';
 
-// Load environment variables
 dotenv.config();
 
-// Get __dirname equivalent in ESM
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default {
   entry: './src/index.tsx',
+  externalsType: 'umd', // Ensures compatibility with CDN
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
     clean: true,
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].js',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg'],
@@ -40,7 +47,7 @@ export default {
         type: 'asset/resource',
         parser: {
           dataUrlCondition: {
-            maxSize: 8 * 1024, // Inline images smaller than 8KB
+            maxSize: 8 * 1024,
           },
         },
       },
@@ -57,12 +64,53 @@ export default {
       },
     ],
   },
+  mode: 'development',
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 10 * 1024,
+      maxSize: 150 * 1024,
+      automaticNameDelimiter: '.',
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+          priority: -10,
+          enforce: true,
+        },
+        styledComponents: {
+          test: /[\\/]node_modules[\\/]styled-components[\\/]/,
+          name: 'styled-components',
+          chunks: 'all',
+          priority: -5,
+          enforce: true,
+        },
+      },
+    },
+    runtimeChunk: 'single',
+    usedExports: true,
+    minimize: true,
+    sideEffects: true,
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
     }),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env),
+    }),
+    process.env.ANALYZE === 'true' &&
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        openAnalyzer: true,
+      }),
+
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
   ],
   devServer: {

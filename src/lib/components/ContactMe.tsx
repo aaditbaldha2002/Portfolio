@@ -1,26 +1,22 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import styled from 'styled-components';
 
 import Github from '../../../static/icons/Github';
 import LinkedIn from '../../../static/icons/LinkedIn';
 import Email from '../../../static/icons/Email';
 import Resume from '../../../static/icons/Resume';
-import EmailNotification from './EmailNotification';
-import DownloadNotification from './DownloadNotification';
 import CMBtn from './CMBtn';
-interface ContactMeProps {
-  LinkedIn: string;
-  Github: string;
-  Email: string;
-}
-
+import Loading from './Loading';
 type contactMethod = {
   name: string;
   svg: React.ReactElement;
   onClick: () => void;
 };
 
-export const ContactMe: React.FC<ContactMeProps> = () => {
+const EmailNotification = lazy(() => import('./EmailNotification'));
+const DownloadNotification = lazy(() => import('./DownloadNotification'));
+
+const ContactMe: React.FC = () => {
   const contact_methods: contactMethod[] = React.useMemo(
     () => [
       {
@@ -98,22 +94,27 @@ export const ContactMe: React.FC<ContactMeProps> = () => {
         </MethodsWrapper>
       </ContentWrapper>
       {showEmailNotification && (
-        <EmailNotification
-          to="aaditbaldha2002@gmail.com"
-          handlePopupClose={handleEmailPopup}
-          showPopup={showEmailContent}
-        />
+        <Suspense fallback={<Loading />}>
+          <EmailNotification
+            to="aaditbaldha2002@gmail.com"
+            handlePopupClose={handleEmailPopup}
+            showPopup={showEmailContent}
+          />
+        </Suspense>
       )}
       {showDownloadNotification && (
-        <DownloadNotification
-          to="aaditbaldha2002@gmail.com"
-          handlePopupClose={handleDownloadPopup}
-          showPopup={showDownloadContent}
-        />
+        <Suspense fallback={<Loading />}>
+          <DownloadNotification
+            handlePopupClose={handleDownloadPopup}
+            showPopup={showDownloadContent}
+          />
+        </Suspense>
       )}
     </Wrapper>
   );
 };
+
+export default ContactMe;
 
 const Wrapper = styled.div`
   position: relative;

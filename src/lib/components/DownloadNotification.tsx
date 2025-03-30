@@ -7,7 +7,6 @@ import Confirm from '../../../static/icons/Confirm';
 import resume from '../../assets/AaHB_resume.pdf';
 
 interface EmailNotificationProps {
-  to: string;
   handlePopupClose: () => void;
   showPopup: boolean;
 }

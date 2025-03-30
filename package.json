@@ -10,7 +10,7 @@
     "format-check": "npx prettier --check .",
     "lint": "npx eslint .",
     "start": "webpack serve --mode development",
-    "build": "webpack --mode production",
+    "build": "webpack  --mode production",
     "test": "jest",
     "deploy": "gh-pages -d dist"
   },
@@ -30,6 +30,8 @@
     "@typescript-eslint/eslint-plugin": "^8.14.0",
     "@typescript-eslint/parser": "^8.14.0",
     "babel-loader": "^9.2.1",
+    "babel-plugin-styled-components": "^2.1.4",
+    "compression-webpack-plugin": "^11.1.0",
     "css-loader": "^7.1.2",
     "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
@@ -54,16 +56,17 @@
     "typescript": "^5.6.3",
     "typescript-eslint": "^8.14.0",
     "webpack": "^5.96.1",
+    "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
     "emailjs-com": "^3.2.0",
-    "lodash": "^4.17.21",
     "process": "^0.11.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.3.0"
-  }
+  },
+  "sideEffects": false
 }

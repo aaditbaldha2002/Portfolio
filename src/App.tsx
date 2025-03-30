@@ -1,17 +1,18 @@
-import React, { ReactNode } from 'react';
+import React, { lazy, Suspense } from 'react';
+import { ReactNode } from 'react';
 import styled, { keyframes, ThemeProvider } from 'styled-components';
 import { theme } from './lib/theme/theme';
-import { ContactMe } from './lib/components/ContactMe';
+import Loading from './lib/components/Loading';
 
-export const AppContext = React.createContext<{ welcomeBtnClicked: boolean }>({
-  welcomeBtnClicked: false,
-});
+const ContactMe = lazy(() => import('./lib/components/ContactMe'));
 
 const App: React.FC = (): ReactNode => {
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper>
-        <ContactMe LinkedIn="#" Github="#" Email="#" />
+        <Suspense fallback={<Loading />}>
+          <ContactMe />
+        </Suspense>
       </AppWrapper>
     </ThemeProvider>
   );
@@ -25,8 +26,6 @@ const AppWrapper = styled.div`
   height: auto;
   align-items: center;
   justify-content: center;
-  /* overflow-y: clip; */
-  /* overflow-x: clip; */
   font-family: 'Arial', sans-serif;
 `;
 

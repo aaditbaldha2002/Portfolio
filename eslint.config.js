@@ -13,12 +13,38 @@ export default [
       es2021: true,
     },
   },
-  { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
-  { languageOptions: { globals: globals.browser, myCustomGlobal: 'readonly' } },
+  {
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        process: 'readonly',
+      },
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
+  },
+  {
+    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+    languageOptions: {
+      globals: { ...globals.browser, process: 'readonly' },
+      myCustomGlobal: 'readonly',
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
+  },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   {
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
     plugins: { 'react-hooks': reactHooks },
     rules: {
       'react/react-in-jsx-scope': 'off',
@@ -26,8 +52,8 @@ export default [
       'no-console': 'warn',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      'no-unused-vars': 'warn',
-      '@typescript-eslint/no-unused-vars': 'warn',
+      'no-unused-vars': 'error',
+      '@typescript-eslint/no-unused-vars': 'error',
     },
   },
 ];
