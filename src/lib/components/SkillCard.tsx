@@ -5,7 +5,7 @@ import { LowerBorder } from './LowerBorder';
 import { ActionType } from '../reducer/reducer';
 
 interface SkillCardProps {
-  type: 'FRONTEND' | 'CODE MANAGEMENT' | 'DEV TOOLS';
+  type: 'FRONTEND' | 'REPO SYNC' | 'DEV TOOLS';
   cardIndex: number;
   showCard: number;
   // dispatch: Dispatch<ActionType>;
@@ -15,7 +15,7 @@ interface SkillCardProps {
 
 export const SkillCard: React.FC<SkillCardProps> = (props) => {
   const frontend: string[] = React.useMemo(
-    () => ['HTML', 'CSS3', 'JavaScript', 'Typescript', 'React', 'SASS'],
+    () => ['JavaScript', 'Typescript', 'React', 'SASS'],
     [],
   );
   const codeManagement: string[] = React.useMemo(
@@ -58,7 +58,7 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
                     {tool}
                   </BtnWrapper>
                 ))}
-              {props.type == 'CODE MANAGEMENT' &&
+              {props.type == 'REPO SYNC' &&
                 codeManagement.map((cm, index) => (
                   <BtnWrapper
                     key={index}
@@ -156,7 +156,7 @@ const SkillCardWrapper = styled.div<{ cardIndex: number; showCard: number }>`
 
 const ContentWrapper = styled.div`
   box-sizing: border-box;
-  padding: 0em 1em;
+  padding: 0em 2em;
   display: flex;
   justify-content: center;
   width: 100%;

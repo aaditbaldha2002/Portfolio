@@ -4,12 +4,6 @@ import { UpperBorder } from './UpperBorder';
 import { LowerBorder } from './LowerBorder';
 import { popUp } from './SkillCard';
 import SvgProps from '../../../static/icons/type';
-interface SkillNotificationProps {
-  notificationData: NotificationData;
-  handlePopupClose: () => void;
-  showPopup: boolean;
-  skillPopupName: string;
-}
 
 export type NotificationData = {
   skillName: string;
@@ -19,6 +13,12 @@ export type NotificationData = {
   origins: string;
   iconSVG: ReactElement<SvgProps>;
 };
+interface SkillNotificationProps {
+  notificationData: NotificationData;
+  handlePopupClose: () => void;
+  showPopup: boolean;
+  skillPopupName: string;
+}
 
 export const SkillNotification: React.FC<SkillNotificationProps> = (props) => {
   const {
@@ -263,6 +263,7 @@ const CloseBtn = styled.button`
   font-size: 1.5em;
   border: 2px solid ${(props) => props.theme.white_50_translucent};
   background: transparent;
+  font-family: 'Tektur', sans-serif;
   color: inherit;
   &:hover {
     background: ${(props) => props.theme.white};

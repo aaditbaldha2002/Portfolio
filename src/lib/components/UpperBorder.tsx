@@ -12,6 +12,7 @@ export const UpperBorder: React.FC = () => {
 
 const Wrapper = styled.div`
   width: 100%;
+  height: 2em;
   display: flex;
   justify-content: center;
   align-items: center;

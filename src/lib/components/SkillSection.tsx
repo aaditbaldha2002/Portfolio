@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { SkillCard } from './SkillCard';
 import { SkillNotification } from './SkillNotification';
 import PopupMP3 from '../../../static/sounds/popup_sound.mp3';
-import BarukaDaggerPNG from '../../../static/pictures/blue_dagger.png';
 import HTML5 from '../../../static/icons/HTML5';
 import CSS3 from '../../../static/icons/CSS3';
 import JS from '../../../static/icons/JS';
@@ -18,6 +17,7 @@ import Webpack from '../../../static/icons/Webpack';
 import Babel from '../../../static/icons/Babel';
 import Jest from '../../../static/icons/Jest';
 import Cypress from '../../../static/icons/Cypress';
+import SvgProps from '../../../static/icons/type';
 
 export const SkillSection: React.FC = (props) => {
   const notificationDataMap: Record<
@@ -28,6 +28,7 @@ export const SkillSection: React.FC = (props) => {
       category: string;
       attributes: string[];
       origins: string;
+      iconSVG: ReactElement<SvgProps>;
     }
   > = React.useMemo(
     () => ({
@@ -241,13 +242,7 @@ export const SkillSection: React.FC = (props) => {
   return (
     <Wrapper>
       <TitleWrapper>
-        <FirstDaggerWrapper>
-          <BlueDagger src={BarukaDaggerPNG} />
-        </FirstDaggerWrapper>
         <Title>SKILLS</Title>
-        <SecondDaggerWrapper>
-          <BlueDagger src={BarukaDaggerPNG} />
-        </SecondDaggerWrapper>
       </TitleWrapper>
       <SkillCardsWrapper>
         <SkillCard
@@ -258,7 +253,7 @@ export const SkillSection: React.FC = (props) => {
           handleBtnClick={handleBtnClick}
         />
         <SkillCard
-          type={'CODE MANAGEMENT'}
+          type={'REPO SYNC'}
           cardIndex={1}
           showCard={cardIndexShowed}
           currentSkillPopup={skillPopupName}
@@ -285,6 +280,7 @@ export const SkillSection: React.FC = (props) => {
 };
 
 const Wrapper = styled.div`
+  height: 100vh;
   padding: 3em 1em;
   background: ${(props) =>
     `radial-gradient(${props.theme.darkest_blue},${props.theme.black})`};
@@ -294,7 +290,6 @@ const Wrapper = styled.div`
   row-gap: 5em;
   justify-content: space-around;
   align-items: center;
-  height: fit-content;
   background-repeat: repeat-y;
   color: ${(props) => props.theme.white};
 `;
@@ -305,39 +300,6 @@ const TitleWrapper = styled.div`
   align-items: center;
   width: 100%;
   gap: 2em;
-`;
-
-const goRight = keyframes`
-  from{
-    transform: translateX(5%);
-    opacity:0;
-  }to{
-    transform: translateX(0);
-    opacity:1;
-  }
-`;
-
-const FirstDaggerWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: ${goRight} 1s ease-out forwards;
-`;
-
-const BlueDagger = styled.img``;
-
-const goLeft = keyframes`
-  from{
-    transform: rotateY(180deg) translateX(5%);
-    opacity:0;
-  }to{
-    transform: rotateY(180deg) translateX(0%);
-    opacity:1;
-  }
-`;
-
-const SecondDaggerWrapper = styled(FirstDaggerWrapper)`
-  animation: ${goLeft} 1s ease-out forwards;
 `;
 
 const fadeIn = keyframes`
