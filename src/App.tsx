@@ -25,7 +25,7 @@ const AppWrapper = styled.div`
   height: 100vh;
   background-repeat: no-repeat;
   position: relative;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Tektur', sans-serif;
   overflow-x: hidden;
 `;
 

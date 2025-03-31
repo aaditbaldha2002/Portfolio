@@ -60,7 +60,9 @@ export const SkillNotification: React.FC<SkillNotificationProps> = (props) => {
           })}
         </AbilitiesWrapper>
         <OriginWrapper>{origins}</OriginWrapper>
-        <CloseBtn onClick={() => props.handlePopupClose()}>Close</CloseBtn>
+        <CloseBtn onClick={() => props.handlePopupClose()} type="button">
+          Close
+        </CloseBtn>
       </ContentWrapper>
       <LowerBorder />
     </Wrapper>
@@ -84,11 +86,11 @@ const popDown = keyframes`
 const Wrapper = styled.div<{ showPopup: boolean }>`
   position: fixed;
   width: 50vw;
-  max-height: 80vh;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  font-family: 'Tektur', sans-serif;
   top: 10vh;
   left: 25vw;
   transform: translate(-50%, -50%);
@@ -235,6 +237,7 @@ const AbilityWrapper = styled.div`
   text-shadow:
     0em 0em 2em ${(props) => props.theme.blue},
     0em 0em 1em ${(props) => props.theme.light_blue};
+  color: ${(props) => props.theme.light_grey};
 `;
 
 const OriginWrapper = styled.div`
@@ -244,7 +247,7 @@ const OriginWrapper = styled.div`
     0em 0em 2em ${(props) => props.theme.blue},
     0em 0em 1em ${(props) => props.theme.light_blue};
   font-size: 1em;
-  color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme.light_grey};
   padding: 1.25em 2em;
   box-sizing: border-box;
 `;

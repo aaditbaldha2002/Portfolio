@@ -1,5 +1,9 @@
 export const theme = {
   white: '#ffffff',
+  white_grey: '#F2F3F5',
+  light_grey: '#AFAFAF',
+  grey: '#676666',
+  dark_grey: '#808080',
   black: '#181817',
   darkest_blue: '#0a1543',
   darker_blue: '#19327f',

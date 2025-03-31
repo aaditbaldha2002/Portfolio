@@ -197,7 +197,7 @@ const TitleBoxWrapper = styled.div`
 `;
 
 const TitleWrapper = styled.div`
-  border: 2px solid ${(props) => props.theme.white};
+  border: 2px solid ${(props) => props.theme.white_75_translucent};
   color: ${(props) => props.theme.white};
   text-shadow:
     0px 0px 0.5em ${(props) => props.theme.light_blue},
@@ -221,7 +221,7 @@ const BtnGridWrapper = styled.div`
 `;
 
 const BtnWrapper = styled.div`
-  border: 2px solid ${(props) => props.theme.white};
+  border: 2px solid ${(props) => props.theme.white_50_translucent};
   padding: 10px 0px;
   font-size: 20px;
   text-shadow:
