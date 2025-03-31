@@ -110,7 +110,7 @@ const ContentWrapper = styled.div`
   color: ${(props) => props.theme.white};
   width: 90%;
   background: ${(props) =>
-    `linear-gradient(to right,transparent 0%,${props.theme.black_75_translucent} 5%,${props.theme.black_75_translucent} 95%,transparent 100%)`};
+    `linear-gradient(to right,transparent 0%,${props.theme.black} 5%,${props.theme.black} 95%,transparent 100%)`};
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -266,6 +266,7 @@ const CloseBtn = styled.button`
     cursor: pointer;
     color: ${(props) => props.theme.black};
     text-shadow: none;
+    transition: background-color 0.25s;
   }
 
   &:active {

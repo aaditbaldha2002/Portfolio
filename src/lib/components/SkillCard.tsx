@@ -197,7 +197,7 @@ const TitleBoxWrapper = styled.div`
 `;
 
 const TitleWrapper = styled.div`
-  border: 2px solid ${(props) => props.theme.white_25_translucent};
+  border: 2px solid ${(props) => props.theme.white};
   color: ${(props) => props.theme.white};
   text-shadow:
     0px 0px 0.5em ${(props) => props.theme.light_blue},
@@ -221,7 +221,7 @@ const BtnGridWrapper = styled.div`
 `;
 
 const BtnWrapper = styled.div`
-  border: 2px solid ${(props) => props.theme.white_25_translucent};
+  border: 2px solid ${(props) => props.theme.white};
   padding: 10px 0px;
   font-size: 20px;
   text-shadow:
@@ -235,6 +235,7 @@ const BtnWrapper = styled.div`
     cursor: pointer;
     color: ${(props) => props.theme.black};
     text-shadow: none;
+    transition: background-color 0.25s;
   }
 
   &:active {
