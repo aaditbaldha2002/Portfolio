@@ -110,7 +110,7 @@ const GateWrapper = styled.div`
   left: 0px;
   width: 100%;
   overflow-x: hidden;
-  height: 383px;
+  height: 326px;
 `;
 
 const goLeft = keyframes`
