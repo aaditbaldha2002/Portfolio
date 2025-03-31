@@ -32,7 +32,6 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
         <DpWrapper data-testid="Dp-wrapper-test-id">
           <DpImage data-testid="Dp-img-test-id" />
         </DpWrapper>
-        <ParallexImg src={MonarchPNG} alt="Sung Jin woo" bottom="0px" />
         <InfoWrapper data-testid="Info-wrapper-test-id">
           <NameWrapper
             data-testid="Name-wrapper-test-id"
@@ -75,6 +74,7 @@ const changeBg = keyframes`
 
 const Wrapper = styled.div`
   width: 100%;
+  height: 100vh;
   background: ${(props) =>
     `linear-gradient(135deg,${props.theme.black} 50%,transparent 50.1%)`};
   background-size: 250%;
@@ -102,6 +102,9 @@ const fadeIn = keyframes`
 const ContentWrapper = styled.div<{ gateOpened: boolean }>`
   width: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
   padding: 2em;
   opacity: 0;
@@ -154,13 +157,15 @@ const DpImage = styled.div`
 const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 75%;
+  align-items: center;
+  width: 100%;
   padding: 0em 2em;
 `;
 
 const NameWrapper = styled.div<{ gateOpened: boolean }>`
   position: relative;
   margin: 1em 0em 2em;
+  text-align: center;
   color: ${(props) => props.theme.white};
   @media (max-width: 640px) {
     text-align: center;
@@ -200,7 +205,8 @@ const Role = styled.div`
 `;
 
 const SummaryWrapper = styled.div<{ gateOpened: boolean }>`
-  font-size: 25px;
+  text-align: center;
+  font-size: 1.25em;
   color: ${(props) => props.theme.white_75_translucent};
   margin-bottom: 0.75em;
   position: relative;
