@@ -15,11 +15,11 @@ interface SkillCardProps {
 
 export const SkillCard: React.FC<SkillCardProps> = (props) => {
   const frontend: string[] = React.useMemo(
-    () => ['JavaScript', 'Typescript', 'React', 'SASS'],
+    () => ['JavaScript', 'TypeScript', 'React', 'SASS'],
     [],
   );
   const codeManagement: string[] = React.useMemo(
-    () => ['Git', 'Github', 'ESLint', 'Prettier'],
+    () => ['Git', 'GitHub', 'ESLint', 'Prettier'],
     [],
   );
   const devTools: string[] = React.useMemo(
@@ -103,6 +103,7 @@ export const popUp = keyframes`
 
 const SkillCardWrapper = styled.div<{ cardIndex: number; showCard: number }>`
   display: flex;
+  width: 30%;
   flex-direction: column;
   position: relative;
   ${(props) =>
@@ -213,23 +214,25 @@ const TitleWrapper = styled.div`
 
 const BtnGridWrapper = styled.div`
   display: grid;
-  grid-template-columns: 50% 50%;
-  gap: 10px;
+  width: 100%;
+  grid-template-columns: 40% 40%;
   justify-content: center;
   align-items: center;
-  column-gap: 5px;
+  box-sizing: border-box;
+  gap: 2em;
 `;
 
 const BtnWrapper = styled.div`
   border: 2px solid ${(props) => props.theme.white_50_translucent};
-  padding: 10px 0px;
-  font-size: 20px;
+  font-size: 1.5em;
+  padding: 1em;
   text-shadow:
     0px 0px 20px ${(props) => props.theme.blue},
     0px 0px 20px ${(props) => props.theme.light_blue};
   text-align: center;
   user-select: none;
   transition: text-shadow 0.3s ease-out;
+  box-sizing: border-box;
   &:hover {
     background-color: ${(props) => props.theme.white};
     cursor: pointer;

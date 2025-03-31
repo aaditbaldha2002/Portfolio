@@ -57,7 +57,7 @@ export const SkillSection: React.FC = (props) => {
       JavaScript: {
         skillName: 'JavaScript',
         proficiency_level: 'High',
-        category: 'programming',
+        category: 'Language',
         attributes: [
           'Enhancing user experiences with DOM manipulation and event handling.',
           'Writing clean and optimized code with arrow functions, destructuring, and modules.',
@@ -65,10 +65,10 @@ export const SkillSection: React.FC = (props) => {
         origins: 'Created by Brendan Eich in 1995',
         iconSVG: <JS height="200px" width="200px" />,
       },
-      Typescript: {
-        skillName: 'Typescript',
+      TypeScript: {
+        skillName: 'TypeScript',
         proficiency_level: 'Medium',
-        category: 'programming',
+        category: 'Language',
         attributes: [
           'Enhancing code reliability with static typing and type inference.',
           'Leveraging interfaces, generics, and decorators for better development',
@@ -79,7 +79,7 @@ export const SkillSection: React.FC = (props) => {
       React: {
         skillName: 'React',
         proficiency_level: 'High',
-        category: 'front-end framework',
+        category: 'Framework',
         attributes: [
           ' Building scalable and reusable UIs with functional components and hooks.',
           'Improving performance with React.memo, lazy loading, and code splitting.',
@@ -102,7 +102,7 @@ export const SkillSection: React.FC = (props) => {
       Git: {
         skillName: 'Git',
         proficiency_level: 'Medium',
-        category: 'version control',
+        category: 'Version Control',
         attributes: [
           'Efficiently managing project versions and tracking changes with commit history.',
           'Collaborating seamlessly through branches and handling merge conflicts effectively.',
@@ -110,10 +110,10 @@ export const SkillSection: React.FC = (props) => {
         origins: 'Created by Linus Torvalds in 2005',
         iconSVG: <Git height="200px" width="200px" />,
       },
-      Github: {
-        skillName: 'Github',
+      GitHub: {
+        skillName: 'GitHub',
         proficiency_level: 'Medium',
-        category: 'web platform',
+        category: 'Web Platform',
         attributes: [
           ' Organizing tasks, bugs, and feature requests with issues and project',
           ' Automating workflows and deployments through GitHub Actions for efficient development pipelines',
@@ -125,7 +125,7 @@ export const SkillSection: React.FC = (props) => {
       ESLint: {
         skillName: 'ESLint',
         proficiency_level: 'High',
-        category: 'code linter',
+        category: 'Linter',
         attributes: [
           'Enforcing consistent code style and best practices across projects.',
           'Catching syntax and logical errors early in the development process.',
@@ -136,7 +136,7 @@ export const SkillSection: React.FC = (props) => {
       Prettier: {
         skillName: 'Prettier',
         proficiency_level: 'Medium',
-        category: 'code formatter',
+        category: 'Formatter',
         attributes: [
           'Automatically formats code to maintain a consistent style across the project',
           'Reduces formatting debates in teams by enforcing a unified code style',
@@ -147,7 +147,7 @@ export const SkillSection: React.FC = (props) => {
       Webpack: {
         skillName: 'Webpack',
         proficiency_level: 'Low',
-        category: 'bundler',
+        category: 'Bundler',
         attributes: [
           'Efficiently combining and optimizing JavaScript, CSS, and assets for faster load times.',
           'Improving performance by breaking large files into smaller, on-demand bundles',
@@ -169,7 +169,7 @@ export const SkillSection: React.FC = (props) => {
       Jest: {
         skillName: 'Jest',
         proficiency_level: 'Low',
-        category: 'testing framework',
+        category: 'Unit Testing',
         attributes: [
           'Automating JavaScript testing with a rich set of assertions, mocks, and spies.',
           'Ensuring code quality and reliability by providing tools for debugging, code coverage, and more.',
@@ -180,7 +180,7 @@ export const SkillSection: React.FC = (props) => {
       Cypress: {
         skillName: 'Cypress',
         proficiency_level: 'Low',
-        category: 'e2e testing',
+        category: 'E2E Testing',
         attributes: [
           'Automating user interactions to validate entire workflows and ensure application reliability.',
           'Running tests directly in the browser for faster feedback and accurate results.',
@@ -292,6 +292,8 @@ const Wrapper = styled.div`
   align-items: center;
   background-repeat: repeat-y;
   color: ${(props) => props.theme.white};
+  box-sizing: border-box;
+  overflow-x: hidden;
 `;
 
 const TitleWrapper = styled.div`
@@ -326,7 +328,7 @@ const Title = styled.div`
 
 const SkillCardsWrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   gap: 2em;
   height: fit-content;

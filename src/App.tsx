@@ -26,7 +26,7 @@ const AppWrapper = styled.div`
   background-repeat: no-repeat;
   position: relative;
   font-family: 'Tektur', sans-serif;
-  overflow-x: hidden;
+  box-sizing: border-box;
 `;
 
 export default App;
