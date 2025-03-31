@@ -79,7 +79,7 @@ const Wrapper = styled.div`
     `linear-gradient(135deg,${props.theme.black} 50%,transparent 50.1%)`};
   background-size: 250%;
   background-position: 100% 0%;
-  animation: ${changeBg} 0.75s linear forwards;
+  animation: ${changeBg} 1s ease-in forwards;
   display: flex;
   flex-direction: row;
   gap: 1em;
@@ -97,62 +97,6 @@ const fadeIn = keyframes`
   }to{
     opacity:1;
   }
-`;
-
-const GateWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: ${fadeIn} 0.25s linear forwards;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  overflow-x: hidden;
-  height: 326px;
-`;
-
-const goLeft = keyframes`
-  from{
-    transform: translateX(0%);
-  }to{
-    transform: translateX(-100%);
-  }
-`;
-
-const LeftGate = styled.div`
-  display: flex;
-  justify-content: left;
-  background: ${(props) => `linear-gradient(
-    -135deg,
-    ${props.theme.gate_blue},
-    ${props.theme.black} 90%
-  )`};
-  width: 50vw;
-  align-self: stretch;
-  animation: ${goLeft} 1s ease-in forwards;
-  box-shadow: -10px 0 30px ${(props) => props.theme.purple};
-`;
-
-const goRight = keyframes`
-  from{
-    transform: translateX(0%);
-  }to{
-    transform: translateX(100%);
-  }
-`;
-
-const RightGate = styled.div`
-  display: flex;
-  background: ${(props) => `linear-gradient(
-    135deg,
-    ${props.theme.gate_blue},
-    ${props.theme.black} 90%
-  )`};
-  width: 50vw;
-  align-self: stretch;
-  animation: 1s ${goRight} ease-in forwards;
-  box-shadow: 10px 0 30px ${(props) => props.theme.purple};
 `;
 
 const ContentWrapper = styled.div<{ gateOpened: boolean }>`
