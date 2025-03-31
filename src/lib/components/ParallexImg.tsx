@@ -5,9 +5,11 @@ import styled from 'styled-components';
 interface ParallexImgProps {
   src: string;
   alt: string;
+  bottom: string;
 }
 
 const ParallexImg: React.FC<ParallexImgProps> = (props) => {
+  const { src, alt, bottom } = props;
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   return (
@@ -15,6 +17,7 @@ const ParallexImg: React.FC<ParallexImgProps> = (props) => {
       style={{
         position: 'absolute',
         right: 0,
+        bottom: bottom,
         x: '50%',
         y: y,
       }}

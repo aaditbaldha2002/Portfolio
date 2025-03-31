@@ -35,7 +35,7 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
         <DpWrapper data-testid="Dp-wrapper-test-id">
           <DpImage data-testid="Dp-img-test-id" />
         </DpWrapper>
-        <ParallexImg src={MonarchPNG} alt="Sung Jin woo" />
+        <ParallexImg src={MonarchPNG} alt="Sung Jin woo" bottom="0px" />
         <InfoWrapper data-testid="Info-wrapper-test-id">
           <NameWrapper
             data-testid="Name-wrapper-test-id"
@@ -43,10 +43,10 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
           >
             <TextTyper
               text={name}
-              size="45px"
+              size="4rem"
               weight="normal"
               color={theme.white}
-              margin="30px"
+              margin="0.5em"
               data-testid="Name-texttyper-test-id"
               letterSpacing="5px"
             />
@@ -56,12 +56,9 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
             gateOpened={gateOpened}
             data-testid="summaryWrapper-test-id"
           >
-            I am a passionate Web Developer and Machine Learning student,
-            constantly exploring the intersection of frontend development and
-            AI-driven solutions. With a strong foundation in React.js,
-            JavaScript, and modern web technologies, I build seamless user
-            experiences while also delving into the world of machine learning to
-            create intelligent and data-driven applications.
+            Frontend Developer. Passionate about creating dynamic web
+            applications using React and TypeScript. Exploring the intersection
+            of technology and design to build user-friendly experiences.
           </SummaryWrapper>
         </InfoWrapper>
       </ContentWrapper>
@@ -80,8 +77,7 @@ const changeBg = keyframes`
 
 const Wrapper = styled.div`
   width: 100%;
-  background: ${(props) =>
-    `linear-gradient(to left,${props.theme.darkest_blue},${props.theme.black})`};
+  background: ${(props) => props.theme.black};
   animation: ${changeBg} 1.25s ease-in forwards;
   background-size: 200%;
   background-position: 0% 0;
@@ -112,9 +108,9 @@ const GateWrapper = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
-  height: 311px;
   width: 100%;
   overflow-x: hidden;
+  height: 383px;
 `;
 
 const goLeft = keyframes`
@@ -176,14 +172,15 @@ const ContentWrapper = styled.div<{ gateOpened: boolean }>`
 const DpWrapper = styled.div`
   display: flex;
   width: fit-content;
+  align-items: center;
   background-size: cover;
   background-position: center;
   justify-content: center;
-  margin-right: 1em;
+  margin: 0em 1em;
 
   @media (max-width: 640px) {
     width: 100%;
-    margin-right: 0em;
+    margin: 0em;
   }
 `;
 
@@ -226,10 +223,9 @@ const NameWrapper = styled.div<{ gateOpened: boolean }>`
   ${(props) =>
     props.gateOpened &&
     css`
-      animation: textGlitch 1.5s linear forwards;
+      animation: textGlitchTitle 1.5s linear forwards;
     `}
-
-  @keyframes textGlitch {
+  @keyframes textGlitchTitle {
     10% {
       text-shadow: -10px -10px 0px ${(props) => props.theme.red};
     }
@@ -244,8 +240,9 @@ const NameWrapper = styled.div<{ gateOpened: boolean }>`
     }
     100% {
       text-shadow:
+        0px 0px 4em ${(props) => props.theme.blue},
         0px 0px 2em ${(props) => props.theme.blue},
-        0px 0px 1em ${(props) => props.theme.light_blue};
+        0px 0px 0.75em ${(props) => props.theme.blue};
     }
   }
 `;
@@ -253,7 +250,7 @@ const NameWrapper = styled.div<{ gateOpened: boolean }>`
 const SummaryWrapper = styled.div<{ gateOpened: boolean }>`
   font-size: 25px;
   color: ${(props) => props.theme.white};
-  margin-bottom: 20px;
+  margin-bottom: 0.75em;
   position: relative;
   ${(props) =>
     props.gateOpened &&
@@ -276,8 +273,8 @@ const SummaryWrapper = styled.div<{ gateOpened: boolean }>`
     }
     100% {
       text-shadow:
-        0px 0px 0.75em ${(props) => props.theme.blue},
-        0px 0px 0.35em ${(props) => props.theme.light_blue};
+        0px 0px 1em ${(props) => props.theme.blue},
+        0px 0px 0.5em ${(props) => props.theme.blue};
     }
   }
 `;

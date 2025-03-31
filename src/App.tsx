@@ -7,7 +7,7 @@ const App: React.FC = (): ReactNode => {
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper>
-        <IntroSection name="AADIT HARSHAL BALDHA" />
+        <IntroSection name="Aadit Harshal Baldha" />
       </AppWrapper>
       <TempSpace />
     </ThemeProvider>
@@ -21,7 +21,7 @@ const AppWrapper = styled.div`
   height: auto;
   align-items: center;
   justify-content: center;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Tektur', sans-serif;
   overflow-x: hidden;
 `;
 

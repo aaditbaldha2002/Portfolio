@@ -40,5 +40,4 @@ const TextWrapper = styled.p<{
   margin-top: ${(props) => props.margin};
   margin-bottom: ${(props) => props.margin};
   letter-spacing: ${(props) => props.letterSpacing};
-  line-height: 1.2;
 `;
