@@ -17,8 +17,6 @@ const ParallexImg: React.FC<ParallexImgProps> = (props) => {
       style={{
         position: 'absolute',
         right: 0,
-        bottom: bottom,
-        x: '50%',
         y: y,
       }}
       transition={{ type: 'spring', stiffness: 100, damping: 10 }}

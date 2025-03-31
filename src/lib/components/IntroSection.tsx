@@ -12,22 +12,19 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
   const name = props.name;
   const theme = useTheme();
 
-  const [gateOpened, setGetOpened] = React.useState(false);
+  const [gateOpened, setGateOpened] = React.useState(false);
 
   React.useEffect(() => {
     setTimeout(() => {
-      setGetOpened(true);
+      setGateOpened(true);
     }, 1500);
     setTimeout(() => {});
   }, [gateOpened]);
   return (
-    <Wrapper data-testid="wrapper-test-id">
-      {!gateOpened && (
-        <GateWrapper data-testid="gatewrapper-test-id" id="gatewrapper-id">
-          <LeftGate data-testid="leftgate-test-id" />
-          <RightGate data-testid="rightgate-test-id" />
-        </GateWrapper>
-      )}
+    <Wrapper
+      data-testid="wrapper-test-id"
+      onAnimationEnd={() => setGateOpened(true)}
+    >
       <ContentWrapper
         gateOpened={gateOpened}
         data-testid="ContentWrapper-test-id"
@@ -50,15 +47,16 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
               data-testid="Name-texttyper-test-id"
               letterSpacing="5px"
             />
+            <Role>Frontend Developer</Role>
           </NameWrapper>
 
           <SummaryWrapper
             gateOpened={gateOpened}
             data-testid="summaryWrapper-test-id"
           >
-            Frontend Developer. Passionate about creating dynamic web
-            applications using React and TypeScript. Exploring the intersection
-            of technology and design to build user-friendly experiences.
+            Creating dynamic web applications with React and TypeScript.
+            Passionate about blending technology and design to craft seamless
+            user experiences
           </SummaryWrapper>
         </InfoWrapper>
       </ContentWrapper>
@@ -68,19 +66,20 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
 
 const changeBg = keyframes`
   from {
-    background-position: 0% 0%;
+    background-position:100% 0%;
   }
   to {
-    background-position: 50% 0%;
+    background-position: 0% 0%;
   }
 `;
 
 const Wrapper = styled.div`
   width: 100%;
-  background: ${(props) => props.theme.black};
-  animation: ${changeBg} 1.25s ease-in forwards;
-  background-size: 200%;
-  background-position: 0% 0;
+  background: ${(props) =>
+    `linear-gradient(135deg,${props.theme.black} 50%,transparent 50.1%)`};
+  background-size: 250%;
+  background-position: 100% 0%;
+  animation: ${changeBg} 0.75s linear forwards;
   display: flex;
   flex-direction: row;
   gap: 1em;
@@ -217,6 +216,8 @@ const InfoWrapper = styled.div`
 
 const NameWrapper = styled.div<{ gateOpened: boolean }>`
   position: relative;
+  margin: 1em 0em 2em;
+  color: ${(props) => props.theme.white};
   @media (max-width: 640px) {
     text-align: center;
   }
@@ -247,11 +248,19 @@ const NameWrapper = styled.div<{ gateOpened: boolean }>`
   }
 `;
 
+const Role = styled.div`
+  color: ${(props) => props.theme.white};
+  font-size: 2rem;
+  word-spacing: 0.25em;
+  line-height: 0.75em;
+`;
+
 const SummaryWrapper = styled.div<{ gateOpened: boolean }>`
   font-size: 25px;
-  color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme.white_75_translucent};
   margin-bottom: 0.75em;
   position: relative;
+  width: 62.5%;
   ${(props) =>
     props.gateOpened &&
     css`

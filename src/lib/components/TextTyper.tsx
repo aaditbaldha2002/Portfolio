@@ -18,7 +18,6 @@ export const TextTyper: React.FC<TextProps> = (props): ReactElement => {
       weight={props.weight}
       color={props.color}
       style={props.style}
-      margin={props.margin}
       letterSpacing={props.letterSpacing}
     >
       {props.text}
@@ -30,14 +29,12 @@ const TextWrapper = styled.p<{
   size: string;
   weight: string;
   color: string;
-  margin: string;
   letterSpacing: string;
 }>`
   font-size: ${(props) => props.size};
   font-weight: ${(props) => props.weight};
   color: ${(props) => props.color};
   z-index: 1;
-  margin-top: ${(props) => props.margin};
-  margin-bottom: ${(props) => props.margin};
+  margin: 0em;
   letter-spacing: ${(props) => props.letterSpacing};
 `;
