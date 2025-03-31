@@ -37,7 +37,7 @@ export const SkillNotification: React.FC<SkillNotificationProps> = (props) => {
         <DescriptionWrapper>
           <IconWrapper>{iconSVG}</IconWrapper>
           <SkillDescriptionWrapper>
-            <TitleWrapper>SKILL: {skillName}</TitleWrapper>
+            <TitleWrapper>{skillName}</TitleWrapper>
             <SkillLevelWrapper>
               <ProficiencyWrapper>
                 <ProficiencyTitleWrapper>
@@ -111,20 +111,21 @@ const ContentWrapper = styled.div`
   box-sizing: border-box;
   color: ${(props) => props.theme.white};
   width: 90%;
+  padding: 3em 0em;
   background: ${(props) =>
     `linear-gradient(to right,transparent 0%,${props.theme.black} 5%,${props.theme.black} 95%,transparent 100%)`};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5em 0em;
+  row-gap: 2em;
 `;
 
 const DescriptionWrapper = styled.div`
   display: flex;
-  width: 80%;
   justify-content: space-evenly;
   gap: 1em;
+  width: 80%;
 `;
 
 const IconWrapper = styled.div`
@@ -141,36 +142,29 @@ const IconWrapper = styled.div`
   }
 `;
 
-const IconImg = styled.svg`
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-`;
-
 const SkillDescriptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 3em;
+  box-sizing: border-box;
 `;
 
 const TitleWrapper = styled.div`
-  width: 100%;
   border: 1px solid ${(props) => props.theme.white_50_translucent};
-  padding: 0.5em 2em;
   text-align: center;
   text-shadow:
     0em 0em 2em ${(props) => props.theme.blue},
     0em 0em 1em ${(props) => props.theme.light_blue};
   font-size: 2em;
   box-sizing: border-box;
+  padding: 1em 1em;
 `;
 
 const SkillLevelWrapper = styled.div`
   display: flex;
   width: 100%;
+  justify-content: space-between;
   column-gap: 2em;
-  justify-content: center;
-  padding: 0em 1em;
 `;
 
 const ProficiencyWrapper = styled.div`
@@ -225,9 +219,8 @@ const CategoryValue = styled.div`
 const AbilitiesWrapper = styled.div`
   display: flex;
   box-sizing: border-box;
-  width: 80%;
   flex-direction: column;
-  padding: 1.25em 2em;
+  width: 80%;
 `;
 
 const AbilityWrapper = styled.div`
@@ -248,7 +241,6 @@ const OriginWrapper = styled.div`
     0em 0em 1em ${(props) => props.theme.light_blue};
   font-size: 1em;
   color: ${(props) => props.theme.light_grey};
-  padding: 1.25em 2em;
   box-sizing: border-box;
 `;
 
