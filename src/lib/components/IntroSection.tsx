@@ -4,6 +4,7 @@ import { TextTyper } from './TextTyper';
 import DpImg from '../../../static/dp.jpeg';
 import MonarchPNG from '../../../static/pictures/Monarch.png';
 import ParallexImg from './ParallexImg';
+import ContactSection from './ContactSection';
 interface IntroSectionProps {
   name: string;
 }
@@ -58,6 +59,7 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
             user experiences
           </SummaryWrapper>
         </InfoWrapper>
+        <ContactSection />
       </ContentWrapper>
     </Wrapper>
   );

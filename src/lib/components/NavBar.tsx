@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const NavBar: React.FC = (props) => {
   const [activeSection, setActiveSection] = React.useState('About Me');
@@ -15,6 +15,16 @@ const NavBar: React.FC = (props) => {
 
 export default NavBar;
 
+const fadeIn = keyframes`
+  0% {
+    opacity:0;
+  }90%{
+    opacity:0;
+  }100%{
+    opacity:1;
+  }
+`;
+
 const Wrapper = styled.div`
   width: 100%;
   padding: 1em 1em;
@@ -27,6 +37,7 @@ const Wrapper = styled.div`
   justify-content: flex-end;
   font-size: 1.75rem;
   z-index: 9999;
+  animation: ${fadeIn} 1.5s ease-out forwards;
 `;
 
 const About = styled.div`
