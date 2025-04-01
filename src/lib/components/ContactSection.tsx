@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Github from '../../../static/icons/Github';
 import Linkedin from '../../../static/icons/Linkedin';
 
-const ContactSection: React.FC = (props) => {
+const ContactSection: React.FC = () => {
   return (
     <Content>
       <IconWrapper>

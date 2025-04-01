@@ -3,7 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 interface NavBarProps {
   activeSection: number;
-  changeActiveSection: (num: number) => void;
+  changeActiveSection: (_num: number) => void;
 }
 
 const NavBar: React.FC<NavBarProps> = (props) => {
@@ -41,7 +41,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
             key={index}
             onClick={() => {
               setActiveSection(index);
-              props.changeActiveSection(index);
+              props.changeActiveSection(index as number);
             }}
             ref={(el) => (tabRefs.current[index] = el)}
             tabActive={index === activeSection}

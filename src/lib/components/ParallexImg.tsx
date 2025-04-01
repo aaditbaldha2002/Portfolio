@@ -9,7 +9,6 @@ interface ParallexImgProps {
 }
 
 const ParallexImg: React.FC<ParallexImgProps> = (props) => {
-  const { src, alt, bottom } = props;
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
   return (
