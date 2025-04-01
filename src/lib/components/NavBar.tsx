@@ -3,7 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 interface NavBarProps {
   activeSection: number;
-  changeActiveSection: (_num: number) => void;
+  changeActiveSection: (num: number) => void;
 }
 
 const NavBar: React.FC<NavBarProps> = (props) => {
