@@ -21,6 +21,7 @@ export default [
       'react-hooks/exhaustive-deps': 'warn',
       'no-unused-vars': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
+      eqeqeq: ['error', 'always', { null: 'ignore' }],
     },
   },
 ];
