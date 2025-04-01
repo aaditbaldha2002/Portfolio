@@ -3,13 +3,13 @@ import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import pluginReact from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import tseslintParser from '@typescript-eslint/parser';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
   {
-    languageOptions: { globals: globals.browser },
-    parser: '@typescript-eslint/parser',
+    languageOptions: { globals: globals.browser, parser: tseslintParser },
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
