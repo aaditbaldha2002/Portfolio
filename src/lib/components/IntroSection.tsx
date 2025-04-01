@@ -2,8 +2,6 @@ import React from 'react';
 import styled, { css, keyframes, useTheme } from 'styled-components';
 import { TextTyper } from './TextTyper';
 import DpImg from '../../../static/dp.jpeg';
-import MonarchPNG from '../../../static/pictures/Monarch.png';
-import ParallexImg from './ParallexImg';
 import ContactSection from './ContactSection';
 interface IntroSectionProps {
   name: string;
@@ -77,15 +75,16 @@ const changeBg = keyframes`
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
+  justify-content: flex-end;
   background: ${(props) =>
     `linear-gradient(135deg,${props.theme.black} 50%,transparent 50.1%)`};
   background-size: 250%;
   background-position: 100% 0%;
   animation: ${changeBg} 1s ease-in forwards;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  box-sizing: border-box;
   gap: 1em;
-  overflow: hidden;
   @media (max-width: 640px) {
     flex-direction: column;
     align-items: center;
@@ -109,6 +108,7 @@ const ContentWrapper = styled.div<{ gateOpened: boolean }>`
   align-items: center;
   position: relative;
   padding: 2em;
+  box-sizing: border-box;
   opacity: 0;
   ${(props) =>
     props.gateOpened &&

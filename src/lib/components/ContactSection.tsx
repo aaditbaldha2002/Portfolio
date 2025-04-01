@@ -21,6 +21,8 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1em 0em;
+  column-gap: 1em;
 `;
 const IconWrapper = styled.div`
   height: 50px;

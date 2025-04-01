@@ -10,7 +10,6 @@ const App: React.FC = (): ReactNode => {
       <AppWrapper>
         <NavBar />
         <IntroSection name="Aadit Harshal Baldha" />
-        <TempSpace />
       </AppWrapper>
     </ThemeProvider>
   );
@@ -25,7 +24,6 @@ const AppWrapper = styled.div`
   align-items: center;
   justify-content: center;
   font-family: 'Tektur', sans-serif;
-  overflow-x: hidden;
 `;
 
 const TempSpace = styled.div`
