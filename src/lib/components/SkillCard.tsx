@@ -7,8 +7,8 @@ import MonitorSettingsIcon from '../../../static/MonitorSettings';
 
 interface SkillCardProps {
   type: 'Languages' | 'Databases' | 'Tech';
-  onHover: (event: React.MouseEvent) => void;
-  onHoverLeave: (event: React.MouseEvent) => void;
+  onHover: () => void;
+  onHoverLeave: () => void;
 }
 
 export const SkillCard: React.FC<SkillCardProps> = (props) => {

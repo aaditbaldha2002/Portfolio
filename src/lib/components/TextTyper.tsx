@@ -7,6 +7,8 @@ interface TextProps {
   weight: 'bold' | 'normal';
   color: string;
   style?: React.CSSProperties;
+  margin: string;
+  letterSpacing: string;
 }
 
 export const TextTyper: React.FC<TextProps> = (props): ReactElement => {
@@ -16,16 +18,23 @@ export const TextTyper: React.FC<TextProps> = (props): ReactElement => {
       weight={props.weight}
       color={props.color}
       style={props.style}
+      letterSpacing={props.letterSpacing}
     >
       {props.text}
     </TextWrapper>
   );
 };
 
-const TextWrapper = styled.p<{ size: string; weight: string; color: string }>`
+const TextWrapper = styled.p<{
+  size: string;
+  weight: string;
+  color: string;
+  letterSpacing: string;
+}>`
   font-size: ${(props) => props.size};
   font-weight: ${(props) => props.weight};
   color: ${(props) => props.color};
-  text-align: center;
   z-index: 1;
+  margin: 0em;
+  letter-spacing: ${(props) => props.letterSpacing};
 `;
