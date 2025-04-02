@@ -1,22 +1,34 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
-interface NavBarProps {
-  activeSection: number;
-  changeActiveSection: (num: number) => void;
-}
-
-const NavBar: React.FC<NavBarProps> = (props) => {
+const NavBar: React.FC = () => {
   const tabs = React.useMemo(
     () => ['About Me', 'Skills', 'Projects', 'Certificates'],
     [],
   );
-  const [activeSection, setActiveSection] = React.useState<number>(
-    props.activeSection,
-  );
+  const [activeSection, setActiveSection] = React.useState<number>(0);
+
   const tabRefs = React.useRef<(HTMLElement | null)[]>([]);
   const [indicatorStyle, setIndicatorStyle] =
     React.useState<React.CSSProperties>({});
+
+  const handleScroll = React.useCallback(() => {
+    const scrollPos = window.scrollY;
+    setActiveSection(Math.floor(scrollPos / window.innerHeight));
+  }, []);
+
+  const handleTabClick = React.useCallback(
+    (index: number) => {
+      window.removeEventListener('scroll', handleScroll);
+      window.scrollTo({
+        top: index * window.innerHeight,
+        behavior: 'smooth',
+      });
+      setActiveSection(index);
+      window.addEventListener('scroll', handleScroll);
+    },
+    [handleScroll],
+  );
 
   React.useEffect(() => {
     const currentTab = tabRefs.current[activeSection];
@@ -30,7 +42,10 @@ const NavBar: React.FC<NavBarProps> = (props) => {
         transform: `translate(${currentTab.offsetLeft - margin / 2}px,-50%)`,
       });
     }
-  }, [activeSection]);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeSection, handleScroll]);
 
   return (
     <Wrapper>
@@ -39,10 +54,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
         return (
           <Tab
             key={index}
-            onClick={() => {
-              setActiveSection(index);
-              props.changeActiveSection(index as number);
-            }}
+            onClick={() => handleTabClick(index)}
             ref={(el) => (tabRefs.current[index] = el)}
             tabActive={index === activeSection}
           >
