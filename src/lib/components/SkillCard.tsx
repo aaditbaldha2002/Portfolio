@@ -8,7 +8,6 @@ interface SkillCardProps {
   type: 'FRONTEND' | 'REPO SYNC' | 'DEV TOOLS';
   cardIndex: number;
   showCard: number;
-  // dispatch: Dispatch<ActionType>;
   currentSkillPopup: string;
   handleBtnClick: () => (props: string) => void;
 }
@@ -48,7 +47,7 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
               <TitleWrapper id="TitleWrapper-id">{props.type}</TitleWrapper>
             </TitleBoxWrapper>
             <BtnGridWrapper id="BtnGridWrapper-id">
-              {props.type == 'FRONTEND' &&
+              {props.type === 'FRONTEND' &&
                 frontend.map((tool, index) => (
                   <BtnWrapper
                     key={index}
@@ -58,7 +57,7 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
                     {tool}
                   </BtnWrapper>
                 ))}
-              {props.type == 'REPO SYNC' &&
+              {props.type === 'REPO SYNC' &&
                 codeManagement.map((cm, index) => (
                   <BtnWrapper
                     key={index}
@@ -68,7 +67,7 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
                     {cm}
                   </BtnWrapper>
                 ))}
-              {props.type == 'DEV TOOLS' &&
+              {props.type === 'DEV TOOLS' &&
                 devTools.map((devTool, index) => (
                   <BtnWrapper
                     key={index}

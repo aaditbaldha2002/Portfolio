@@ -9,17 +9,15 @@ import { SkillSection } from './lib/components/SkillSection';
 const App: React.FC = (): ReactNode => {
   return (
     <ThemeProvider theme={theme}>
-      <AppContext.Provider value={{ welcomeBtnClicked }}>
-        <AppWrapper>
-          <NavBar />
-          <IntroSection name="Aadit Harshal Baldha" />
-          <Cursor />
-          <SkillSection />
-          <TempSpace />
-          <TempSpace />
-          <TempSpace />
-        </AppWrapper>
-      </AppContext.Provider>
+      <AppWrapper>
+        <NavBar />
+        <IntroSection name="Aadit Harshal Baldha" />
+        <Cursor />
+        <SkillSection />
+        <TempSpace />
+        <TempSpace />
+        <TempSpace />
+      </AppWrapper>
     </ThemeProvider>
   );
 };
