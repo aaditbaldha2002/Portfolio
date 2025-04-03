@@ -4,6 +4,7 @@ import { theme } from './lib/theme/theme';
 import { IntroSection } from './lib/components/IntroSection';
 import NavBar from './lib/components/NavBar';
 import Cursor from './lib/components/Cursor';
+import { SkillSection } from './lib/components/SkillSection';
 
 const App: React.FC = (): ReactNode => {
   return (
@@ -12,6 +13,7 @@ const App: React.FC = (): ReactNode => {
         <NavBar />
         <IntroSection name="Aadit Harshal Baldha" />
         <Cursor />
+        <SkillSection />
         <TempSpace />
         <TempSpace />
         <TempSpace />

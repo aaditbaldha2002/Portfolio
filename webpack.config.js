@@ -36,6 +36,10 @@ export default {
           },
         },
       },
+      {
+        test: /\.(mp3|wav|ogg)$/,
+        use: ['file-loader'],
+      },
     ],
   },
   plugins: [
