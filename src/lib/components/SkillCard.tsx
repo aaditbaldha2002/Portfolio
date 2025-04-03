@@ -1,11 +1,10 @@
 import styled, { css, keyframes } from 'styled-components';
-import React, { Dispatch } from 'react';
+import React from 'react';
 import { UpperBorder } from './UpperBorder';
 import { LowerBorder } from './LowerBorder';
-import { ActionType } from '../reducer/reducer';
 
 interface SkillCardProps {
-  type: 'FRONTEND' | 'REPO SYNC' | 'DEV TOOLS';
+  type: string;
   cardIndex: number;
   showCard: number;
   currentSkillPopup: string;
@@ -13,18 +12,11 @@ interface SkillCardProps {
 }
 
 export const SkillCard: React.FC<SkillCardProps> = (props) => {
-  const frontend: string[] = React.useMemo(
-    () => ['JavaScript', 'TypeScript', 'React', 'SASS'],
-    [],
-  );
-  const codeManagement: string[] = React.useMemo(
-    () => ['Git', 'GitHub', 'ESLint', 'Prettier'],
-    [],
-  );
-  const devTools: string[] = React.useMemo(
-    () => ['Webpack', 'Babel', 'Jest', 'Cypress'],
-    [],
-  );
+  const techMap: Record<string, string[]> = {
+    'FRONT END': ['JavaScript', 'TypeScript', 'React', 'SASS'],
+    'REPO SYNC': ['Git', 'GitHub', 'ESLint', 'Prettier'],
+    'DEV TOOLS': ['Webpack', 'Babel', 'Jest', 'Cypress'],
+  };
 
   const [showContent, setShowContent] = React.useState(false);
 
@@ -33,56 +25,35 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
   }, []);
 
   return (
-    <>
-      <SkillCardWrapper
-        id="SkillCardWrapper-id"
-        cardIndex={props.cardIndex}
-        showCard={props.showCard}
-        onAnimationEnd={handleShowContent}
-      >
-        <UpperBorder />
-        <ContentWrapper id="Conent-Wrapperid">
-          <ContentGridWrapper showContent={showContent}>
-            <TitleBoxWrapper>
-              <TitleWrapper id="TitleWrapper-id">{props.type}</TitleWrapper>
-            </TitleBoxWrapper>
-            <BtnGridWrapper id="BtnGridWrapper-id">
-              {props.type === 'FRONTEND' &&
-                frontend.map((tool, index) => (
-                  <BtnWrapper
-                    key={index}
-                    className="BtnWrapper-class"
-                    onClick={() => props.handleBtnClick()(tool)}
-                  >
-                    {tool}
-                  </BtnWrapper>
-                ))}
-              {props.type === 'REPO SYNC' &&
-                codeManagement.map((cm, index) => (
-                  <BtnWrapper
-                    key={index}
-                    className="BtnWrapper-class"
-                    onClick={() => props.handleBtnClick()(cm)}
-                  >
-                    {cm}
-                  </BtnWrapper>
-                ))}
-              {props.type === 'DEV TOOLS' &&
-                devTools.map((devTool, index) => (
-                  <BtnWrapper
-                    key={index}
-                    className="BtnWrapper-class"
-                    onClick={() => props.handleBtnClick()(devTool)}
-                  >
-                    {devTool}
-                  </BtnWrapper>
-                ))}
-            </BtnGridWrapper>
-          </ContentGridWrapper>
-        </ContentWrapper>
-        <LowerBorder />
-      </SkillCardWrapper>
-    </>
+    <SkillCardWrapper
+      id="SkillCardWrapper-id"
+      cardIndex={props.cardIndex}
+      showCard={props.showCard}
+      onAnimationEnd={handleShowContent}
+    >
+      <UpperBorder />
+      <ContentWrapper id="Conent-Wrapperid">
+        <ContentGridWrapper showContent={showContent}>
+          <TitleBoxWrapper>
+            <TitleWrapper id="TitleWrapper-id">{props.type}</TitleWrapper>
+          </TitleBoxWrapper>
+          <BtnGridWrapper id="BtnGridWrapper-id">
+            {techMap[props.type].map((value, index) => {
+              return (
+                <BtnWrapper
+                  key={index}
+                  className="BtnWrapper-class"
+                  onClick={() => props.handleBtnClick()(value)}
+                >
+                  {value}
+                </BtnWrapper>
+              );
+            })}
+          </BtnGridWrapper>
+        </ContentGridWrapper>
+      </ContentWrapper>
+      <LowerBorder />
+    </SkillCardWrapper>
   );
 };
 
