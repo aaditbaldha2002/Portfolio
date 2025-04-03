@@ -104,7 +104,6 @@ const Wrapper = styled.div`
   background-repeat: repeat-y;
   color: ${(props) => props.theme.white};
   box-sizing: border-box;
-  overflow-x: hidden;
 `;
 
 const TitleWrapper = styled.div`

@@ -113,12 +113,13 @@ const ContentWrapper = styled.div`
   width: 90%;
   padding: 3em 0em;
   background: ${(props) =>
-    `linear-gradient(to right,transparent 0%,${props.theme.black} 5%,${props.theme.black} 95%,transparent 100%)`};
+    `linear-gradient(to right,transparent 0%,${props.theme.black_75_translucent} 5%,${props.theme.black_75_translucent} 95%,transparent 100%)`};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   row-gap: 2em;
+  backdrop-filter: blur(10px);
 `;
 
 const DescriptionWrapper = styled.div`
@@ -230,7 +231,7 @@ const AbilityWrapper = styled.div`
   text-shadow:
     0em 0em 2em ${(props) => props.theme.blue},
     0em 0em 1em ${(props) => props.theme.light_blue};
-  color: ${(props) => props.theme.light_grey};
+  color: ${(props) => props.theme.white};
 `;
 
 const OriginWrapper = styled.div`
@@ -240,7 +241,7 @@ const OriginWrapper = styled.div`
     0em 0em 2em ${(props) => props.theme.blue},
     0em 0em 1em ${(props) => props.theme.light_blue};
   font-size: 1em;
-  color: ${(props) => props.theme.light_grey};
+  color: ${(props) => props.theme.white};
   box-sizing: border-box;
 `;
 

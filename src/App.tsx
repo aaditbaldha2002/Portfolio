@@ -10,13 +10,13 @@ const App: React.FC = (): ReactNode => {
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper>
-        <NavBar />
         <IntroSection name="Aadit Harshal Baldha" />
-        <Cursor />
         <SkillSection />
         <TempSpace />
         <TempSpace />
         <TempSpace />
+        <NavBar />
+        <Cursor />
       </AppWrapper>
     </ThemeProvider>
   );

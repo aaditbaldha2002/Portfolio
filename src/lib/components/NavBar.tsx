@@ -3,7 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 const NavBar: React.FC = () => {
   const tabs = React.useMemo(
-    () => ['About Me', 'Skills', 'Projects', 'Certificates'],
+    () => ['About Me', 'Skills', 'Experience', 'Certificates'],
     [],
   );
   const [activeSection, setActiveSection] = React.useState<number>(0);

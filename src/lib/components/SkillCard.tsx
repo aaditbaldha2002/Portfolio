@@ -127,12 +127,11 @@ const SkillCardWrapper = styled.div<{ cardIndex: number; showCard: number }>`
 
 const ContentWrapper = styled.div`
   box-sizing: border-box;
-  padding: 0em 2em;
   display: flex;
   justify-content: center;
   width: 100%;
   background: ${(props) =>
-    `linear-gradient(to right, transparent 0%,${props.theme.black_75_translucent} 10%,  ${props.theme.black_75_translucent} 90%, transparent 100%)`};
+    `linear-gradient(to right, transparent 0%,${props.theme.black_50_translucent} 10%,  ${props.theme.black_50_translucent} 90%, transparent 100%)`};
 `;
 
 const fadeIn = keyframes`
@@ -152,7 +151,6 @@ const ContentGridWrapper = styled.div<{ showContent: boolean }>`
   padding: 2em;
   display: grid;
   grid-template-rows: 1fr 3fr;
-  width: 90%;
   ${(props) =>
     props.showContent &&
     css`
@@ -176,7 +174,7 @@ const TitleWrapper = styled.div`
   padding: 1em 2em;
   font-size: 1.75em;
   letter-spacing: 1px;
-  width: 100%;
+  width: fit-content;
   text-align: center;
   user-select: none;
   transition: text-shadow 0.3s ease-out;
@@ -185,11 +183,11 @@ const TitleWrapper = styled.div`
 const BtnGridWrapper = styled.div`
   display: grid;
   width: 100%;
-  grid-template-columns: 40% 40%;
+  grid-template-columns: 50% 50%;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  gap: 2em;
+  gap: 1em;
 `;
 
 const BtnWrapper = styled.div`
