@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
     if (scrollingDisabled.current) return;
     requestAnimationFrame(() => {
       const scrollPos = window.scrollY;
-      const newSection = Math.floor(scrollPos / window.innerHeight);
+      const newSection = Math.round(scrollPos / window.innerHeight);
 
       if (newSection !== activeSection) {
         setActiveSection(newSection);
