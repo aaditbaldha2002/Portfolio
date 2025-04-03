@@ -1,22 +1,47 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
-interface NavBarProps {
-  activeSection: number;
-  changeActiveSection: (num: number) => void;
-}
-
-const NavBar: React.FC<NavBarProps> = (props) => {
+const NavBar: React.FC = () => {
   const tabs = React.useMemo(
     () => ['About Me', 'Skills', 'Projects', 'Certificates'],
     [],
   );
-  const [activeSection, setActiveSection] = React.useState<number>(
-    props.activeSection,
-  );
+  const [activeSection, setActiveSection] = React.useState<number>(0);
+  const scrollingDisabled = React.useRef<boolean>(false);
   const tabRefs = React.useRef<(HTMLElement | null)[]>([]);
   const [indicatorStyle, setIndicatorStyle] =
     React.useState<React.CSSProperties>({});
+
+  const handleScroll = React.useCallback(() => {
+    if (scrollingDisabled.current) return;
+    requestAnimationFrame(() => {
+      const scrollPos = window.scrollY;
+      const newSection = Math.floor(scrollPos / window.innerHeight);
+
+      if (newSection !== activeSection) {
+        setActiveSection(newSection);
+      }
+    });
+  }, [activeSection]);
+
+  const handleTabClick = React.useCallback(
+    (index: number) => {
+      if (activeSection === index) return;
+      scrollingDisabled.current = true;
+      window.scrollTo({
+        top: index * window.innerHeight,
+        behavior: 'smooth',
+      });
+      setActiveSection(index);
+      const onScrollEnd = () => {
+        scrollingDisabled.current = false;
+        window.removeEventListener('scrollend', onScrollEnd);
+      };
+
+      window.addEventListener('scrollend', onScrollEnd);
+    },
+    [activeSection],
+  );
 
   React.useEffect(() => {
     const currentTab = tabRefs.current[activeSection];
@@ -25,12 +50,19 @@ const NavBar: React.FC<NavBarProps> = (props) => {
       const ml = style.getPropertyValue('margin-left');
       const margin = Number.parseInt(ml.replace('px', ''));
       setIndicatorStyle({
-        height: currentTab.clientHeight + 2 * 16,
+        height: currentTab.clientHeight + 2 * 8,
         width: currentTab.clientWidth + 2 * 16,
         transform: `translate(${currentTab.offsetLeft - margin / 2}px,-50%)`,
       });
     }
   }, [activeSection]);
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
 
   return (
     <Wrapper>
@@ -39,10 +71,7 @@ const NavBar: React.FC<NavBarProps> = (props) => {
         return (
           <Tab
             key={index}
-            onClick={() => {
-              setActiveSection(index);
-              props.changeActiveSection(index as number);
-            }}
+            onClick={() => handleTabClick(index)}
             ref={(el) => (tabRefs.current[index] = el)}
             tabActive={index === activeSection}
           >

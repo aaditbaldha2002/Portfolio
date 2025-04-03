@@ -12,6 +12,8 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
   const theme = useTheme();
 
   const [gateOpened, setGateOpened] = React.useState(false);
+  const [animateDpClick, setAnimateDpClick] = React.useState(false);
+  const dpRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -19,6 +21,26 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
     }, 1500);
     setTimeout(() => {});
   }, [gateOpened]);
+
+  React.useEffect(() => {
+    if (!dpRef.current) return;
+    else {
+      const element = dpRef.current;
+      const handleDpClick = () => {
+        if (dpRef.current) {
+          const computedStyle = window.getComputedStyle(element);
+          const boxShadow = computedStyle.getPropertyValue('box-shadow');
+          element.style.setProperty('--box-shadow-value', boxShadow);
+          setAnimateDpClick(true);
+          setTimeout(() => setAnimateDpClick(false), 250);
+        } else {
+          return;
+        }
+      };
+      element.addEventListener('click', handleDpClick);
+    }
+  }, []);
+
   return (
     <Wrapper
       data-testid="wrapper-test-id"
@@ -29,7 +51,11 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
         data-testid="ContentWrapper-test-id"
       >
         <DpWrapper data-testid="Dp-wrapper-test-id">
-          <DpImage data-testid="Dp-img-test-id" />
+          <DpImage
+            data-testid="Dp-img-test-id"
+            animateDpClick={animateDpClick}
+            ref={dpRef}
+          />
         </DpWrapper>
         <InfoWrapper data-testid="Info-wrapper-test-id">
           <NameWrapper
@@ -132,7 +158,7 @@ const DpWrapper = styled.div`
   }
 `;
 
-const DpImage = styled.div`
+const DpImage = styled.div<{ animateDpClick: boolean }>`
   width: 228px;
   height: 228px;
   background-image: url(${DpImg});
@@ -140,18 +166,52 @@ const DpImage = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 50%;
-  border: ${(props) => `5px solid ${props.theme.purple}`};
+  border: ${(props) => `5px solid ${props.theme.blue}`};
+  transform: scale(1);
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease,
+    border 0.5s ease;
+
   animation: auraPulse 2s infinite alternate;
+  animation-play-state: paused;
+
+  &:hover {
+    animation-play-state: running;
+    cursor: pointer;
+    ${(props) =>
+      props.animateDpClick &&
+      css`
+        animation: auraPulseDischarge 0.25s linear forwards;
+      `}
+  }
+
   @keyframes auraPulse {
     from {
       transform: scale(1);
       box-shadow: 0 0 40px 5px ${(props) => props.theme.darker_blue};
-      border: ${(props) => `5px solid ${props.theme.darker_blue}`};
+      border: ${(props) => `5px solid ${props.theme.blue}`};
     }
     to {
       transform: scale(1.05);
       box-shadow: 0 0 60px 10px ${(props) => props.theme.blue};
       border: ${(props) => `5px solid ${props.theme.blue}`};
+    }
+  }
+
+  @keyframes auraPulseDischarge {
+    0% {
+      transform: scale(0.95);
+      box-shadow: var(--box-shadow-value);
+      text-shadow: initial;
+    }
+    50% {
+      transform: scale(1.05);
+      text-shadow: initial;
+    }
+    100% {
+      transform: scale(1);
+      text-shadow: initial;
     }
   }
 `;
@@ -200,10 +260,11 @@ const NameWrapper = styled.div<{ gateOpened: boolean }>`
 `;
 
 const Role = styled.div`
-  color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme.blue};
   font-size: 2rem;
   word-spacing: 0.25em;
   line-height: 0.75em;
+  text-shadow: none;
 `;
 
 const SummaryWrapper = styled.div<{ gateOpened: boolean }>`
