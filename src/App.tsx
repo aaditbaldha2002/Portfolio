@@ -3,6 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { theme } from './lib/theme/theme';
 import { IntroSection } from './lib/components/IntroSection';
 import NavBar from './lib/components/NavBar';
+import Cursor from './lib/components/Cursor';
 
 const App: React.FC = (): ReactNode => {
   return (
@@ -10,6 +11,7 @@ const App: React.FC = (): ReactNode => {
       <AppWrapper>
         <NavBar />
         <IntroSection name="Aadit Harshal Baldha" />
+        <Cursor />
         <TempSpace />
         <TempSpace />
         <TempSpace />

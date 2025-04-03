@@ -7,27 +7,40 @@ const NavBar: React.FC = () => {
     [],
   );
   const [activeSection, setActiveSection] = React.useState<number>(0);
-
+  const scrollingDisabled = React.useRef<boolean>(false);
   const tabRefs = React.useRef<(HTMLElement | null)[]>([]);
   const [indicatorStyle, setIndicatorStyle] =
     React.useState<React.CSSProperties>({});
 
   const handleScroll = React.useCallback(() => {
-    const scrollPos = window.scrollY;
-    setActiveSection(Math.floor(scrollPos / window.innerHeight));
-  }, []);
+    if (scrollingDisabled.current) return;
+    requestAnimationFrame(() => {
+      const scrollPos = window.scrollY;
+      const newSection = Math.floor(scrollPos / window.innerHeight);
+
+      if (newSection !== activeSection) {
+        setActiveSection(newSection);
+      }
+    });
+  }, [activeSection]);
 
   const handleTabClick = React.useCallback(
     (index: number) => {
-      window.removeEventListener('scroll', handleScroll);
+      if (activeSection === index) return;
+      scrollingDisabled.current = true;
       window.scrollTo({
         top: index * window.innerHeight,
         behavior: 'smooth',
       });
       setActiveSection(index);
-      window.addEventListener('scroll', handleScroll);
+      const onScrollEnd = () => {
+        scrollingDisabled.current = false;
+        window.removeEventListener('scrollend', onScrollEnd);
+      };
+
+      window.addEventListener('scrollend', onScrollEnd);
     },
-    [handleScroll],
+    [activeSection],
   );
 
   React.useEffect(() => {
@@ -37,15 +50,19 @@ const NavBar: React.FC = () => {
       const ml = style.getPropertyValue('margin-left');
       const margin = Number.parseInt(ml.replace('px', ''));
       setIndicatorStyle({
-        height: currentTab.clientHeight + 2 * 16,
+        height: currentTab.clientHeight + 2 * 8,
         width: currentTab.clientWidth + 2 * 16,
         transform: `translate(${currentTab.offsetLeft - margin / 2}px,-50%)`,
       });
     }
-    window.addEventListener('scroll', handleScroll);
+  }, [activeSection]);
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeSection, handleScroll]);
+  React.useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
 
   return (
     <Wrapper>
