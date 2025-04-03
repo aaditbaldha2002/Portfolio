@@ -9,7 +9,7 @@ const Github: React.FC<SvgProps> = (props) => {
     <svg
       width={props.width}
       height={props.height}
-      viewBox="0 0 20 20"
+      viewBox="0 0 24 24"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
       filter={`drop-shadow(0 0 1em ${colorTheme.blue}) drop-shadow(0 0 0.5em ${colorTheme.light_blue})`}

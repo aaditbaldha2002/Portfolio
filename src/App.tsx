@@ -1,19 +1,25 @@
 import React, { ReactNode } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { theme } from './lib/theme/theme';
+import { IntroSection } from './lib/components/IntroSection';
+import NavBar from './lib/components/NavBar';
+import Cursor from './lib/components/Cursor';
 import { SkillSection } from './lib/components/SkillSection';
-export const AppContext = React.createContext<{ welcomeBtnClicked: boolean }>({
-  welcomeBtnClicked: false,
-});
 
 const App: React.FC = (): ReactNode => {
-  // const [state, dispatch] = React.useReducer(reducer, initState);
-
   return (
     <ThemeProvider theme={theme}>
-      <AppWrapper>
-        <SkillSection />
-      </AppWrapper>
+      <AppContext.Provider value={{ welcomeBtnClicked }}>
+        <AppWrapper>
+          <NavBar />
+          <IntroSection name="Aadit Harshal Baldha" />
+          <Cursor />
+          <SkillSection />
+          <TempSpace />
+          <TempSpace />
+          <TempSpace />
+        </AppWrapper>
+      </AppContext.Provider>
     </ThemeProvider>
   );
 };
@@ -21,12 +27,17 @@ const App: React.FC = (): ReactNode => {
 const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  background-repeat: no-repeat;
   position: relative;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
   font-family: 'Tektur', sans-serif;
-  box-sizing: border-box;
+`;
+
+const TempSpace = styled.div`
+  height: 100vh;
+  width: 100%;
 `;
 
 export default App;

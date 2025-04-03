@@ -7,7 +7,9 @@ import reactHooks from 'eslint-plugin-react-hooks';
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
-  { languageOptions: { globals: globals.browser } },
+  {
+    languageOptions: { globals: globals.browser },
+  },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
@@ -21,6 +23,7 @@ export default [
       'react-hooks/exhaustive-deps': 'warn',
       'no-unused-vars': 'warn',
       '@typescript-eslint/no-unused-vars': 'warn',
+      eqeqeq: ['error', 'always', { null: 'ignore' }],
     },
   },
 ];

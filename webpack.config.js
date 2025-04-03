@@ -52,4 +52,7 @@ export default {
     hot: true,
     open: true,
   },
+  optimization: {
+    minimize: true,
+  },
 };
