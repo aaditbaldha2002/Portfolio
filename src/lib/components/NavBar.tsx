@@ -67,6 +67,7 @@ const NavBar: React.FC = () => {
   return (
     <Wrapper>
       <SelectedBox style={indicatorStyle} />
+      <Portfolio>Portfolio</Portfolio>
       {tabs.map((value, index) => {
         return (
           <Tab
@@ -112,6 +113,12 @@ const SelectedBox = styled.div`
     0px calc(100% - 10px),
     0px 10px
   );
+`;
+
+const Portfolio = styled.div`
+  display: flex;
+  color: ${(props) => props.theme.white};
+  margin-right: auto;
 `;
 
 const Wrapper = styled.div`

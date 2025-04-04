@@ -31,6 +31,7 @@ const AppWrapper = styled.div`
   align-items: center;
   justify-content: center;
   font-family: 'Tektur', sans-serif;
+  cursor: none;
 `;
 
 const TempSpace = styled.div`
