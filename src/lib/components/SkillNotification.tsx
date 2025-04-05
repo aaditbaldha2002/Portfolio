@@ -21,14 +21,8 @@ interface SkillNotificationProps {
 }
 
 export const SkillNotification: React.FC<SkillNotificationProps> = (props) => {
-  const {
-    skillName,
-    proficiency_level,
-    category,
-    attributes,
-    origins,
-    iconSVG,
-  } = props.notificationData;
+  const { skillName, proficiency_level, category, iconSVG } =
+    props.notificationData;
 
   return (
     <Wrapper showPopup={props.showPopup}>
@@ -54,12 +48,6 @@ export const SkillNotification: React.FC<SkillNotificationProps> = (props) => {
             </SkillLevelWrapper>
           </SkillDescriptionWrapper>
         </DescriptionWrapper>
-        <AbilitiesWrapper>
-          {attributes.map((value, index) => {
-            return <AbilityWrapper key={index}>- {value}</AbilityWrapper>;
-          })}
-        </AbilitiesWrapper>
-        <OriginWrapper>{origins}</OriginWrapper>
         <CloseBtn onClick={() => props.handlePopupClose()} type="button">
           Close
         </CloseBtn>
@@ -91,7 +79,7 @@ const Wrapper = styled.div<{ showPopup: boolean }>`
   flex-direction: column;
   align-items: center;
   font-family: 'Tektur', sans-serif;
-  top: 10vh;
+  top: 25vh;
   left: 25vw;
   transform: translate(-50%, -50%);
   z-index: 9999;
@@ -111,14 +99,15 @@ const ContentWrapper = styled.div`
   box-sizing: border-box;
   color: ${(props) => props.theme.white};
   width: 90%;
-  padding: 3em 0em;
+  padding: 5em 0em;
   background: ${(props) =>
-    `linear-gradient(to right,transparent 0%,${props.theme.black} 5%,${props.theme.black} 95%,transparent 100%)`};
+    `linear-gradient(to right,transparent 0%,${props.theme.black_75_translucent} 5%,${props.theme.black_75_translucent} 95%,transparent 100%)`};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   row-gap: 2em;
+  backdrop-filter: blur(10px);
 `;
 
 const DescriptionWrapper = styled.div`
@@ -214,34 +203,6 @@ const CategoryValue = styled.div`
     0em 0em 2em ${(props) => props.theme.blue},
     0em 0em 1em ${(props) => props.theme.light_blue};
   font-size: 1.5em;
-`;
-
-const AbilitiesWrapper = styled.div`
-  display: flex;
-  box-sizing: border-box;
-  flex-direction: column;
-  width: 80%;
-`;
-
-const AbilityWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  font-size: 1.25em;
-  text-shadow:
-    0em 0em 2em ${(props) => props.theme.blue},
-    0em 0em 1em ${(props) => props.theme.light_blue};
-  color: ${(props) => props.theme.light_grey};
-`;
-
-const OriginWrapper = styled.div`
-  display: flex;
-  width: 80%;
-  text-shadow:
-    0em 0em 2em ${(props) => props.theme.blue},
-    0em 0em 1em ${(props) => props.theme.light_blue};
-  font-size: 1em;
-  color: ${(props) => props.theme.light_grey};
-  box-sizing: border-box;
 `;
 
 const CloseBtn = styled.button`

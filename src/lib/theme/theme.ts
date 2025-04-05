@@ -19,9 +19,9 @@ export const theme = {
   white_50_translucent: 'rgba(255,255,255,0.50)',
   white_75_translucent: 'rgba(255,255,255,0.75)',
 
-  black_25_translucent: 'rgba(24,24,23,0.25)',
-  black_50_translucent: 'rgba(24,24,23,0.5)',
-  black_75_translucent: 'rgba(24,24,23,0.75)',
+  black_25_translucent: 'rgba(0,0,0,0.25)',
+  black_50_translucent: 'rgba(0,0,0,0.5)',
+  black_75_translucent: 'rgba(0,0,0,0.75)',
 
   darkest_blue_25_translucent: 'rgba(10, 21, 67, 0.25)',
   darkest_blue_50_translucent: 'rgba(10, 21, 67, 0.50)',

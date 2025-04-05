@@ -10,13 +10,13 @@ const App: React.FC = (): ReactNode => {
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper>
-        <NavBar />
         <IntroSection name="Aadit Harshal Baldha" />
-        <Cursor />
         <SkillSection />
         <TempSpace />
         <TempSpace />
         <TempSpace />
+        <NavBar />
+        <Cursor />
       </AppWrapper>
     </ThemeProvider>
   );
@@ -31,6 +31,7 @@ const AppWrapper = styled.div`
   align-items: center;
   justify-content: center;
   font-family: 'Tektur', sans-serif;
+  cursor: none;
 `;
 
 const TempSpace = styled.div`

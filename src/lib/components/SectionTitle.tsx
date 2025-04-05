@@ -1,14 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import LowerBorderSVG from '../../../static/LowerBorder.svg';
+import SectionTitleSVG from '../../../static/SectionTitle.svg';
 
-export const LowerBorder: React.FC = () => {
+interface SectionTitleProps {
+  text: string;
+}
+
+const SectionTitle: React.FC<SectionTitleProps> = (props) => {
   return (
     <Wrapper>
-      <BorderImg src={LowerBorderSVG} />
+      <TitleImg src={SectionTitleSVG} />
     </Wrapper>
   );
 };
+
+export default SectionTitle;
 
 const Wrapper = styled.div`
   width: 100%;
@@ -16,11 +22,10 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: -1em;
   height: 2em;
   z-index: 1;
 `;
 
-const BorderImg = styled.img`
+const TitleImg = styled.svg`
   width: 100%;
 `;

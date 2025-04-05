@@ -3,7 +3,7 @@ import styled, { css, keyframes } from 'styled-components';
 
 const NavBar: React.FC = () => {
   const tabs = React.useMemo(
-    () => ['About Me', 'Skills', 'Projects', 'Certificates'],
+    () => ['About Me', 'Skills', 'Experience', 'Certificates'],
     [],
   );
   const [activeSection, setActiveSection] = React.useState<number>(0);
@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
     if (scrollingDisabled.current) return;
     requestAnimationFrame(() => {
       const scrollPos = window.scrollY;
-      const newSection = Math.floor(scrollPos / window.innerHeight);
+      const newSection = Math.round(scrollPos / window.innerHeight);
 
       if (newSection !== activeSection) {
         setActiveSection(newSection);
@@ -67,6 +67,7 @@ const NavBar: React.FC = () => {
   return (
     <Wrapper>
       <SelectedBox style={indicatorStyle} />
+      <Portfolio>Portfolio</Portfolio>
       {tabs.map((value, index) => {
         return (
           <Tab
@@ -112,6 +113,12 @@ const SelectedBox = styled.div`
     0px calc(100% - 10px),
     0px 10px
   );
+`;
+
+const Portfolio = styled.div`
+  display: flex;
+  color: ${(props) => props.theme.white};
+  margin-right: auto;
 `;
 
 const Wrapper = styled.div`

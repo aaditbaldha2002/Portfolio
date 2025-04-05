@@ -4,6 +4,7 @@ import { SkillCard } from './SkillCard';
 import { SkillNotification } from './SkillNotification';
 import PopupMP3 from '../../../static/sounds/popup_sound.mp3';
 import { notificationData, NotifyData } from '../data/notificationData';
+import SectionTitle from './SectionTitle';
 
 export const SkillSection: React.FC = () => {
   const notificationDataMap: Record<string, NotifyData> = React.useMemo(
@@ -62,7 +63,7 @@ export const SkillSection: React.FC = () => {
   return (
     <Wrapper>
       <TitleWrapper>
-        <Title>SKILLS</Title>
+        <SectionTitle text="SKILLS" />
       </TitleWrapper>
       <SkillCardsWrapper>
         {typeArr.map((value, index) => {
@@ -104,14 +105,14 @@ const Wrapper = styled.div`
   background-repeat: repeat-y;
   color: ${(props) => props.theme.white};
   box-sizing: border-box;
-  overflow-x: hidden;
 `;
 
 const TitleWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 250px;
+  height: fit-content;
   gap: 2em;
 `;
 
