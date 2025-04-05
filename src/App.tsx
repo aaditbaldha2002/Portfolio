@@ -7,14 +7,18 @@ import Cursor from './lib/components/Cursor';
 import { SkillSection } from './lib/components/SkillSection';
 
 const App: React.FC = (): ReactNode => {
+  // const NavBarRef = React.useRef<React.FC>(null);
   return (
     <ThemeProvider theme={theme}>
       <AppWrapper>
-        <IntroSection name="Aadit Harshal Baldha" />
-        <SkillSection />
-        <TempSpace />
-        <TempSpace />
-        <TempSpace />
+        <SnapSection>
+          <IntroSection name="Aadit Harshal Baldha" />
+        </SnapSection>
+        <SnapSection>
+          <SkillSection />
+        </SnapSection>
+        <SnapSection />
+        <SnapSection />
         <NavBar />
         <Cursor />
       </AppWrapper>
@@ -27,16 +31,21 @@ const AppWrapper = styled.div`
   flex-direction: column;
   position: relative;
   width: 100%;
-  height: auto;
   align-items: center;
   justify-content: center;
   font-family: 'Tektur', sans-serif;
   cursor: none;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
 `;
 
-const TempSpace = styled.div`
+const SnapSection = styled.div`
   height: 100vh;
   width: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export default App;

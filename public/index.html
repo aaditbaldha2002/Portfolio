@@ -1,14 +1,27 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="overflow: hidden; height: 100%">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio Website</title>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap');
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Prevent global scroll */
+        height: 100%;
+        width: 100%;
+      }
+      #root {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
     </style>
   </head>
-  <body style="width: 100%; min-height: 100vh; margin: 0">
+  <body>
     <div id="root"></div>
   </body>
 </html>
