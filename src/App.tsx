@@ -10,16 +10,10 @@ const App: React.FC = (): ReactNode => {
   // const NavBarRef = React.useRef<React.FC>(null);
   return (
     <ThemeProvider theme={theme}>
+      <NavBar />
       <AppWrapper>
-        <SnapSection>
-          <IntroSection name="Aadit Harshal Baldha" />
-        </SnapSection>
-        <SnapSection>
-          <SkillSection />
-        </SnapSection>
-        <SnapSection />
-        <SnapSection />
-        <NavBar />
+        <IntroSection name="Aadit Harshal Baldha" />
+        <SkillSection />
         <Cursor />
       </AppWrapper>
     </ThemeProvider>
@@ -35,8 +29,6 @@ const AppWrapper = styled.div`
   justify-content: center;
   font-family: 'Tektur', sans-serif;
   cursor: none;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
 `;
 
 const SnapSection = styled.div`

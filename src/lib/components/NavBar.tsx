@@ -121,18 +121,19 @@ const Portfolio = styled.div`
   margin-right: auto;
 `;
 
-const Wrapper = styled.div`
-  width: 100%;
+const Wrapper = styled.nav`
   padding: 1em 1em;
   color: ${(props) => props.theme.white};
   position: fixed;
   top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 9999;
   background: ${(props) => props.theme.black_75_translucent};
   backdrop-filter: blur(0.25em);
   display: flex;
   justify-content: flex-end;
   font-size: 1.75rem;
-  z-index: 9999;
   animation: ${fadeIn} 1.5s ease-out forwards;
   box-sizing: border-box;
 `;
