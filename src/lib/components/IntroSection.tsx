@@ -104,6 +104,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  scroll-snap-align: start;
   gap: 1em;
   @media (max-width: 640px) {
     flex-direction: column;

@@ -104,6 +104,7 @@ const Wrapper = styled.div`
   align-items: center;
   background-repeat: repeat-y;
   color: ${(props) => props.theme.white};
+  scroll-snap-align: start;
   box-sizing: border-box;
 `;
 
