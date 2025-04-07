@@ -14,6 +14,8 @@ const App: React.FC = (): ReactNode => {
       <AppWrapper>
         <IntroSection name="Aadit Harshal Baldha" />
         <SkillSection />
+        <SnapSection />
+        <SnapSection />
         <Cursor />
       </AppWrapper>
     </ThemeProvider>
