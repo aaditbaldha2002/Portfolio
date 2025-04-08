@@ -36,6 +36,10 @@ export default {
           },
         },
       },
+      {
+        test: /\.(mp3|wav|ogg)$/,
+        use: ['file-loader'],
+      },
     ],
   },
   plugins: [
@@ -47,5 +51,8 @@ export default {
     static: path.resolve(__dirname, 'dist'),
     hot: true,
     open: true,
+  },
+  optimization: {
+    minimize: true,
   },
 };
