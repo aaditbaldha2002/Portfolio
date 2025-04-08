@@ -8,7 +8,7 @@ interface SkillCardProps {
   cardIndex: number;
   showCard: number;
   currentSkillPopup: string;
-  handleBtnClick: () => (_props: string) => void;
+  handleBtnClick: () => (props: string) => void;
 }
 
 export const SkillCard: React.FC<SkillCardProps> = (props) => {
