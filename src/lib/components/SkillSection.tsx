@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { SkillCard } from './SkillCard';
 import { SkillNotification } from './SkillNotification';
 import PopupMP3 from '../../../static/sounds/popup_sound.mp3';
@@ -115,28 +115,6 @@ const TitleWrapper = styled.div`
   width: 250px;
   height: fit-content;
   gap: 2em;
-`;
-
-const fadeIn = keyframes`
-  from{
-    opacity: 0;
-    transform: translateY(10px);
-  }to{
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const Title = styled.div`
-  display: flex;
-  padding: 1em 2em;
-  border: 2px solid ${(props) => props.theme.white_50_translucent};
-  text-shadow:
-    0em 0em 2em ${(props) => props.theme.blue},
-    0em 0em 1em ${(props) => props.theme.light_blue};
-  font-size: 2em;
-
-  animation: ${fadeIn} 1s ease-out;
 `;
 
 const SkillCardsWrapper = styled.div`

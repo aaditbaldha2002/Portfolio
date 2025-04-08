@@ -43,7 +43,7 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
                 <BtnWrapper
                   key={index}
                   className="BtnWrapper-class"
-                  onClick={() => props.handleBtnClick()(value)}
+                  onClick={() => props.handleBtnClick()(value as string)}
                 >
                   {value}
                 </BtnWrapper>

@@ -21,8 +21,16 @@ export default [
       'no-console': 'warn',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      'no-unused-vars': 'warn',
-      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          vars: 'all',
+          args: 'after-used',
+          ignoreRestSiblings: true,
+          varsIgnorePattern: '^_', // ignore variables starting with _
+          argsIgnorePattern: '^_', // ignore args starting with _
+        },
+      ],
       eqeqeq: ['error', 'always', { null: 'ignore' }],
     },
   },
