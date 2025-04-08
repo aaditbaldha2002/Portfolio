@@ -8,7 +8,7 @@ interface SkillCardProps {
   cardIndex: number;
   showCard: number;
   currentSkillPopup: string;
-  handleBtnClick: () => (props: string) => void;
+  handleBtnClick: () => (_props: string) => void;
 }
 
 export const SkillCard: React.FC<SkillCardProps> = (props) => {
@@ -43,7 +43,7 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
                 <BtnWrapper
                   key={index}
                   className="BtnWrapper-class"
-                  onClick={() => props.handleBtnClick()(value)}
+                  onClick={() => props.handleBtnClick()(value as string)}
                 >
                   {value}
                 </BtnWrapper>
