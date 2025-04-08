@@ -6,7 +6,7 @@ interface SectionTitleProps {
   text: string;
 }
 
-const SectionTitle: React.FC<SectionTitleProps> = (props) => {
+const SectionTitle: React.FC<SectionTitleProps> = () => {
   return (
     <Wrapper>
       <TitleImg src={SectionTitleSVG} />

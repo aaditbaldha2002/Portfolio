@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import styled, { css, keyframes, ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { theme } from './lib/theme/theme';
 import { IntroSection } from './lib/components/IntroSection';
 import NavBar from './lib/components/NavBar';
@@ -20,18 +20,5 @@ const App: React.FC = (): ReactNode => {
     </ThemeProvider>
   );
 };
-
-const AppWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  background: ${(props) =>
-    `linear-gradient(to bottom, ${props.theme.black}, ${props.theme.darkest_blue})`};
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Tektur', sans-serif;
-  cursor: none;
-`;
 
 export default App;

@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { CertCard } from './CertCard';
 import AIPractitionerImg from '../../../static/aws-certified-ai-practitioner.png';
 import CCPractitionerImg from '../../../static/aws-certified-cloud-practitioner.png';
