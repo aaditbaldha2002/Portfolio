@@ -13,6 +13,7 @@ const NavBar: React.FC = () => {
     React.useState<React.CSSProperties>({});
 
   const handleScroll = React.useCallback(() => {
+    console.log('handleScroll called');
     if (scrollingDisabled.current) return;
     requestAnimationFrame(() => {
       const scrollPos = window.scrollY;
@@ -100,8 +101,8 @@ const SelectedBox = styled.div`
   background: ${(props) => props.theme.white};
   position: absolute;
   top: 50%;
-  left: 0;
-  transform: translate(-50%, -50%);
+  left: 0%;
+  /* transform: translate(-50%, -50%); */
   transition: all 0.3s ease;
   clip-path: polygon(
     10px 0px,
@@ -124,10 +125,9 @@ const Portfolio = styled.div`
 const Wrapper = styled.nav`
   padding: 1em 1em;
   color: ${(props) => props.theme.white};
-  position: fixed;
+  position: sticky;
   top: 0px;
-  left: 0px;
-  right: 0px;
+  width: 100%;
   z-index: 9999;
   background: ${(props) => props.theme.black_75_translucent};
   backdrop-filter: blur(0.25em);

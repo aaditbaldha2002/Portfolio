@@ -11,32 +11,18 @@ const App: React.FC = (): ReactNode => {
   return (
     <ThemeProvider theme={theme}>
       <NavBar />
-      <AppWrapper>
-        <IntroSection name="Aadit Harshal Baldha" />
-        <SkillSection />
-        <SnapSection />
-        <SnapSection />
-        <Cursor />
-      </AppWrapper>
+      <IntroSection name="Aadit Harshal Baldha" />
+      <SkillSection />
+      <TempSpace />
+      <TempSpace />
+      <Cursor />
     </ThemeProvider>
   );
 };
 
-const AppWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Tektur', sans-serif;
-  cursor: none;
-`;
-
-const SnapSection = styled.div`
+const TempSpace = styled.div`
   height: 100vh;
   width: 100%;
-  scroll-snap-align: start;
   display: flex;
   align-items: center;
   justify-content: center;

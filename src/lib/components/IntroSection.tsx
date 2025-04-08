@@ -123,12 +123,13 @@ const fadeIn = keyframes`
 
 const ContentWrapper = styled.div<{ gateOpened: boolean }>`
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 2em;
+  padding: 0em 2em;
   box-sizing: border-box;
   opacity: 0;
   ${(props) =>

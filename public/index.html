@@ -6,21 +6,19 @@
     <title>Portfolio Website</title>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap');
-      html,
-      body,
-      #root {
-        height: 100%;
+      body {
         margin: 0;
         padding: 0;
+        cursor: none;
+        font-family: 'Tektur', sans-serif;
       }
+
       #root {
         height: 100vh;
-        overflow-y: scroll;
-        scroll-snap-type: y mandatory;
-        scroll-behavior: smooth;
-        scrollbar-gutter: stable;
-        font-family: 'Tektur', sans-serif;
-        scrollbar-width: none;
+        overflow-y: auto;
+        overflow-x: clip;
+        display: flex;
+        flex-direction: column;
       }
     </style>
   </head>

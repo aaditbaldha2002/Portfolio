@@ -62,49 +62,57 @@ export const SkillSection: React.FC = () => {
 
   return (
     <Wrapper>
-      <TitleWrapper>
-        <SectionTitle text="SKILLS" />
-      </TitleWrapper>
-      <SkillCardsWrapper>
-        {typeArr.map((value, index) => {
-          return (
-            <SkillCard
-              key={index}
-              type={value}
-              cardIndex={index}
-              showCard={cardIndexShowed}
-              currentSkillPopup={skillPopupName}
-              handleBtnClick={handleBtnClick}
+      <Content>
+        <TitleWrapper>
+          <SectionTitle text="SKILLS" />
+        </TitleWrapper>
+        <SkillCardsWrapper>
+          {typeArr.map((value, index) => {
+            return (
+              <SkillCard
+                key={index}
+                type={value}
+                cardIndex={index}
+                showCard={cardIndexShowed}
+                currentSkillPopup={skillPopupName}
+                handleBtnClick={handleBtnClick}
+              />
+            );
+          })}
+          {skillPopupName !== '' && (
+            <SkillNotification
+              notificationData={notificationDataMap[skillPopupName]}
+              handlePopupClose={handleCloseNotification}
+              skillPopupName={skillPopupName}
+              showPopup={showNotification}
             />
-          );
-        })}
-        {skillPopupName !== '' && (
-          <SkillNotification
-            notificationData={notificationDataMap[skillPopupName]}
-            handlePopupClose={handleCloseNotification}
-            skillPopupName={skillPopupName}
-            showPopup={showNotification}
-          />
-        )}
-      </SkillCardsWrapper>
+          )}
+        </SkillCardsWrapper>
+      </Content>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   height: 100vh;
-  padding: 3em 1em;
   background: ${(props) =>
     `radial-gradient(${props.theme.darkest_blue},${props.theme.black})`};
   display: flex;
   width: 100%;
-  flex-direction: column;
-  row-gap: 5em;
-  justify-content: space-around;
-  align-items: center;
   background-repeat: repeat-y;
   color: ${(props) => props.theme.white};
-  scroll-snap-align: start;
+  box-sizing: border-box;
+`;
+
+const Content = styled.div`
+  height: 100vh;
+  width: 100%;
+  padding: 3em 1em;
+  row-gap: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   box-sizing: border-box;
 `;
 
