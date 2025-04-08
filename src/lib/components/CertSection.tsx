@@ -100,13 +100,12 @@ export const CertSection: React.FC = () => {
 const Wrapper = styled.div`
   background: ${(props) =>
     `linear-gradient(to bottom, ${props.theme.black},${props.theme.darkest_blue})`};
-  padding: 2em;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1em;
-
+  height: 100vh;
+  scroll-snap-align: start;
   @media (max-width: 775px) {
     padding: 0em;
   }
@@ -143,8 +142,8 @@ const TitleWrapper = styled.div`
     0em 0em 1em ${(props) => props.theme.blue},
     0em 0em 0.5em ${(props) => props.theme.light_blue};
   font-size: 2em;
-  font-weight: bold;
   border: 1px solid ${(props) => props.theme.white_50_translucent};
+  letter-spacing: 2px;
 `;
 
 const OptionContentWrapper = styled.div`
@@ -172,7 +171,8 @@ const OptionGridWrapper = styled.div`
   background-color: transparent;
   justify-content: space-evenly;
   border: 1px solid ${(props) => props.theme.white_50_translucent};
-  padding: 0em 1em;
+  padding: 1em;
+  row-gap: 1em;
   align-self: stretch;
 `;
 
@@ -182,20 +182,21 @@ const CertOptionWrapper = styled.div<{ isActive: number; optionKey: number }>`
   background-color: transparent;
   border: 1px solid ${(props) => props.theme.white_50_translucent};
   text-align: center;
-  font-size: 1.5em;
   color: ${(props) => props.theme.white};
+  transition: text-shadow 0.3s ease-out;
   text-shadow:
     0rem 0rem 2rem ${(props) => props.theme.blue},
     0rem 0rem 1rem ${(props) => props.theme.light_blue};
   &:hover {
     background-color: ${(props) => props.theme.white};
+    transition: background-color 0.25s;
     color: ${(props) => props.theme.black};
     cursor: pointer;
     text-shadow: none;
   }
 
   ${(props) =>
-    props.isActive == props.optionKey &&
+    props.isActive === props.optionKey &&
     css`
       background-color: ${(props) => props.theme.white};
       color: ${(props) => props.theme.black};
@@ -206,20 +207,18 @@ const CertOptionWrapper = styled.div<{ isActive: number; optionKey: number }>`
 
 const CertOption = styled.div`
   display: flex;
-  margin: 0.2em 0.5em;
-  font-weight: bold;
+  font-size: 1.5em;
 `;
 
 const CertCardAreaWrapper = styled.div`
   display: flex;
   position: relative;
-  overflow-y: hidden;
   width: 100%;
+  align-self: stretch;
 `;
 
 const CertCardWrapper = styled.div`
   position: relative;
   width: 100%;
-  height: 448px;
-  padding: 2em 0em;
+  overflow-y: hidden;
 `;
