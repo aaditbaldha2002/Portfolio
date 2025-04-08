@@ -15,8 +15,6 @@ declare module '*.jpeg' {
   const value: string;
   export default value;
 }
-<<<<<<< HEAD
-=======
 
 declare module '*.jpg' {
   const value: string;
@@ -27,4 +25,3 @@ declare module '*.mp3' {
   const src: string;
   export default src;
 }
->>>>>>> master
