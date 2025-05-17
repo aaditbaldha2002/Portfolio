@@ -72,7 +72,9 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
             gateOpened={gateOpened}
             data-testid="summaryWrapper-test-id"
           >
-            Frontend developer crafting performant, accessible, and responsive interfaces using React and TypeScript. Focused on clean architecture, reusable components, and user-centered design
+            Frontend developer crafting performant, accessible, and responsive
+            interfaces using React and TypeScript. Focused on clean
+            architecture, reusable components, and user-centered design
           </SummaryWrapper>
         </InfoWrapper>
         <ContactSection />
