@@ -92,6 +92,7 @@ export const SkillSection: React.FC = () => {
 };
 
 const Wrapper = styled.div`
+  padding-top: 93px;
   height: 100vh;
   padding: 3em 1em;
   background: ${(props) =>

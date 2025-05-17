@@ -72,9 +72,9 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
             gateOpened={gateOpened}
             data-testid="summaryWrapper-test-id"
           >
-            Creating dynamic web applications with React and TypeScript.
-            Passionate about blending technology and design to craft seamless
-            user experiences
+            Frontend developer crafting performant, accessible, and responsive
+            interfaces using React and TypeScript. Focused on clean
+            architecture, reusable components, and user-centered design
           </SummaryWrapper>
         </InfoWrapper>
         <ContactSection />
@@ -93,6 +93,7 @@ const changeBg = keyframes`
 `;
 
 const Wrapper = styled.div`
+  padding-top: 93px;
   width: 100%;
   height: 100vh;
   justify-content: flex-end;
