@@ -98,6 +98,7 @@ export const CertSection: React.FC = () => {
 };
 
 const Wrapper = styled.div`
+  padding-top: 93px;
   background: ${(props) =>
     `linear-gradient(to bottom, ${props.theme.black},${props.theme.darkest_blue})`};
   width: 100%;
