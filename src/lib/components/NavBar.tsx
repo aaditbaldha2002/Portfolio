@@ -1,7 +1,25 @@
 import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
+import Hamburger from '../../../static/icons/Hamburger';
 
 const NavBar: React.FC = () => {
+  const [isMobile, setIsMobile] = React.useState(
+    () => window.innerWidth <= 768,
+  );
+
+  // Update on window resize
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+
+    // Initial check in case component mounts after resize
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const tabs = React.useMemo(
     () => ['About Me', 'Skills', 'Experience', 'Certificates'],
     [],
@@ -68,18 +86,24 @@ const NavBar: React.FC = () => {
     <Wrapper>
       <SelectedBox style={indicatorStyle} />
       <Portfolio>Portfolio</Portfolio>
-      {tabs.map((value, index) => {
-        return (
-          <Tab
-            key={index}
-            onClick={() => handleTabClick(index)}
-            ref={(el) => (tabRefs.current[index] = el)}
-            tabActive={index === activeSection}
-          >
-            {value}
-          </Tab>
-        );
-      })}
+      {isMobile ? (
+        <Hamburger width="28px" height="28px" />
+      ) : (
+        <>
+          {tabs.map((value, index) => {
+            return (
+              <Tab
+                key={index}
+                onClick={() => handleTabClick(index)}
+                ref={(el) => (tabRefs.current[index] = el)}
+                tabActive={index === activeSection}
+              >
+                {value}
+              </Tab>
+            );
+          })}
+        </>
+      )}{' '}
     </Wrapper>
   );
 };
@@ -136,6 +160,14 @@ const Wrapper = styled.nav`
   font-size: 1.75rem;
   animation: ${fadeIn} 1.5s ease-out forwards;
   box-sizing: border-box;
+`;
+
+const TabsContainer = styled.div`
+  display: none;
+
+  @media (min-width: 786px) {
+    display: flex;
+  }
 `;
 
 const Tab = styled.div<{ tabActive: boolean }>`
