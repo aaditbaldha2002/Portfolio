@@ -3,6 +3,7 @@ import styled, { css, keyframes, useTheme } from 'styled-components';
 import { TextTyper } from './TextTyper';
 import ContactSection from './ContactSection';
 import Dp from './Dp';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 interface IntroSectionProps {
   name: string;
 }
@@ -10,6 +11,8 @@ interface IntroSectionProps {
 export const IntroSection: React.FC<IntroSectionProps> = (props) => {
   const name = props.name;
   const theme = useTheme();
+  const width = useWindowWidth();
+  const isMobile = width < 768;
 
   const [gateOpened, setGateOpened] = React.useState(false);
   const [animateDpClick, setAnimateDpClick] = React.useState(false);
@@ -58,7 +61,7 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
           >
             <TextTyper
               text={name}
-              size="4rem"
+              size={isMobile ? '2rem' : '4rem'}
               weight="normal"
               color={theme.white}
               margin="0.5em"
@@ -68,14 +71,16 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
             <Role>Frontend Developer</Role>
           </NameWrapper>
 
-          <SummaryWrapper
-            gateOpened={gateOpened}
-            data-testid="summaryWrapper-test-id"
-          >
-            Frontend developer crafting performant, accessible, and responsive
-            interfaces using React and TypeScript. Focused on clean
-            architecture, reusable components, and user-centered design
-          </SummaryWrapper>
+          {!isMobile && (
+            <SummaryWrapper
+              gateOpened={gateOpened}
+              data-testid="summaryWrapper-test-id"
+            >
+              Frontend developer crafting performant, accessible, and responsive
+              interfaces using React and TypeScript. Focused on clean
+              architecture, reusable components, and user-centered design
+            </SummaryWrapper>
+          )}
         </InfoWrapper>
         <ContactSection />
       </ContentWrapper>
@@ -83,34 +88,37 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
   );
 };
 
-const changeBg = keyframes`
-  from {
-    background-position:100% 0%;
+const slideBg = keyframes`
+  0% {
+    background-position: 100% 100%;
   }
-  to {
-    background-position: 0% 0%;
+  100% {
+    background-position: 0% 100%;
   }
 `;
 
 const Wrapper = styled.div`
-  padding-top: 93px;
   width: 100%;
   height: 100vh;
-  justify-content: flex-end;
+  justify-content: center;
+
   background: ${(props) =>
-    `linear-gradient(135deg,${props.theme.black} 50%,transparent 50.1%)`};
-  background-size: 250%;
-  background-position: 100% 0%;
-  animation: ${changeBg} 1s ease-in forwards;
+    `linear-gradient(135deg,${props.theme.black} 49%,transparent 50%)`};
+  background-size: 400% 100%;
+  background-position: 100% 100%;
+  animation: ${slideBg} 1s ease-in forwards;
+  will-change: background-position;
+
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   scroll-snap-align: start;
   gap: 1em;
+  padding: 1em;
   @media (max-width: 640px) {
     flex-direction: column;
     align-items: center;
-    padding: 1em;
+    padding: 93px 1em 1em;
   }
 `;
 
@@ -180,6 +188,9 @@ const NameWrapper = styled.div<{ gateOpened: boolean }>`
         0px 0px 0.75em ${(props) => props.theme.blue};
     }
   }
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const Role = styled.div`
@@ -188,6 +199,9 @@ const Role = styled.div`
   word-spacing: 0.25em;
   line-height: 0.75em;
   text-shadow: none;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const SummaryWrapper = styled.div<{ gateOpened: boolean }>`

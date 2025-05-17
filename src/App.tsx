@@ -10,13 +10,19 @@ import { CertSection } from './lib/components/CertSection';
 const App: React.FC = (): ReactNode => {
   return (
     <ThemeProvider theme={theme}>
-      <NavBar />
-      <IntroSection name="Aadit Harshal Baldha" />
-      <SkillSection />
-      <CertSection />
-      <Cursor />
+      <AppWrapper>
+        <NavBar />
+        <IntroSection name="Aadit Harshal Baldha" />
+        <SkillSection />
+        <CertSection />
+        <Cursor />
+      </AppWrapper>
     </ThemeProvider>
   );
 };
 
 export default App;
+
+const AppWrapper = styled.div`
+  padding-top: 93px;
+`;

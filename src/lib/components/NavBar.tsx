@@ -4,19 +4,15 @@ import Hamburger from '../../../static/icons/Hamburger';
 
 const NavBar: React.FC = () => {
   const [isMobile, setIsMobile] = React.useState(
-    () => window.innerWidth <= 768,
+    () => window.innerWidth <= 865,
   );
 
-  // Update on window resize
   React.useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 865);
     };
     window.addEventListener('resize', handleResize);
-
-    // Initial check in case component mounts after resize
     handleResize();
-
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -61,6 +57,8 @@ const NavBar: React.FC = () => {
     [activeSection],
   );
 
+  const handleTabsPopup = React.useCallback(() => {}, []);
+
   React.useEffect(() => {
     const currentTab = tabRefs.current[activeSection];
     if (currentTab) {
@@ -84,12 +82,14 @@ const NavBar: React.FC = () => {
 
   return (
     <Wrapper>
-      <SelectedBox style={indicatorStyle} />
       <Portfolio>Portfolio</Portfolio>
       {isMobile ? (
-        <Hamburger width="28px" height="28px" />
+        <IconWrapper onClick={handleTabsPopup}>
+          <Hamburger width="28px" height="28px" />
+        </IconWrapper>
       ) : (
         <>
+          <SelectedBox style={indicatorStyle} />
           {tabs.map((value, index) => {
             return (
               <Tab
@@ -162,13 +162,7 @@ const Wrapper = styled.nav`
   box-sizing: border-box;
 `;
 
-const TabsContainer = styled.div`
-  display: none;
-
-  @media (min-width: 786px) {
-    display: flex;
-  }
-`;
+const IconWrapper = styled.div``;
 
 const Tab = styled.div<{ tabActive: boolean }>`
   margin-left: 1em;
