@@ -5,6 +5,7 @@ import ContactSection from './ContactSection';
 import Dp from './Dp';
 import { useWindowWidth } from '../hooks/useWindowWidth';
 import { useWindowHeight } from '../hooks/useWindowHeight';
+import Pin from '../../../static/icons/Pin';
 interface IntroSectionProps {
   name: string;
 }
@@ -79,12 +80,16 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
               gateOpened={gateOpened}
               data-testid="summaryWrapper-test-id"
             >
-              Frontend developer crafting performant, accessible, and responsive
-              interfaces using React and TypeScript. Focused on clean
-              architecture, reusable components, and user-centered design
+              Building scalable, responsive interfaces with React, TypeScript,
+              and modern UI libraries. Currently focusing on
+              performance-optimized, accessible web experiences.
             </SummaryWrapper>
           )}
         </InfoWrapper>
+        <LocationContent>
+          <Pin height="2em" width="2em" />
+          <Site>Jersey City, NJ</Site>
+        </LocationContent>
         <ContactSection />
       </ContentWrapper>
     </Wrapper>
@@ -119,6 +124,19 @@ const Wrapper = styled.div`
   scroll-snap-align: start;
   gap: 1em;
   padding: 93px 1em 1em;
+`;
+
+const LocationContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+`;
+
+const Site = styled.div`
+  color: white;
+  font-size: 1.5rem;
 `;
 
 const fadeIn = keyframes`

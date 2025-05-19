@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Github from '../../../static/icons/Github';
 import Linkedin from '../../../static/icons/Linkedin';
 import Email from '../../../static/icons/Email';
+import ResumeBtn from './ResumeBtn';
 
 interface SocialLink {
   name: string;
@@ -43,6 +44,7 @@ const ContactSection: React.FC = () => {
           </IconWrapper>
         );
       })}
+      <ResumeBtn />
     </Content>
   );
 };
@@ -50,10 +52,12 @@ export default ContactSection;
 const Content = styled.div`
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding: 1em 0em;
   column-gap: 1em;
+  row-gap: 1em;
 `;
 const IconWrapper = styled.div`
   height: 50px;
