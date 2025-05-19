@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 import Github from '../../../static/icons/Github';
 import Linkedin from '../../../static/icons/Linkedin';
+import Email from '../../../static/icons/Email';
 
 interface SocialLink {
   name: string;
@@ -20,6 +21,11 @@ const ContactSection: React.FC = () => {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/in/aaditharshalbaldha/',
       Icon: <Linkedin height="50px" width="50px" />,
+    },
+    {
+      name: 'Email',
+      url: 'mailto:aaditbaldha2002@gmail.com?subject=Portfolio Inquiry&body=Hi Aadit,',
+      Icon: <Email height="50px" width="50px" />,
     },
   ];
 
@@ -52,4 +58,19 @@ const Content = styled.div`
 const IconWrapper = styled.div`
   height: 50px;
   width: 50px;
+  &:hover {
+    cursor: pointer;
+    svg {
+      filter: ${({ theme }) =>
+        `drop-shadow(0 0 1em ${theme.blue}) drop-shadow(0 0 0.5em ${theme.blue})`};
+      transition: all 0.3s ease-in-out;
+      scale: 1.05 1.05;
+    }
+  }
+  &:not(hover) {
+    svg {
+      transition: all 0.3s ease-in-out;
+      scale: 0.95 0.95;
+    }
+  }
 `;

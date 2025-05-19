@@ -144,6 +144,7 @@ const ContentWrapper = styled.div<{ gateOpened: boolean }>`
     css`
       animation: 0.15s ${fadeIn} linear forwards;
     `};
+  user-select: none;
 `;
 
 const InfoWrapper = styled.div`

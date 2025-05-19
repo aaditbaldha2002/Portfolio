@@ -11,7 +11,6 @@ const LinkedIn: React.FC<SvgProps> = (props) => {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      filter={`drop-shadow(0 0 1em ${colorTheme.blue}) drop-shadow(0 0 0.5em ${colorTheme.light_blue})`}
     >
       <title>To my Linkedin</title>
       <path
