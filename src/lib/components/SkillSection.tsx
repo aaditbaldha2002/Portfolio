@@ -62,9 +62,9 @@ export const SkillSection: React.FC = () => {
 
   return (
     <Wrapper>
-      <TitleWrapper>
+      {/* <TitleWrapper>
         <SectionTitle text="SKILLS" />
-      </TitleWrapper>
+      </TitleWrapper> */}
       <SkillCardsWrapper>
         {typeArr.map((value, index) => {
           return (
@@ -93,7 +93,7 @@ export const SkillSection: React.FC = () => {
 
 const Wrapper = styled.div`
   height: 100vh;
-  padding: 3em 1em;
+  padding: 93px 1em 1em;
   background: ${(props) =>
     `radial-gradient(${props.theme.darkest_blue},${props.theme.black})`};
   display: flex;

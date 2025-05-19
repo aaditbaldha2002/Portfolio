@@ -4,6 +4,7 @@ import { TextTyper } from './TextTyper';
 import ContactSection from './ContactSection';
 import Dp from './Dp';
 import { useWindowWidth } from '../hooks/useWindowWidth';
+import { useWindowHeight } from '../hooks/useWindowHeight';
 interface IntroSectionProps {
   name: string;
 }
@@ -12,7 +13,9 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
   const name = props.name;
   const theme = useTheme();
   const width = useWindowWidth();
+  const height = useWindowHeight();
   const isMobile = width < 768;
+  const heightOk = height > 600;
 
   const [gateOpened, setGateOpened] = React.useState(false);
   const [animateDpClick, setAnimateDpClick] = React.useState(false);
@@ -68,10 +71,10 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
               data-testid="Name-texttyper-test-id"
               letterSpacing="5px"
             />
-            <Role>Frontend Developer</Role>
           </NameWrapper>
+          <Role>Frontend Developer</Role>
 
-          {!isMobile && (
+          {!isMobile && heightOk && (
             <SummaryWrapper
               gateOpened={gateOpened}
               data-testid="summaryWrapper-test-id"
@@ -100,26 +103,22 @@ const slideBg = keyframes`
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
+  display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   background: ${(props) =>
     `linear-gradient(135deg,${props.theme.black} 49%,transparent 50%)`};
-  background-size: 400% 100%;
+  background-size: 500% 100%;
   background-position: 100% 100%;
   animation: ${slideBg} 1s ease-in forwards;
   will-change: background-position;
 
-  display: flex;
-  flex-direction: column;
   box-sizing: border-box;
   scroll-snap-align: start;
   gap: 1em;
-  padding: 1em;
-  @media (max-width: 640px) {
-    flex-direction: column;
-    align-items: center;
-    padding: 93px 1em 1em;
-  }
+  padding: 93px 1em 1em;
 `;
 
 const fadeIn = keyframes`
@@ -152,12 +151,12 @@ const InfoWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding: 0em 2em;
+  padding: 1em 2em;
+  gap: 1em;
 `;
 
 const NameWrapper = styled.div<{ gateOpened: boolean }>`
   position: relative;
-  margin: 1em 0em 2em;
   text-align: center;
   color: ${(props) => props.theme.white};
   @media (max-width: 640px) {

@@ -160,6 +160,10 @@ const Wrapper = styled.nav`
   font-size: 1.75rem;
   animation: ${fadeIn} 1.5s ease-out forwards;
   box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 0.5em 1em;
+  }
 `;
 
 const IconWrapper = styled.div``;

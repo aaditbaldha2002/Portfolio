@@ -14,7 +14,7 @@ const Github: React.FC<SvgProps> = (props) => {
       xmlns="http://www.w3.org/2000/svg"
       filter={`drop-shadow(0 0 1em ${colorTheme.blue}) drop-shadow(0 0 0.5em ${colorTheme.light_blue})`}
     >
-      <title>github [#142]</title>
+      <title>To my github page</title>
       <desc>Created with Sketch.</desc>
       <defs></defs>
       <g

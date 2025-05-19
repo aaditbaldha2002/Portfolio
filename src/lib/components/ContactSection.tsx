@@ -26,7 +26,16 @@ const ContactSection: React.FC = () => {
   return (
     <Content>
       {socialLinks.map((value, index) => {
-        return <IconWrapper key={index}>{value.Icon}</IconWrapper>;
+        return (
+          <IconWrapper
+            key={index}
+            onClick={() => {
+              window.open(value.url);
+            }}
+          >
+            {value.Icon}
+          </IconWrapper>
+        );
       })}
     </Content>
   );
