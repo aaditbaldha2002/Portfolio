@@ -53,11 +53,11 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
       data-testid="wrapper-test-id"
       onAnimationEnd={() => setGateOpened(true)}
     >
+      <Dp ref={dpRef} animateDpClick={animateDpClick} />
       <ContentWrapper
         gateOpened={gateOpened}
         data-testid="ContentWrapper-test-id"
       >
-        <Dp ref={dpRef} animateDpClick={animateDpClick} />
         <InfoWrapper data-testid="Info-wrapper-test-id">
           <NameWrapper
             data-testid="Name-wrapper-test-id"
@@ -85,12 +85,12 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
               performance-optimized, accessible web experiences.
             </SummaryWrapper>
           )}
+          <LocationContent>
+            <Pin height="2em" width="2em" />
+            <Site>Jersey City, NJ</Site>
+          </LocationContent>
+          <ContactSection />
         </InfoWrapper>
-        <LocationContent>
-          <Pin height="2em" width="2em" />
-          <Site>Jersey City, NJ</Site>
-        </LocationContent>
-        <ContactSection />
       </ContentWrapper>
     </Wrapper>
   );
@@ -111,7 +111,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 
   background: ${(props) =>
     `linear-gradient(135deg,${props.theme.black} 49%,transparent 50%)`};
@@ -128,7 +127,6 @@ const Wrapper = styled.div`
 
 const LocationContent = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 0.75rem;
   font-size: 1rem;
@@ -151,8 +149,6 @@ const ContentWrapper = styled.div<{ gateOpened: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   position: relative;
   padding: 2em;
   box-sizing: border-box;
@@ -168,7 +164,6 @@ const ContentWrapper = styled.div<{ gateOpened: boolean }>`
 const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
   padding: 1em 2em;
   gap: 1em;
@@ -176,7 +171,6 @@ const InfoWrapper = styled.div`
 
 const NameWrapper = styled.div<{ gateOpened: boolean }>`
   position: relative;
-  text-align: center;
   color: ${(props) => props.theme.white};
   @media (max-width: 640px) {
     text-align: center;
@@ -223,7 +217,6 @@ const Role = styled.div`
 `;
 
 const SummaryWrapper = styled.div<{ gateOpened: boolean }>`
-  text-align: center;
   font-size: 1.25em;
   color: ${(props) => props.theme.white_75_translucent};
   margin-bottom: 0.75em;

@@ -53,7 +53,6 @@ const Content = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
   padding: 1em 0em;
   column-gap: 1em;

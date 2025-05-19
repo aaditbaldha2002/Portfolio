@@ -25,7 +25,7 @@ const Content = styled.div`
   background-position: center;
   justify-content: center;
   margin: 0em 1em;
-
+  width: 40%;
   @media (max-width: 640px) {
     width: 100%;
     margin: 0em;
@@ -33,8 +33,8 @@ const Content = styled.div`
 `;
 
 const DpImage = styled.div<{ animateDpClick: boolean }>`
-  width: 228px;
-  height: 228px;
+  width: 250px;
+  height: 250px;
   background-image: url(${DpImg});
   background-size: contain;
   background-repeat: no-repeat;
