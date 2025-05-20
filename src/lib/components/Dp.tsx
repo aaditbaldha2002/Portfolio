@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import React from 'react';
 import DpImg from '../../../static/dp.jpeg';
 import { forwardRef } from 'react';
@@ -25,7 +25,7 @@ const Content = styled.div`
   background-position: center;
   justify-content: center;
   margin: 0em 1em;
-  width: 40%;
+  width: 50%;
   @media (max-width: 640px) {
     width: 100%;
     margin: 0em;
@@ -33,8 +33,12 @@ const Content = styled.div`
 `;
 
 const DpImage = styled.div<{ animateDpClick: boolean }>`
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
+  @media (max-width: 800px) {
+    width: 200px;
+    height: 200px;
+  }
   background-image: url(${DpImg});
   background-size: contain;
   background-repeat: no-repeat;
@@ -48,10 +52,8 @@ const DpImage = styled.div<{ animateDpClick: boolean }>`
     border 0.5s ease;
 
   animation: auraPulse 2s infinite alternate;
-  animation-play-state: paused;
 
   &:hover {
-    animation-play-state: running;
     cursor: pointer;
     ${(props) =>
       props.animateDpClick &&

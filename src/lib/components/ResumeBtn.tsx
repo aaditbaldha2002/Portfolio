@@ -1,14 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import Download from '../../../static/icons/Download';
+import { useWindowWidth } from '../hooks/useWindowWidth';
 
 const ResumeBtn: React.FC = () => {
   const handleDownloadResume = React.useCallback(() => {}, []);
-
+  const width = useWindowWidth();
+  const isMobile = width < 800;
   return (
     <Content title="Download my resume" onClick={handleDownloadResume}>
-      <Title>Resume</Title>
-      <Download width="2rem" height="2rem" />
+      {width > 440 && <Title>Resume</Title>}
+      <Download
+        width={isMobile ? '1.25rem' : '2rem'}
+        height={isMobile ? '1.25rem' : '2rem'}
+      />
     </Content>
   );
 };
@@ -44,5 +49,5 @@ const Content = styled.div`
 
 const Title = styled.div`
   display: flex;
-  font-size: 2rem;
+  font-size: 1.25rem;
 `;

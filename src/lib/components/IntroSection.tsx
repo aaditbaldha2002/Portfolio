@@ -17,6 +17,7 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
   const height = useWindowHeight();
   const isMobile = width < 768;
   const heightOk = height > 600;
+  const showSummary = width > 885;
 
   const [gateOpened, setGateOpened] = React.useState(false);
   const [animateDpClick, setAnimateDpClick] = React.useState(false);
@@ -53,29 +54,21 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
       data-testid="wrapper-test-id"
       onAnimationEnd={() => setGateOpened(true)}
     >
-      <Dp ref={dpRef} animateDpClick={animateDpClick} />
       <ContentWrapper
         gateOpened={gateOpened}
         data-testid="ContentWrapper-test-id"
       >
+        <Dp ref={dpRef} animateDpClick={animateDpClick} />
         <InfoWrapper data-testid="Info-wrapper-test-id">
           <NameWrapper
             data-testid="Name-wrapper-test-id"
             gateOpened={gateOpened}
           >
-            <TextTyper
-              text={name}
-              size={isMobile ? '2rem' : '4rem'}
-              weight="normal"
-              color={theme.white}
-              margin="0.5em"
-              data-testid="Name-texttyper-test-id"
-              letterSpacing="5px"
-            />
+            Aadit Baldha
           </NameWrapper>
           <Role>Frontend Developer</Role>
 
-          {!isMobile && heightOk && (
+          {showSummary && heightOk && (
             <SummaryWrapper
               gateOpened={gateOpened}
               data-testid="summaryWrapper-test-id"
@@ -86,7 +79,7 @@ export const IntroSection: React.FC<IntroSectionProps> = (props) => {
             </SummaryWrapper>
           )}
           <LocationContent>
-            <Pin height="2em" width="2em" />
+            <Pin height="2rem" width="2rem" />
             <Site>Jersey City, NJ</Site>
           </LocationContent>
           <ContactSection />
@@ -129,12 +122,11 @@ const LocationContent = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 1rem;
 `;
 
 const Site = styled.div`
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 `;
 
 const fadeIn = keyframes`
@@ -148,7 +140,6 @@ const fadeIn = keyframes`
 const ContentWrapper = styled.div<{ gateOpened: boolean }>`
   width: 100%;
   display: flex;
-  flex-direction: column;
   position: relative;
   padding: 2em;
   box-sizing: border-box;
@@ -159,6 +150,14 @@ const ContentWrapper = styled.div<{ gateOpened: boolean }>`
       animation: 0.15s ${fadeIn} linear forwards;
     `};
   user-select: none;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media (max-width: 335px) {
+    padding: 0em;
+  }
 `;
 
 const InfoWrapper = styled.div`
@@ -167,14 +166,18 @@ const InfoWrapper = styled.div`
   width: 100%;
   padding: 1em 2em;
   gap: 1em;
+  @media (max-width: 800px) {
+    text-align: center;
+    align-items: center;
+  }
+  @media (max-width: 640px) {
+    padding: 1em 0em;
+  }
 `;
 
 const NameWrapper = styled.div<{ gateOpened: boolean }>`
   position: relative;
   color: ${(props) => props.theme.white};
-  @media (max-width: 640px) {
-    text-align: center;
-  }
   ${(props) =>
     props.gateOpened &&
     css`
@@ -200,8 +203,21 @@ const NameWrapper = styled.div<{ gateOpened: boolean }>`
         0px 0px 0.75em ${(props) => props.theme.blue};
     }
   }
-  @media (max-width: 768px) {
-    font-size: 1rem;
+  font-size: 5rem;
+  @media (max-width: 990px) {
+    font-size: 4.5rem;
+  }
+  @media (max-width: 940px) {
+    font-size: 4rem;
+  }
+  @media (max-width: 890px) {
+    font-size: 3.5rem;
+  }
+  @media (max-width: 840px) {
+    font-size: 3rem;
+  }
+  @media (max-width: 390px) {
+    font-size: 2.5rem;
   }
 `;
 
@@ -211,7 +227,10 @@ const Role = styled.div`
   word-spacing: 0.25em;
   line-height: 0.75em;
   text-shadow: none;
-  @media (max-width: 768px) {
+  @media (max-width: 921px) {
+    font-size: 1.5rem;
+  }
+  @media (max-width: 420px) {
     font-size: 1.5rem;
   }
 `;
@@ -219,9 +238,7 @@ const Role = styled.div`
 const SummaryWrapper = styled.div<{ gateOpened: boolean }>`
   font-size: 1.25em;
   color: ${(props) => props.theme.white_75_translucent};
-  margin-bottom: 0.75em;
   position: relative;
-  width: 62.5%;
   ${(props) =>
     props.gateOpened &&
     css`

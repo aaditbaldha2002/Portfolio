@@ -4,12 +4,12 @@ import Hamburger from '../../../static/icons/Hamburger';
 
 const NavBar: React.FC = () => {
   const [isMobile, setIsMobile] = React.useState(
-    () => window.innerWidth <= 865,
+    () => window.innerWidth <= 1000,
   );
 
   React.useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 865);
+      setIsMobile(window.innerWidth <= 1000);
     };
     window.addEventListener('resize', handleResize);
     handleResize();
@@ -161,7 +161,7 @@ const Wrapper = styled.nav`
   animation: ${fadeIn} 1.5s ease-out forwards;
   box-sizing: border-box;
 
-  @media (max-width: 768px) {
+  @media (max-width: 800px) {
     padding: 0.5em 1em;
   }
 `;

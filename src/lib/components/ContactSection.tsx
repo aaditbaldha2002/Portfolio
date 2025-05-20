@@ -54,9 +54,11 @@ const Content = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 1em 0em;
   column-gap: 1em;
   row-gap: 1em;
+  @media (max-width: 800px) {
+    justify-content: center;
+  }
 `;
 const IconWrapper = styled.div`
   height: 50px;
