@@ -148,6 +148,8 @@ const IceDaggerImgWrapper = styled.div`
 const IceDagger = styled.img`
   background-repeat: no-repeat;
   background-size: cover;
+  pointer-events: auto;
+  user-select: none;
 `;
 
 const rightAppear = keyframes`
