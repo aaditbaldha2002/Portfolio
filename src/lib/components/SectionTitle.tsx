@@ -1,31 +1,35 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import SectionTitleSVG from '../../../static/SectionTitle.svg';
 
 interface SectionTitleProps {
   text: string;
 }
 
-const SectionTitle: React.FC<SectionTitleProps> = () => {
-  return (
-    <Wrapper>
-      <TitleImg src={SectionTitleSVG} />
-    </Wrapper>
-  );
+const SectionTitle: React.FC<SectionTitleProps> = (props) => {
+  return <Wrapper>{props.text}</Wrapper>;
 };
 
 export default SectionTitle;
 
+const appear = keyframes`
+  from{
+    opacity:0;
+    transform: translateY(20px);
+  }to{
+    opacity:1;
+    transform: translateY(0px);
+  }
+`;
+
 const Wrapper = styled.div`
-  width: 100%;
+  width: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  height: 2em;
   z-index: 1;
-`;
-
-const TitleImg = styled.svg`
-  width: 100%;
+  border: 2px solid ${(props) => props.theme.white};
+  font-size: 3rem;
+  padding: 1rem 3rem;
+  animation: 1s ${appear} ease-out forwards;
 `;

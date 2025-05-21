@@ -1,21 +1,24 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { SkillCard } from './SkillCard';
 import { SkillNotification } from './SkillNotification';
 import PopupMP3 from '../../../static/sounds/popup_sound.mp3';
 import { notificationData, NotifyData } from '../data/notificationData';
 import SectionTitle from './SectionTitle';
+import LeftArrow from '../../../static/icons/LeftArrow';
+import RightArrow from '../../../static/icons/RightArrow';
 
 export const SkillSection: React.FC = () => {
   const notificationDataMap: Record<string, NotifyData> = React.useMemo(
     () => notificationData,
     [],
   );
-  const [cardIndexShowed, setCardIndexShowed] = React.useState(-1);
+  const [cardIndexShowed, setCardIndexShowed] = React.useState(0);
   const [skillPopupName, setSkillPopupName] = React.useState('');
   const [showNotification, setShowNotification] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(new Audio(PopupMP3));
-  const typeArr: string[] = ['FRONT END', 'REPO SYNC', 'DEV TOOLS'];
+  // const typeArr: string[] = ['FRONT END', 'REPO SYNC', 'DEV TOOLS'];
+  const typeArr: string[] = ['FRONT END'];
 
   const handleBtnClick = React.useCallback(() => {
     return (props: string) => {
@@ -45,26 +48,13 @@ export const SkillSection: React.FC = () => {
     }, 350);
   }, []);
 
-  React.useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCardIndexShowed((prevIndex) => prevIndex + 1);
-    }, 250);
-
-    const timeOutId = setTimeout(() => {
-      clearInterval(intervalId);
-      setCardIndexShowed(2);
-    }, 1500);
-
-    return () => {
-      clearTimeout(timeOutId);
-    };
-  }, []);
-
   return (
     <Wrapper>
       <TitleWrapper>
         <SectionTitle text="SKILLS" />
       </TitleWrapper>
+      <ConnectionLink />
+      <LeftArrow height="50px" width="50px" />
       <SkillCardsWrapper>
         {typeArr.map((value, index) => {
           return (
@@ -87,6 +77,7 @@ export const SkillSection: React.FC = () => {
           />
         )}
       </SkillCardsWrapper>
+      <RightArrow height="50px" width="50px" />
     </Wrapper>
   );
 };
@@ -94,12 +85,11 @@ export const SkillSection: React.FC = () => {
 const Wrapper = styled.div`
   padding-top: 93px;
   height: 100vh;
-  padding: 3em 1em;
+  padding: 93px 3rem 3rem;
   background: ${(props) =>
     `radial-gradient(${props.theme.darkest_blue},${props.theme.black})`};
   display: flex;
   width: 100%;
-  flex-direction: column;
   row-gap: 5em;
   justify-content: space-around;
   align-items: center;
@@ -109,21 +99,37 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 `;
 
+const elongate = keyframes`
+  from{
+    transform:scaleX(0%);
+  }to{
+    transform: scaleX(100%);
+  }
+`;
+
+const ConnectionLink = styled.div`
+  display: flex;
+  border: 2px solid ${(props) => props.theme.white_50_translucent};
+  padding: 0.15rem 2rem;
+  animation: 1s ${elongate} ease-in-out forwards;
+  flex-grow: 1;
+`;
+
 const TitleWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 250px;
-  height: fit-content;
   gap: 2em;
+  width: 33%;
 `;
 
 const SkillCardsWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  gap: 2em;
+  column-gap: 2rem;
+  row-gap: 5rem;
   height: fit-content;
   background-repeat: repeat-y;
-  width: 100%;
+  width: 33%;
 `;

@@ -35,7 +35,7 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
       <ContentWrapper id="Conent-Wrapperid">
         <ContentGridWrapper showContent={showContent}>
           <TitleBoxWrapper>
-            <TitleWrapper id="TitleWrapper-id">{props.type}</TitleWrapper>
+            <TitleWrapper>{props.type}</TitleWrapper>
           </TitleBoxWrapper>
           <BtnGridWrapper id="BtnGridWrapper-id">
             {techMap[props.type].map((value, index) => {
@@ -73,7 +73,7 @@ export const popUp = keyframes`
 
 const SkillCardWrapper = styled.div<{ cardIndex: number; showCard: number }>`
   display: flex;
-  width: 30%;
+  width: max(400px, 30%);
   flex-direction: column;
   position: relative;
   ${(props) =>
@@ -147,9 +147,13 @@ const fadeIn = keyframes`
     transform: scale(1);
   }
 `;
+
 const ContentGridWrapper = styled.div<{ showContent: boolean }>`
-  padding: 2em;
-  display: grid;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   grid-template-rows: 1fr 3fr;
   ${(props) =>
     props.showContent &&
@@ -157,12 +161,14 @@ const ContentGridWrapper = styled.div<{ showContent: boolean }>`
       animation: ${fadeIn} 0.3s ease-out forwards;
     `};
   opacity: ${(props) => (props.showContent ? 1 : 0)};
+  gap: 2rem;
 `;
 
 const TitleBoxWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  align-items: center;
 `;
 
 const TitleWrapper = styled.div`
@@ -171,29 +177,35 @@ const TitleWrapper = styled.div`
   text-shadow:
     0px 0px 0.5em ${(props) => props.theme.light_blue},
     0px 0px 1em ${(props) => props.theme.blue};
-  padding: 1em 2em;
-  font-size: 1.75em;
+  font-size: 1.75rem;
   letter-spacing: 1px;
   width: fit-content;
   text-align: center;
   user-select: none;
   transition: text-shadow 0.3s ease-out;
+  padding: 1rem 3rem;
+  @media (max-width: 360px) {
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
 `;
 
 const BtnGridWrapper = styled.div`
-  display: grid;
+  display: flex;
   width: 100%;
-  grid-template-columns: 50% 50%;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  gap: 1em;
+  gap: 1rem;
+  padding: 0rem 1rem;
 `;
 
 const BtnWrapper = styled.div`
   border: 2px solid ${(props) => props.theme.white_50_translucent};
-  font-size: 1.5em;
-  padding: 1em;
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 0.5rem;
   text-shadow:
     0px 0px 20px ${(props) => props.theme.blue},
     0px 0px 20px ${(props) => props.theme.light_blue};
@@ -213,5 +225,9 @@ const BtnWrapper = styled.div`
     transform: translateY(5px);
     box-shadow: 2px 2px ${(props) => props.theme.white_50_translucent};
     transition: transform 0.2s ease-out;
+  }
+
+  @media (max-width: 360px) {
+    font-size: 1rem;
   }
 `;
