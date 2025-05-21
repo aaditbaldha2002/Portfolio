@@ -32,7 +32,7 @@ export const SkillCard: React.FC<SkillCardProps> = (props) => {
       onAnimationEnd={handleShowContent}
     >
       <UpperBorder />
-      <ContentWrapper id="Conent-Wrapperid">
+      <ContentWrapper id="Content-Wrapperid">
         <ContentGridWrapper showContent={showContent}>
           <TitleBoxWrapper>
             <TitleWrapper>{props.type}</TitleWrapper>
@@ -72,8 +72,8 @@ export const popUp = keyframes`
 `;
 
 const SkillCardWrapper = styled.div<{ cardIndex: number; showCard: number }>`
-  display: flex;
   width: max(400px, 30%);
+  flex-grow: 1;
   flex-direction: column;
   position: relative;
   ${(props) =>

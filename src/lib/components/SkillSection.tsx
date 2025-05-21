@@ -4,21 +4,19 @@ import { SkillCard } from './SkillCard';
 import { SkillNotification } from './SkillNotification';
 import PopupMP3 from '../../../static/sounds/popup_sound.mp3';
 import { notificationData, NotifyData } from '../data/notificationData';
-import SectionTitle from './SectionTitle';
-import LeftArrow from '../../../static/icons/LeftArrow';
-import RightArrow from '../../../static/icons/RightArrow';
+import IceDaggerPNG from '../../../static/pictures/ice_dagger.png';
+import SplitDaggerJPEG from '../../../static/pictures/split_dagger.png';
 
 export const SkillSection: React.FC = () => {
   const notificationDataMap: Record<string, NotifyData> = React.useMemo(
     () => notificationData,
     [],
   );
-  const [cardIndexShowed, setCardIndexShowed] = React.useState(0);
+  const [cardIndexShowed, setCardIndexShowed] = React.useState(-1);
   const [skillPopupName, setSkillPopupName] = React.useState('');
   const [showNotification, setShowNotification] = React.useState(false);
   const audioRef = React.useRef<HTMLAudioElement>(new Audio(PopupMP3));
-  // const typeArr: string[] = ['FRONT END', 'REPO SYNC', 'DEV TOOLS'];
-  const typeArr: string[] = ['FRONT END'];
+  const typeArr: string[] = ['FRONT END', 'REPO SYNC', 'DEV TOOLS'];
 
   const handleBtnClick = React.useCallback(() => {
     return (props: string) => {
@@ -48,13 +46,28 @@ export const SkillSection: React.FC = () => {
     }, 350);
   }, []);
 
+  React.useEffect(() => {
+    const tempInterval = setInterval(() => {
+      setCardIndexShowed((prevIndex) => prevIndex + 1);
+    }, 300);
+    const tempTimeout = setTimeout(() => {
+      clearInterval(tempInterval);
+    }, 900);
+
+    return () => {
+      clearInterval(tempInterval);
+      clearTimeout(tempTimeout);
+    };
+  }, []);
+
   return (
     <Wrapper>
-      <TitleWrapper>
-        <SectionTitle text="SKILLS" />
-      </TitleWrapper>
-      <ConnectionLink />
-      <LeftArrow height="50px" width="50px" />
+      <IceDaggerImgWrapper>
+        <IceDagger src={IceDaggerPNG} alt="Ice Dagger" />
+      </IceDaggerImgWrapper>
+      <SplitDaggerImgWrapper>
+        <SplitDagger src={SplitDaggerJPEG} alt="Split Dagger" />
+      </SplitDaggerImgWrapper>
       <SkillCardsWrapper>
         {typeArr.map((value, index) => {
           return (
@@ -77,7 +90,6 @@ export const SkillSection: React.FC = () => {
           />
         )}
       </SkillCardsWrapper>
-      <RightArrow height="50px" width="50px" />
     </Wrapper>
   );
 };
@@ -90,46 +102,65 @@ const Wrapper = styled.div`
     `radial-gradient(${props.theme.darkest_blue},${props.theme.black})`};
   display: flex;
   width: 100%;
-  row-gap: 5em;
+  row-gap: 5rem;
+  gap: 1rem;
   justify-content: space-around;
   align-items: center;
   background-repeat: repeat-y;
   color: ${(props) => props.theme.white};
   scroll-snap-align: start;
   box-sizing: border-box;
-`;
-
-const elongate = keyframes`
-  from{
-    transform:scaleX(0%);
-  }to{
-    transform: scaleX(100%);
-  }
-`;
-
-const ConnectionLink = styled.div`
-  display: flex;
-  border: 2px solid ${(props) => props.theme.white_50_translucent};
-  padding: 0.15rem 2rem;
-  animation: 1s ${elongate} ease-in-out forwards;
-  flex-grow: 1;
-`;
-
-const TitleWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2em;
-  width: 33%;
+  overflow-y: hidden;
 `;
 
 const SkillCardsWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  column-gap: 2rem;
+  column-gap: 4rem;
   row-gap: 5rem;
   height: fit-content;
   background-repeat: repeat-y;
-  width: 33%;
+  width: 100%;
 `;
+
+const leftAppear = keyframes`
+  from {
+    transform: scale(1.5, 1.5) translate(-100%, 100%) rotateY(180deg) rotateZ(-20deg);
+  }
+  to {
+    transform: scale(1.5, 1.5) translate(-10px, -25px) rotateY(180deg) rotateZ(-20deg);
+  }
+`;
+
+const IceDaggerImgWrapper = styled.div`
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+  transform: scale(1.5, 1.5) rotateY(180deg) rotateZ(-20deg);
+  top: -25px;
+  left: -10px;
+  animation: ${leftAppear} 1s ease-in-out forwards;
+`;
+
+const IceDagger = styled.img`
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
+
+const rightAppear = keyframes`
+  from {
+    transform: scale(1.5, 1.5) translate(300%, -100%) rotateZ(-110deg);
+  }
+  to {
+    transform: scale(1.5, 1.5) translate(200%, 25%) rotateZ(-110deg);
+  }
+`;
+
+const SplitDaggerImgWrapper = styled(IceDaggerImgWrapper)`
+  animation: ${rightAppear} 1s ease-in-out forwards;
+`;
+
+const SplitDagger = styled(IceDagger)``;
