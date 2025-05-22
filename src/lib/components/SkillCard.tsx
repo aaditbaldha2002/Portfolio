@@ -72,8 +72,7 @@ export const popUp = keyframes`
 `;
 
 const SkillCardWrapper = styled.div<{ cardIndex: number; showCard: number }>`
-  width: max(400px, 30%);
-  flex-grow: 1;
+  width: clamp(288px, 50vw, 400px);
   flex-direction: column;
   position: relative;
   ${(props) =>
@@ -184,7 +183,7 @@ const TitleWrapper = styled.div`
   user-select: none;
   transition: text-shadow 0.3s ease-out;
   padding: 1rem 3rem;
-  @media (max-width: 360px) {
+  @media (max-width: 640px) {
     font-size: 1.5rem;
     padding: 1rem;
   }
@@ -227,7 +226,7 @@ const BtnWrapper = styled.div`
     transition: transform 0.2s ease-out;
   }
 
-  @media (max-width: 360px) {
+  @media (max-width: 640px) {
     font-size: 1rem;
   }
 `;

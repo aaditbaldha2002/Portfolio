@@ -100,6 +100,11 @@ const Wrapper = styled.div`
     `radial-gradient(${props.theme.darkest_blue},${props.theme.black})`};
   display: flex;
   width: 100%;
+  height: 100vh;
+  @media (max-width: 1420px) {
+    height: fit-content;
+    padding: 93px 1rem 1rem;
+  }
   row-gap: 5rem;
   gap: 1rem;
   justify-content: space-around;
