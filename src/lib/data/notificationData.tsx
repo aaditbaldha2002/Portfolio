@@ -85,7 +85,7 @@ export const notificationData: Record<string, NotifyData> = {
   SASS: {
     skillName: 'SASS',
     proficiency_level: 'Low',
-    category: 'CSS Preprocessor',
+    category: 'Preprocessor',
     attributes: [
       'Utilizing variables, mixins, and nesting to write reusable and maintainable styles.',
       'Enhancing CSS with mathematical operations and custom functions for dynamic designs.',
@@ -96,7 +96,7 @@ export const notificationData: Record<string, NotifyData> = {
   Git: {
     skillName: 'Git',
     proficiency_level: 'Medium',
-    category: 'Version Control',
+    category: 'Versioning',
     attributes: [
       'Efficiently managing project versions and tracking changes with commit history.',
       'Collaborating seamlessly through branches and handling merge conflicts effectively.',
@@ -107,7 +107,7 @@ export const notificationData: Record<string, NotifyData> = {
   GitHub: {
     skillName: 'GitHub',
     proficiency_level: 'Medium',
-    category: 'Web Platform',
+    category: 'Platform',
     attributes: [
       'Organizing tasks, bugs, and feature requests with issues and projects.',
       'Automating workflows and deployments through GitHub Actions for efficient development pipelines.',
@@ -163,7 +163,7 @@ export const notificationData: Record<string, NotifyData> = {
   Jest: {
     skillName: 'Jest',
     proficiency_level: 'Low',
-    category: 'Unit Testing',
+    category: 'Testing',
     attributes: [
       'Automating JavaScript testing with a rich set of assertions, mocks, and spies.',
       'Ensuring code quality and reliability by providing tools for debugging, code coverage, and more.',
@@ -174,7 +174,7 @@ export const notificationData: Record<string, NotifyData> = {
   Cypress: {
     skillName: 'Cypress',
     proficiency_level: 'Low',
-    category: 'E2E Testing',
+    category: 'Testing',
     attributes: [
       'Automating user interactions to validate entire workflows and ensure application reliability.',
       'Running tests directly in the browser for faster feedback and accurate results.',

@@ -15,8 +15,6 @@ const Github: React.FC<SvgProps> = (props) => {
       filter={`drop-shadow(0 0 1em ${colorTheme.blue}) drop-shadow(0 0 0.5em ${colorTheme.light_blue})`}
     >
       <title>github [#142]</title>
-      <desc>Created with Sketch.</desc>
-      <defs></defs>
       <g
         id="Page-1"
         stroke="none"
