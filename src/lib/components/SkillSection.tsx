@@ -95,8 +95,6 @@ export const SkillSection: React.FC = () => {
 };
 
 const Wrapper = styled.div`
-  padding-top: 93px;
-  height: 100vh;
   padding: 93px 3rem 3rem;
   background: ${(props) =>
     `radial-gradient(${props.theme.darkest_blue},${props.theme.black})`};
@@ -111,10 +109,13 @@ const Wrapper = styled.div`
   scroll-snap-align: start;
   box-sizing: border-box;
   overflow-y: hidden;
+  overflow-x: hidden;
+  position: relative;
 `;
 
 const SkillCardsWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
   column-gap: 4rem;
@@ -152,17 +153,21 @@ const IceDagger = styled.img`
   user-select: none;
 `;
 
-const rightAppear = keyframes`
+const rightAppearDefault = keyframes`
   from {
-    transform: scale(1.5, 1.5) translate(300%, -100%) rotateZ(-110deg);
+    transform: scale(1.5) translate(100%,-100%) rotateZ(-110deg);
   }
   to {
-    transform: scale(1.5, 1.5) translate(200%, 25%) rotateZ(-110deg);
+    transform: scale(1.5) translate(0,0) rotateZ(-110deg);
   }
 `;
 
 const SplitDaggerImgWrapper = styled(IceDaggerImgWrapper)`
-  animation: ${rightAppear} 1s ease-in-out forwards;
+  top: auto;
+  left: auto;
+  bottom: -50px;
+  right: -10px;
+  animation: ${rightAppearDefault} 1s ease-in-out forwards;
 `;
 
 const SplitDagger = styled(IceDagger)``;
